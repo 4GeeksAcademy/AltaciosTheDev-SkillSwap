@@ -99,7 +99,7 @@ export const Howitworks = () => {
                             </div>
                         </div>
 
-                        <div className="container pt-4">
+                        <div className="container pt-4 pb-4">
                             <div className="row">
                                  <div className="col-6">
                             <div className="text">
