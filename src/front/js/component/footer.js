@@ -1,10 +1,56 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center">
-		<p>
-			Made with <i className="fa fa-heart text-danger" /> by{" "}
-			<a href="http://www.4geeksacademy.com">4Geeks Academy</a>
-		</p>
+	<footer className="footer bg-dark">
+
+		<div className="p-5 d-flex justify-content-between	">
+			
+			<div className="text-light d-flex flex-column">
+				 	<Link to="/">
+						<button className="bg-dark text-light border-0">Home</button>
+					</Link>
+				 	<Link to="/demo	">
+						<button className="bg-dark text-light border-0">Blog/News</button>
+					</Link>
+				 	<Link to="/demo	">
+						<button className="bg-dark text-light border-0">How it Works?</button>
+					</Link>
+				 	<Link to="/demo	">
+						<button className="bg-dark text-light border-0">Pricing</button>
+					</Link>
+				 	<Link to="/demo	">
+						<button className="bg-dark text-light border-0">Testimonials</button>
+					</Link>
+			</div>		
+			<div className="vertical-line ms-4"></div>
+
+			<div className="my-auto">
+				<Link to="/demo	">
+					<button className="bg-dark text-light border-0 ">Testimonials</button>
+				</Link>
+				
+				<Link to="/demo	">
+					<button className="bg-dark text-light border-0">Testimonials</button>
+				</Link>
+				<Link to="/demo	">
+					<button className="bg-dark text-light border-0">Testimonials</button>
+				</Link>
+			</div>
+			<div className="vertical-line ms-4"></div>
+
+			<div className="text-light d-flex flex-column">
+				<h6>Find Us!</h6>
+				<span>Instagram icon and username</span>
+				<span>Facebook icon and username</span>
+				<span>Twitter icon and username</span>
+			</div>
+
+
+
+
+
+		</div>
+
 	</footer>
 );
