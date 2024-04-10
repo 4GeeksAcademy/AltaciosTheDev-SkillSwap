@@ -1,6 +1,10 @@
 
- /* Footer */
+/* Home */
+.barra {
+    color: #2d5eb2;
+}
 
+ /* Footer */
 .vertical-line {
     border-left: 4px solid rgb(99, 99, 99);
     height: auto;
@@ -9,4 +13,36 @@
     border-bottom: 4px solid rgb(99, 99, 99);
     width: 100%;
     height: 3px;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.boton {
+    background-color: transparent;
+    border: 3px solid #3f63a1;
+    padding: 8px 34px;
+    transition: all .3s ease-in-out;
+}
+.boton:hover {
+    background-color: #3f63a1;
+    transition: all .3s ease-in;
+    color: white;
+}
+.hero-navbar {
+    background-color: rgb(244, 244, 242);
+    height: 90vh;
 }
