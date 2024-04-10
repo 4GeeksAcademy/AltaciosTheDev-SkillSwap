@@ -3,6 +3,16 @@
 .barra {
     color: #2d5eb2;
 }
+.bg-carne {
+    background-color: #F3D7CA;
+}
+.bg-amarillo {
+    background-color: #ece2c4;
+}
+
+.bg-verde {
+    background-color: #CCD3CA;
+}
 
  /* Footer */
 .vertical-line {
@@ -43,6 +53,14 @@
     color: white;
 }
 .hero-navbar {
-    background-color: rgb(244, 244, 242);
+    background-color: #F5EEE6;
     height: 90vh;
+}
+.caja-flotante {
+    position: absolute;
+    top: 18%;
+    border-radius: 2px;
+    width: 70%;
+    height: 450px;
+    
 }
