@@ -41,9 +41,9 @@ export const Footer = () => (
 
 			<div className="text-light d-flex flex-column">
 				<h6>Find Us!</h6>
-				<span>Instagram icon and username</span>
-				<span>Facebook icon and username</span>
-				<span>Twitter icon and username</span>
+				<span><i class="fa-brands fa-instagram"></i> username</span>
+				<span><i class="fa-brands fa-facebook"></i> username</span>
+				<span><i class="fa-brands fa-x-twitter"></i> username</span>
 			</div>
 
 
