@@ -6,7 +6,7 @@ import "../../styles/home.css";
 export const Howitworks = () => {
     const { store, actions } = useContext(Context);
     return (
-        <div className="container text-center mb-2">
+        <div className="container text-center">
             <div className="instructions">
 
                 <div className="hero">

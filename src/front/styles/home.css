@@ -26,6 +26,7 @@
 .instructions{
     margin-top: 0;
     background-color: antiquewhite;
+    padding-bottom: 2rem;
 }
 .hero{
     padding-top: 2rem;
@@ -49,6 +50,7 @@
 .cardback{
 
     height: 450px;
+    border: 3px solid #D593FF;
     border-radius: 6px;
     background-color: #F8DAFF;
     container: fluid;
