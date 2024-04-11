@@ -77,7 +77,7 @@ export const Home = () => {
     </div>
 
       <div className="d-flex justify-content-end bg-carne pb-5 position-relative">
-        <button className="boton  mb-5">Interested? Join!</button> 
+   
       </div>
 
       <div className="vh-100 bg-amarillo position-relative rounded-2">
