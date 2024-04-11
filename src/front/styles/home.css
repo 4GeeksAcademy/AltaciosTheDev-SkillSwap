@@ -44,8 +44,37 @@
    width: 250px;
    border: 2px solid #999999;
 }
-.rigthimage{
-    margin-right: 10rem;
+
+/* pricing */
+.cardback{
+
+    height: 450px;
+    border-radius: 6px;
+    background-color: #F8DAFF;
+    container: fluid;
+
+}
+
+.cardinfo{
+    place-content: center;
+    padding-top: 12%;
+    padding-bottom:24%;
+}
+.card{
+    align-self: center;
+}
+.pagar{
+    background-color: transparent;
+    border: 2px solid #DAFCFF;
+    border-radius: 4px;
+    align-self: center;
+    transition: all .4s ease-in;
+    
+    
+}
+.pagar:hover{
+    background-color: #DAFCFF;
+    transition: all .4s ease-out;
 }
 
 @keyframes fadeIn {
