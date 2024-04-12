@@ -1,6 +1,19 @@
+/* Globals */
 
+.boton {
+    background-color: transparent;
+    border: 3px solid #3f63a1;
+    padding: 8px 34px;
+    transition: all .3s ease-in-out;
+}
+.boton:hover {
+    background-color: #3f63a1;
+    transition: all .3s ease-in;
+    color: white;
+}
 
-/* Home */
+/* Colors */
+
 .barra {
     color: #2d5eb2;
 }
@@ -14,6 +27,49 @@
 .bg-verde {
     background-color: #CCD3CA;
 }
+.pink {
+ color: #9a65bb;
+}
+/* Home */
+
+.hero{
+    padding-top: 2rem;
+    margin-bottom: 3rem;
+}
+.hero-navbar {
+    background-color: #F5EEE6;
+    height: 90vh;
+}
+.caja-flotante {
+    position: absolute;
+    top: 18%;
+    border-radius: 2px;
+    width: 80%;
+    height: 440px;
+    padding: 20px;
+    
+}
+
+
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
 
  /* Footer */
 .vertical-line {
@@ -26,11 +82,7 @@
     height: 3px;
 }
 
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 2s ease forwards;
-}
+
 
 /*howitworks*/
 .instructions{
@@ -38,10 +90,7 @@
     background-color: antiquewhite;
     padding-bottom: 2rem;
 }
-.hero{
-    padding-top: 2rem;
-    margin-bottom: 3rem;
-}
+
 .text{
 
    margin-top: 11%;
@@ -49,8 +98,8 @@
 }
 
 .marco{
-    place-self: end;
-    padding:9px;
+   place-self: end;
+   padding:9px;
    background-color: #f5f5f5;
    width: 250px;
    border: 2px solid #999999;
@@ -89,36 +138,6 @@
     transition: all .4s ease-out;
 }
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-.boton {
-    background-color: transparent;
-    border: 3px solid #3f63a1;
-    padding: 8px 34px;
-    transition: all .3s ease-in-out;
-}
-.boton:hover {
-    background-color: #3f63a1;
-    transition: all .3s ease-in;
-    color: white;
-}
-.hero-navbar {
-    background-color: #F5EEE6;
-    height: 90vh;
-}
-.caja-flotante {
-    position: absolute;
-    top: 18%;
-    border-radius: 2px;
-    width: 70%;
-    height: 450px;
-    
-}
+
+
+

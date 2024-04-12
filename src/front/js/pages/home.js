@@ -75,14 +75,30 @@ export const Home = () => {
         
       </div> 
     </div>
+      <div className="d-flex justify-content-end bg-carne pb-5 position-relative"></div>
 
-      <div className="d-flex justify-content-end bg-carne pb-5 position-relative">
-   
-      </div>
+      <div className="vh-100 bg-amarillo position-relative rounded-2 d-flex">
+        <div className="bg-verde caja-flotante position-absolute start-50 translate-middle d-flex gap-3">
+          <div>
+            <h4 className="mb-5">We can help you reach your potential, <br/> <span className="pink">even if you...</span> </h4>
+            <p className="my-4">. feel OVERWHELMED with learning something new. </p>
+            <p className="my-4">. think you don't have ANYTHING to offer.</p>
+            <p className="my-4">. You've STRUGGLED with Self-learing before. </p>
+            <p className="my-4">. CAN'T AFFORD live and personalized learning anywhere else</p>
+          </div>
+          
 
-      <div className="vh-100 bg-amarillo position-relative rounded-2">
+          <div className="w-50 p-4 bg-carne h-75 mt-5 rounded-3 shadow">
+            <h1 className="text-center"> Sound like you?</h1>
+            <p className="my-3 ">"If so, SkillSwap provides the community you need and empowers 
+              you to make a difference within it."</p>
+              <div className="d-flex justify-content-end">
+              <button className="boton mt-5">Trust us and JOIN!</button>
+              </div>
+            
+          </div>
 
-      <div className="bg-verde caja-flotante position-absolute start-50 translate-middle"></div>
+        </div>
       </div>
       
 
