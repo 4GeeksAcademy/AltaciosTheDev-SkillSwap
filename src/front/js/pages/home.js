@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import "../../styles/home.css";
 import InfoCards from "../component/InfoCards";
+import TheCard from "../component/TheCard"; 
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -12,7 +13,6 @@ export const Home = () => {
 		<div className="container-fluid hero-navbar pt-3 m-0">    
         <div className="container ">
           <div className="fade-in">
-        
             <div className=" mt-5">
               <h4><strong> <span className="barra">/</span> Learn, Teach, Connect, One Skill at a Time</strong></h4>
               <p>Exchange Skills and Knowledge with a Global Community of Learners and Mentors</p>
@@ -25,10 +25,10 @@ export const Home = () => {
 
     <div className="d-flex  justify-content-center bg-carne mt-0 p-4 ">
 
-      <div className="d-flex justify-content-between justify-content-center">
+      <div className="d-flex justify-content-between ">
+        <div className='container'>
         <Row xs={1} md={1} lg={2} xxl={2}>
-          
-          <Col>
+          <Col >
             <InfoCards 
               title={"Exclusive 1-on-1 Learning—Completely Free"} 
             
@@ -72,13 +72,14 @@ export const Home = () => {
               info="users can benefit from diverse perspectives, feedback, and support. This sense of community enhances the learning experience and encourages continuous growth and development." />
           </Col>
          </Row>
+          </div>
         
       </div> 
     </div>
       <div className="d-flex justify-content-end bg-carne pb-5 position-relative"></div>
 
       <div className="vh-100 bg-amarillo position-relative rounded-2 d-flex">
-        <div className="bg-verde caja-flotante position-absolute start-50 translate-middle d-flex gap-3">
+        <div className="bg-verde caja-flotante position-absolute start-50 translate-middle d-flex gap-3 shadow">
           <div>
             <h4 className="mb-5">We can help you reach your potential, <br/> <span className="pink">even if you...</span> </h4>
             <p className="my-4">. feel OVERWHELMED with learning something new. </p>
@@ -90,18 +91,62 @@ export const Home = () => {
 
           <div className="w-50 p-4 bg-carne h-75 mt-5 rounded-3 shadow">
             <h1 className="text-center"> Sound like you?</h1>
-            <p className="my-3 ">"If so, SkillSwap provides the community you need and empowers 
+            <p className="my-5  ">"If so, SkillSwap provides the community you need and empowers 
               you to make a difference within it."</p>
-              <div className="d-flex justify-content-end">
-              <button className="boton mt-5">Trust us and JOIN!</button>
+              <div className="d-sm-none d-lg-block d-flex justify-content-end">
+              <button className="boton mt-3">Trust us and JOIN!</button>
               </div>
             
           </div>
 
         </div>
       </div>
+      <div className="bg-carne vh-100 ">
+        <h1 className="text-center p-4 mb-5">Learn some of the most demand skills</h1>
+        <div className="container d-flex justify-content-center">
+          <Row xs={2} md={2} lg={4}>
+          
+              <Col className=" d-flex justify-content-center mb-3">
+                <TheCard />
+              </Col>
+
+              <Col className=" d-flex justify-content-center mb-3">
+                <TheCard />
+              </Col>
+
+              <Col className=" d-flex justify-content-center mb-3">
+                <TheCard />
+              </Col>
+
+              <Col className=" d-flex justify-content-center mb-3">
+                <TheCard />
+              </Col>
+
+              <Col className=" d-flex justify-content-center mb-3">
+                <TheCard />
+              </Col>
+
+              <Col className=" d-flex justify-content-center mb-3">
+                <TheCard />
+              </Col>
+
+              <Col className=" d-flex justify-content-center mb-3">
+                <TheCard />
+              </Col>
+              
+              <Col className=" d-flex justify-content-center mb-3">
+                <TheCard />
+              </Col>
+            
+      
+          </Row>
+        </div>
+      </div>
+      <div className="bg-carne vh-50 "></div>
       
 
+
+      
 
 
 

@@ -23,6 +23,12 @@
 .bg-amarillo {
     background-color: #ece2c4;
 }
+.amarillo {
+    color: #e4bc44;
+}
+.bg-amarillo {
+    background-color: #ece2c4;
+}
 
 .bg-verde {
     background-color: #CCD3CA;
@@ -45,13 +51,24 @@
     top: 18%;
     border-radius: 2px;
     width: 80%;
-    height: 440px;
+    height: 460px;
     padding: 20px;
     
 }
+.vh-50 {
+    height: 50vh;
+}
+.vh-30 {
+    height: 30vh;
+}
 
+.zoom {
+    transition: transform .2s;
 
-
+}
+.zoom:hover {
+    transform: scale(1.5);
+  }
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
