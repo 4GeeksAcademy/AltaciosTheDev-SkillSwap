@@ -34,12 +34,12 @@ export const Navbar = () => {
 							</Link>
 						</li>
 						<li className="nav-item">
-							<Link to="/signin">	
+							<Link to="/login">	
 								<span className="nav-link" aria-current="page">Sign in</span>
 							</Link>
 						</li>
 						<li className="nav-item">
-							<Link to="/signup">	
+							<Link to="/form">	
 								<span className="nav-link" aria-current="page">Sign up</span>
 							</Link>
 						</li>
