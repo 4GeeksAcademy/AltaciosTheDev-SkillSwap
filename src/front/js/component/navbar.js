@@ -3,34 +3,48 @@ import { Link } from "react-router-dom";
 
 export const Navbar = () => {
 	return (
-		<nav className="navbar navbar-light bg-dark p-3">
-			<div className="container">
+		<nav className="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+			<div className="container-fluid">
 				<Link to="/">
-					<span className="navbar-brand mb-0 h1 text-light">Logo 🦈</span>
+					<span className="navbar-brand">SkillSwap</span>
 				</Link>
-				<div className="d-flex gap-3">
-					<Link to="/demo">
-						<button className="btn btn-primary">Blog/News</button>
-					</Link>
-					<Link to="/howitworks">
-						<button className="btn btn-primary">How it Works?</button>
-					</Link>
-					<Link to="/pricing">
-						<button className="btn btn-primary">Pricing</button>
-					</Link>
-					<Link to="/demo">
-						<button className="btn btn-primary">Testimonials</button>
-					</Link>
-					
+				<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span className="navbar-toggler-icon"></span>
+				</button>
+				<div className="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+						<li className="nav-item">
+							<Link to="/news">	
+								<span className="nav-link" aria-current="page">News</span>
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link to="/howitworks">
+								<span className="nav-link">How it works</span>
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link to="/pricing">	
+								<span className="nav-link" aria-current="page">Prices</span>
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link to="/testimonials">	
+								<span className="nav-link" aria-current="page">Testimonials</span>
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link to="/signin">	
+								<span className="nav-link" aria-current="page">Sign in</span>
+							</Link>
+						</li>
+						<li className="nav-item">
+							<Link to="/signup">	
+								<span className="nav-link" aria-current="page">Sign up</span>
+							</Link>
+						</li>
+					</ul>
 				</div>
-				<div className="ms-5 d-flex gap-2">
-						<Link to="/login">
-							<button className="btn btn-danger">Login</button>
-						</Link>
-						<Link to="/form">
-							<button className="btn btn-danger">Signup</button>
-						</Link>
-					</div>
 			</div>
 		</nav>
 	);
