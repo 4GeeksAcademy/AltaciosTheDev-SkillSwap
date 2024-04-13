@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import "../../styles/home.css";
 import InfoCards from "../component/InfoCards";
 import TheCard from "../component/TheCard"; 
+import TestimonialCard from "../component/TestimonialCard";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -14,9 +15,9 @@ export const Home = () => {
         <div className="container ">
           <div className="fade-in">
             <div className=" mt-5">
-              <h4><strong> <span className="barra">/</span> Learn, Teach, Connect, One Skill at a Time</strong></h4>
-              <p>Exchange Skills and Knowledge with a Global Community of Learners and Mentors</p>
-              <button className="boton">Join Now!</button>
+              <h4 className="text-hero"><strong> <span className="barra ">/</span> Learn, Teach, Connect, One Skill at a Time</strong></h4>
+              <p className="p-hero">Exchange Skills and Knowledge with a Global Community of Learners and Mentors</p>
+              <button className="boton-hero">Join Now!</button>
             </div>
           </div>
         </div>
@@ -104,45 +105,76 @@ export const Home = () => {
       <div className="bg-carne vh-100 ">
         <h1 className="text-center p-4 mb-5">Learn some of the most demand skills</h1>
         <div className="container d-flex justify-content-center">
-          <Row xs={2} md={2} lg={4}>
+          <Row xs={2} md={2} lg={4} className="d-flex justify-content-center">
           
-              <Col className=" d-flex justify-content-center mb-3">
+              <Col className=" mb-3">
                 <TheCard />
               </Col>
 
-              <Col className=" d-flex justify-content-center mb-3">
+              <Col className="mb-3">
                 <TheCard />
               </Col>
 
-              <Col className=" d-flex justify-content-center mb-3">
+              <Col className="mb-3">
                 <TheCard />
               </Col>
 
-              <Col className=" d-flex justify-content-center mb-3">
+              <Col className="mb-3">
                 <TheCard />
               </Col>
 
-              <Col className=" d-flex justify-content-center mb-3">
+              <Col className="mb-3">
                 <TheCard />
               </Col>
 
-              <Col className=" d-flex justify-content-center mb-3">
+              <Col className="mb-3">
                 <TheCard />
               </Col>
 
-              <Col className=" d-flex justify-content-center mb-3">
+              <Col className="mb-3">
                 <TheCard />
               </Col>
               
-              <Col className=" d-flex justify-content-center mb-3">
+              <Col className="mb-3">
                 <TheCard />
               </Col>
             
-      
           </Row>
         </div>
       </div>
       <div className="bg-carne vh-50 "></div>
+
+      <div className="bg-amarillo vh-100 ">
+
+        <div className="d-flex justify-content-between p-5">
+          <h1>Stories from real <span className="pink">people</span></h1>
+          <button className="boton rounded-2">View All</button>
+        </div>
+
+        <div className="d-flex justify-content-center gap-4">
+          <Row xs={2} md={2} lg={4} className="d-flex justify-content-center">
+
+            <Col className="  mb-3">
+              <TestimonialCard />
+            </Col>
+
+            <Col className="  mb-3">
+            <TestimonialCard />
+            </Col>
+
+            <Col className="  mb-3">
+              <TestimonialCard />
+            </Col>
+
+          </Row>
+        </div>
+
+
+      </div>
+      
+
+      
+
       
 
 
