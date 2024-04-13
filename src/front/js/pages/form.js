@@ -33,7 +33,6 @@ const Pageregister = () => {
                     <div className="text-center">
                         <div>
                             <h1>{TitleRegister[page]}</h1>
-                            <a>hola</a>
                         </div>
                         <div>
                             {Pageregister()}

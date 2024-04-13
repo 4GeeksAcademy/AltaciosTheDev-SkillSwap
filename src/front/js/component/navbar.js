@@ -24,10 +24,10 @@ export const Navbar = () => {
 					
 				</div>
 				<div className="ms-5 d-flex gap-2">
-						<Link to="/demo">
+						<Link to="/login">
 							<button className="btn btn-danger">Login</button>
 						</Link>
-						<Link to="/demo">
+						<Link to="/form">
 							<button className="btn btn-danger">Signup</button>
 						</Link>
 					</div>

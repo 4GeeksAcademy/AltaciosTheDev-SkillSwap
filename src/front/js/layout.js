@@ -9,6 +9,9 @@ import { Single } from "./pages/single";
 import { Howitworks } from "./pages/howitworks";
 import { Pricing } from "./pages/pricing";
 import injectContext from "./store/appContext";
+import {Form} from "./pages/form";
+import { Login } from "./pages/login";
+
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -31,7 +34,8 @@ const Layout = () => {
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Howitworks />} path="/howitworks"/>
                         <Route element={<Pricing/>} path="/pricing"/>
-                        <Route element={<Single />} path="/single/:theid" />
+                        <Route element={<Login />} path="/login" />
+                        <Route element={<Form />} path="/form" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
