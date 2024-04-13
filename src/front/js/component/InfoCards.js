@@ -14,8 +14,8 @@ const InfoCards = ({ title, description, btn, info }) => {
                 </button>
             </p>
             <div style={{ minHeight: "120px" }} className='d-flex justify-content-center'>
-                <div class="collapse collapse-horizontal" id="collapseWidthExample">
-                    <div class="card card-body bg-amarillo mb-4" style={{ width: "300px" }}>
+                <div className="collapse collapse-horizontal" id="collapseWidthExample">
+                    <div className="card card-body bg-carne mb-4" style={{ width: "300px" }}>
                         {info}
                     </div>
                 </div>
