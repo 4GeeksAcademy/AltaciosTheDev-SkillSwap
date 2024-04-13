@@ -1,5 +1,7 @@
 /* Globals */
 
+
+
 .boton {
     background-color: transparent;
     border: 3px solid #3f63a1;
@@ -7,6 +9,19 @@
     transition: all .3s ease-in-out;
 }
 .boton:hover {
+    background-color: #3f63a1;
+    transition: all .3s ease-in;
+    color: white;
+}
+
+.boton-hero {
+    background-color: transparent;
+    border: 3px solid #3f63a1;
+    padding: 8px 34px;
+    transition: all .3s ease-in-out;
+    font-size: 30px;
+}
+.boton-hero:hover {
     background-color: #3f63a1;
     transition: all .3s ease-in;
     color: white;
@@ -37,6 +52,12 @@
  color: #9a65bb;
 }
 /* Home */
+.text-hero {
+    font-size: 100px;
+}
+.p-hero {
+    font-size: 40px;
+}
 
 .hero{
     padding-top: 2rem;
