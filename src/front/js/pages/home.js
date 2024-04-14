@@ -155,15 +155,24 @@ export const Home = () => {
           <Row xs={2} md={2} lg={4} className="d-flex justify-content-center">
 
             <Col className="  mb-3">
-              <TestimonialCard />
+              <TestimonialCard
+                name={"enzo"} 
+
+                description={"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who  "}/>
             </Col>
 
             <Col className="  mb-3">
-            <TestimonialCard />
+            <TestimonialCard
+              name={"miguel"} 
+
+              description={"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual "}/>
             </Col>
 
             <Col className="  mb-3">
-              <TestimonialCard />
+              <TestimonialCard
+                name={"jean"} 
+                
+                description={"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who  "}/>
             </Col>
 
           </Row>
