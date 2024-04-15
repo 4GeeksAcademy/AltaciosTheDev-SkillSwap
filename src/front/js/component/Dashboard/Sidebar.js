@@ -6,10 +6,7 @@ export function Sidebar({openSidebar, openSidebarToggle}) {
     <aside className={`sidebar ${openSidebar ? "sidebar-responsive":""}`}>
         <div className='sidebar-title'>
             <div className="sidebar-brand">
-                <BsArrowsAngleContract  className="icon-header"/>
-                <Link to="/" className="sidebar-link">
-					<span>SKILLSWAP</span>
-		        </Link>
+                <BsArrowsAngleContract  className="icon-header"/>SKILLSWAP
             </div>
             <span className="icon close_icon" onClick={openSidebarToggle}>X</span>
         </div>
@@ -52,9 +49,9 @@ export function Sidebar({openSidebar, openSidebarToggle}) {
                 </a>
             </li>
             <li className='logout sidebar-list-item'>
-                <a href='' className='sidebar-link'>
+                <Link to="/" className="sidebar-link">
                     <BsBoxArrowRight className='icon'/>Logout
-                </a>
+                </Link>		        
             </li>
         </ul>
     </aside>
