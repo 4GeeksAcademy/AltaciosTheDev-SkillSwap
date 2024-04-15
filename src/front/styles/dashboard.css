@@ -1,0 +1,410 @@
+/* layout always starts with this */
+.dashboard{
+    margin: 0;
+    padding: 0;
+    background-color: #1d2634;
+    color: #9e93a4;
+    font-family: "Poppins", sans-serif;
+    height: 100vh;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+/* every little icon in the sidebar and header */
+.icon{
+    vertical-align: middle;
+    line-height: 1px;
+    font-size: 1.3rem;
+}
+
+/* icon for the logo */
+.icon-header{
+    vertical-align: middle;
+    line-height: 1px;
+    font-size: 1.7rem;
+}
+
+/* space separating each icon with its text */
+.icon, .icon-header{
+    margin-right: 0.5rem;
+}
+
+/* stars display none, because it only appears when screen is small */
+.close_icon{
+    font-size: 1.5rem;
+    margin-left: 30px;
+    margin-top: 10px;
+    cursor: pointer;
+    display: none;
+
+}
+
+/* initial grid full screen */
+.grid-container{
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    grid-template-rows: 60px 1fr;
+    grid-template-areas:
+        "sidebar header"
+        "sidebar main";
+    height: 100vh;
+
+}
+
+/* Header */
+/* basic code for a section and selecting where it will be placed */
+.header{
+    grid-area: header;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    padding: 0 30px 0 30px;
+    box-shadow: 0 6px 7px -3px rgba(0,0,0,0.35);
+}
+
+.header-right{
+    margin-left: auto;
+    display:flex;
+    align-items:center;
+    gap:20px;
+
+}
+
+.user-badge{
+    display:flex;
+    align-items:center;
+    gap: 20px;
+}
+
+.user-badge * {
+    margin-top:0;
+    margin-bottom:0;
+}
+
+.user-badge-image{
+    max-width: 40px;
+}
+
+/* at first, menu icon is none */
+.menu-icon{
+    display: none;
+}
+/* End Header */
+
+
+/* Sidebar */
+/* no hace falta que esto sea display flex si todos son block elements */
+.sidebar{
+    grid-area: sidebar;
+    position: relative;
+    height: 100%;
+    background-color: #263043;
+    overflow-y: auto;
+    transition: all 0.5s ease;
+/* como sidebar no es flex, automaticamente los div abarcan todo el espacio */
+}
+
+/* como esto si es flex, abarca solo el espacio que necesita */
+.sidebar-title{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 10px 0 10px;
+    margin-bottom: 30px;
+}
+
+/* only needs margin, font size and font weight */
+.sidebar-brand{
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+/* always take care of padding and list style for lists by default */
+.sidebar-list{
+    padding: 0;
+    list-style-type: none;
+}
+
+/* sepatation and size */
+.sidebar-list-item{
+    padding: 20px;
+    font-size: 18px;
+}
+
+/* hover effects */
+.sidebar-list-item:hover{
+    background-color: rgba(255,255,255,0.2);
+    cursor: pointer;
+}
+
+/* link */
+.sidebar-list-item > .sidebar-link{
+    text-decoration: none;
+    color: #9e9ea4;
+}
+
+/* separate the logout more to the bottom */
+.logout{
+    position: absolute;
+    bottom: 20px;
+    width:230px;
+}
+
+/* class that will be activated only with TRUE on openSidebar  */
+.sidebar-responsive{
+    display: inline !important;
+    position: absolute;
+    z-index: 12 !important;
+    width: 230px;
+    /* to avoid bug that was giving the sidebar a differnet width */
+}
+/* End Sidebar */
+
+
+/* MAIN*/
+/* just color and padding */
+.main-container{
+    grid-area: main;
+    display: grid;
+    grid-template-columns: 0.75fr 0.25fr;
+    grid-template-areas: 
+        "left-side right-side";
+    column-gap: 20px;
+    overflow-y: auto;
+    padding: 20px;
+    color: rgba(255,255,255,0.95);
+}
+
+/* LEFT SIDE START */
+
+.left-side{
+    grid-area: left-side;
+    display: grid;
+    grid-template-rows: auto auto auto;
+    align-content: space-around;
+
+}
+
+/* TUTOR SECTION START */
+
+/*.tutors{
+    pending
+}
+  */
+
+/* cards manage their own grid distribution */
+.tutor-cards{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+
+/* each card by default in grid, all space of cell*/
+/* generic card styles, column padding justify center background color and font color */
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #263043;
+    color: #9e93a4; 
+}
+
+/* row align center and separate when you need a specific row with elements separated */
+.card-inner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* size for card icon */
+.card-inner > .card_icon{
+    font-size: 25px;
+}
+/* Differences for tutor cards */
+.tutor-btn{
+    margin-left: auto;
+    /* so btn is all to the right */
+}
+
+/* needs a limit */
+.tutor-img{
+    max-width: 60px;
+    min-width: 40px;
+}
+
+/* needs 0 margin or will take up to much space */
+.card p {
+    margin: 0;
+}
+
+/* TUTOR SECTION END */
+
+/* STATISTICS SECTION START */
+
+/*.statistics{
+    pending
+}
+/* 2 column grid with 300px height */
+.charts{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    height: 200px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+/* STATISTICS SECTION END */
+
+/* ACHIEVEMENTS SECTION START */
+
+/* .achievements{
+    pending   
+}*/
+
+.achievement-cards{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top:10px;
+}
+/* ACHIEVEMENT SECTION END */
+/* LEFT SIDE END */
+
+/* RIGHT SIDE START */
+.right-side{
+    grid-area: right-side;
+    display:grid;
+    grid-template-rows: auto auto;
+    align-content: space-around;
+}
+
+/* PENDING SECTION START */
+
+.pending-card{
+    background-color: #263043;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #9e93a4;
+}
+
+.pending-card-inner{
+    display:flex;
+    gap:20px;
+    margin-top:1rem;
+}
+
+.pending-btn{
+    width: 45%;
+}
+
+.pending p {
+    margin: 0;
+}
+
+/* PENDING SECTION END */
+
+/* NEWS START */
+.news{
+    margin-bottom:20px;
+}
+
+.news-image{
+    max-width: 100%
+}
+
+/* NEWS END */
+
+/* RIGHT SIDE END */
+
+/* MAIN*/
+
+
+
+/* Medium <= 992px */
+@media screen and (max-width: 1200px){
+    /* main grid converts to 1 column, eliminating sidebar column. */
+    .grid-container{
+        grid-template-columns: 1fr;
+        /* new layout distribution */
+        grid-template-areas:
+            "header"
+            "main";
+    }
+
+    /* this are css that will lose effect at 993px */
+    .sidebar{
+        display: none;
+        /* defaulted initial*/
+    }
+
+    /* will be visible until limit */
+    .menu-icon{
+        display: inline;
+        transition: opacity 0.5s ease;
+    }
+
+    /* will be visible until limit */
+    .close_icon{
+        display: inline;
+    }
+
+    .main-container{
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+            "left-side"
+            "right-side";
+    }
+
+    .right-side{
+        grid-template-columns: 1fr 1fr;
+        margin-top:20px;
+        gap:20px;
+    }
+
+
+
+    .tutor-skill{
+        text-align:center;
+    }
+
+
+}
+
+
+/* Small <= 768px */
+@media screen and (max-width: 768px){
+    /* below 768px cards will be 1 row */
+
+
+    .left-side,.right-side, .tutor-cards,.charts,.achievement-cards{
+        grid-template-columns: 1fr;
+    }
+
+    .charts{
+        height: 400px;
+    }
+
+    .pending-card, .news-card {
+        height: auto;
+    }
+
+    .user-email{
+        display:none;
+    }
+}
+
