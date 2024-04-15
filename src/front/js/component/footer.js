@@ -1,7 +1,18 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-export const Footer = () => (
+export const Footer = () => {
+
+	const location = useLocation();
+    const excludePaths = ["/dashboard"]; //insert in this array other paths where navbar is not wanted.
+    const shouldExcludeFooter = excludePaths.includes(location.pathname);
+
+    if (shouldExcludeFooter) {
+        return null; // Don't render anything if the current path is included in excludePaths
+    }
+
+	return(
 	<footer className="footer bg-dark">
 
 		<div className="p-5 d-flex justify-content-between">
@@ -45,12 +56,8 @@ export const Footer = () => (
 				<span><i className="fa-brands fa-facebook"></i> username</span>
 				<span><i className="fa-brands fa-x-twitter"></i> username</span>
 			</div>
-
-
-
-
-
 		</div>
-
 	</footer>
-);
+	)
+
+};
