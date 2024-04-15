@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 import {BsFillBellFill, BsFillEnvelopeFill, BsPersonCircle, BsSearch, BsJustify} from "react-icons/bs"
 import personLogo from "../../../img/personLogo.png"
 
@@ -8,6 +9,7 @@ export function Header({openSidebarToggle}) {
         <div className="menu-icon">
             <BsJustify className='icon' onClick={openSidebarToggle}/>
         </div>
+
         <div className="header-right">
             <BsFillBellFill className="icon"/>
             <BsFillEnvelopeFill className="icon"/>

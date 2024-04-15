@@ -1,11 +1,15 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 import {BsCart3,BsFillPersonVcardFill,BsStarFill,BsClockHistory ,BsGrid1X2Fill, BsFillArchiveFill,BsFillGrid3X3GapFill, BsPeopleFill, BsListCheck, BsMenuButtonWideFill, BsFillGearFill, BsBoxArrowRight,BsArrowsAngleContract   } from "react-icons/bs"
 export function Sidebar({openSidebar, openSidebarToggle}) {
   return (
     <aside className={`sidebar ${openSidebar ? "sidebar-responsive":""}`}>
         <div className='sidebar-title'>
             <div className="sidebar-brand">
-                <BsArrowsAngleContract  className="icon-header"/>SKILLSWAP
+                <BsArrowsAngleContract  className="icon-header"/>
+                <Link to="/" className="sidebar-link">
+					<span>SKILLSWAP</span>
+		        </Link>
             </div>
             <span className="icon close_icon" onClick={openSidebarToggle}>X</span>
         </div>
