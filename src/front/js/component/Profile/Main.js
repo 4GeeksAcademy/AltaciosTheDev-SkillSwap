@@ -2,7 +2,7 @@ import React from 'react'
 
 function Main() {
   return (
-    <div>
+    <div className="profile-container">
       <h1>Profile Main</h1>
     </div>
   )

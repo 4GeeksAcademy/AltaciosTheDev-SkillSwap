@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import "../../styles/dashboard.css";
+import "../../styles/learn.css";
 import Header from "../component/Dashboard/Header";
 import Sidebar from "../component/Dashboard/Sidebar";
 import Main from "../component/Learn/Main";
