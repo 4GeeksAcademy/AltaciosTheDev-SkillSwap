@@ -24,16 +24,16 @@ export const Home = () => {
     </div>
 
 
-    <div className="d-flex  justify-content-center bg-carne mt-0 p-4 ">
+    <div className=" justify-content-center bg-carne mt-0 p-4 ">
 
-      <div className="d-flex justify-content-between ">
+      <div className=" ">
         <div className='container'>
-        <Row xs={1} md={1} lg={2} xxl={2}>
-          <Col >
+        <Row xs={1} md={1} lg={2} xxl={2} className="d-flex justify-content-center">
+          <Col className="d-flex justify-content-between">
             <InfoCards 
               title={"Exclusive 1-on-1 Learning—Completely Free"} 
             
-              description="While other platforms may charge for personalized learning experiences, SkillSwap offers something truly unique: direct 1-on-1 interactions between learners and mentors, entirely free of charge." 
+              description="While other platforms may charge for personalized learning experiences, SkillSwap offers something truly unique: direct 1-on-1 interactions between learners and mentors, entirely free of charge" 
             
               btn="Your only commitment?" 
             
@@ -79,7 +79,7 @@ export const Home = () => {
     </div>
       <div className="d-flex justify-content-end bg-carne pb-5 position-relative"></div>
 
-      <div className="vh-100 bg-amarillo position-relative rounded-2 d-flex">
+      <div className="d-sm-none d-md-block vh-100 bg-amarillo position-relative rounded-2 d-flex">
         <div className="bg-verde caja-flotante position-absolute start-50 translate-middle d-flex gap-3 shadow">
           <div>
             <h4 className="mb-5">We can help you reach your potential, <br/> <span className="pink">even if you...</span> </h4>
@@ -90,7 +90,7 @@ export const Home = () => {
           </div>
           
 
-          <div className="w-50 p-4 bg-carne h-75 mt-5 rounded-3 shadow">
+          <div className=" w-50 p-4 bg-carne h-75 mt-5 rounded-3 shadow">
             <h1 className="text-center"> Sound like you?</h1>
             <p className="my-5  ">"If so, SkillSwap provides the community you need and empowers 
               you to make a difference within it."</p>
@@ -102,10 +102,10 @@ export const Home = () => {
 
         </div>
       </div>
-      <div className="bg-carne vh-100 ">
+      <div className="bg-carne  ">
         <h1 className="text-center p-4 mb-5">Learn some of the most demand skills</h1>
         <div className="container d-flex justify-content-center">
-          <Row xs={2} md={2} lg={4} className="d-flex justify-content-center">
+          <Row xs={2} md={2} lg={4} className="">
           
               <Col className=" mb-3">
                 <TheCard />
@@ -142,17 +142,17 @@ export const Home = () => {
           </Row>
         </div>
       </div>
-      <div className="bg-carne vh-50 "></div>
+      <div className="bg-carne"></div>
 
-      <div className="bg-amarillo vh-100 ">
+      <div className="bg-amarillo ">
 
         <div className="d-flex justify-content-between p-5">
           <h1>Stories from real <span className="pink">people</span></h1>
           <button className="boton rounded-2">View All</button>
         </div>
 
-        <div className="d-flex justify-content-center gap-4">
-          <Row xs={2} md={2} lg={4} className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center gap-4 pb-5 mx-3">
+          <Row xs={1} md={2} lg={4} className="d-flex justify-content-center">
 
             <Col className="  mb-3">
               <TestimonialCard

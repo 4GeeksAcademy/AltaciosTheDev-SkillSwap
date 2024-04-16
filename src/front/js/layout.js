@@ -11,6 +11,7 @@ import { Pricing } from "./pages/pricing";
 import injectContext from "./store/appContext";
 import {Form} from "./pages/form";
 import { Login } from "./pages/login";
+import { Testimonials } from "./pages/Testimonials";
 
 
 import { Navbar } from "./component/navbar";
@@ -34,6 +35,7 @@ const Layout = () => {
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Howitworks />} path="/howitworks"/>
                         <Route element={<Pricing/>} path="/pricing"/>
+                        <Route element={<Testimonials/>} path="/testimonials"/>
                         <Route element={<Login />} path="/login" />
                         <Route element={<Form />} path="/form" />
                         <Route element={<h1>Not found!</h1>} />

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const TestimonialCard = ({name , description}) => {
     return <>
 
-        <div className="card  shadow" style={{ maxWidth: "45rem" }}>
+        <div className="card  shadow" style={{ maxWidth: "45rem", height: "auto" }}>
             <div className="rounded-2 p-3">
 
                 <div className='d-flex gap-3 align-items-center'>

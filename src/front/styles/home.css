@@ -19,7 +19,7 @@
     border: 3px solid #3f63a1;
     padding: 8px 34px;
     transition: all .3s ease-in-out;
-    font-size: 30px;
+    font-size: 20px;
 }
 .boton-hero:hover {
     background-color: #3f63a1;
@@ -52,11 +52,23 @@
  color: #9a65bb;
 }
 /* Home */
+
 .text-hero {
-    font-size: 100px;
+    font-size: 60px;
 }
+@media (min-width: 768px) {
+    .text-hero {
+        font-size: 100px;
+    }
+}
+
 .p-hero {
-    font-size: 40px;
+    font-size: 25px;
+}
+@media (min-width: 768px) {
+    .p-hero {
+        font-size: 40px;
+    }
 }
 
 .hero{
@@ -65,7 +77,7 @@
 }
 .hero-navbar {
     background-color: #F5EEE6;
-    height: 90vh;
+    height: 100vh;
 }
 .caja-flotante {
     position: absolute;
@@ -81,6 +93,15 @@
 }
 .vh-30 {
     height: 30vh;
+}
+
+.infocard {
+    width: 380px;
+}
+@media (min-width: 768px) {
+    .infocard {
+        width: 490px;
+    }
 }
 
 .zoom {

@@ -2,7 +2,7 @@ import React from 'react'
 
 const InfoCards = ({ title, description, btn, info }) => {
     return <>
-        <div style={{ width: "600px" }} className='rounded-1'>
+        <div className='rounded-1 infocard'>
             <h3  className='text-center '>{title}</h3>
             <p className='text-center'>{description}</p>
 
