@@ -13,8 +13,10 @@ import {Form} from "./pages/form";
 import { Login } from "./pages/login";
 import { Testimonials } from "./pages/Testimonials";
 import {Dashboard} from "./pages/Dashboard";
-
-
+import {Learn} from "./pages/Learn";
+import {History} from "./pages/History";
+import {Favorites} from "./pages/Favorites";
+import {Profile} from "./pages/Profile";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
@@ -34,12 +36,16 @@ const Layout = () => {
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<Demo />} path="/demo" />
-                        <Route element={<Dashboard />} path="/dashboard" />
                         <Route element={<Howitworks />} path="/howitworks"/>
                         <Route element={<Pricing/>} path="/pricing"/>
                         <Route element={<Testimonials/>} path="/testimonials"/>
                         <Route element={<Login />} path="/login" />
                         <Route element={<Form />} path="/form" />
+                        <Route element={<Dashboard />} path="/dashboard" />
+                        <Route element={<History />} path="/history" />
+                        <Route element={<Learn />} path="/learn" />
+                        <Route element={<Profile />} path="/profile" />
+                        <Route element={<Favorites />} path="/favorites" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

@@ -1,13 +1,16 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Link } from "react-router-dom";
 import {BsFillBellFill, BsFillEnvelopeFill, BsPersonCircle, BsSearch, BsJustify} from "react-icons/bs"
 import personLogo from "../../../img/personLogo.png"
+import { Context } from "../../store/appContext";
 
-export function Header({openSidebarToggle}) {
+export function Header() {
+  const { store, actions } = useContext(Context);
+
   return (
     <div className="header">
         <div className="menu-icon">
-            <BsJustify className='icon' onClick={openSidebarToggle}/>
+            <BsJustify className='icon' onClick={actions.openSidebarToggle}/>
         </div>
 
         <div className="header-right">

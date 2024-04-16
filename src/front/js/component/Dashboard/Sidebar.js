@@ -1,14 +1,18 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Link } from "react-router-dom";
 import {BsCart3,BsFillPersonVcardFill,BsStarFill,BsClockHistory ,BsGrid1X2Fill, BsFillArchiveFill,BsFillGrid3X3GapFill, BsPeopleFill, BsListCheck, BsMenuButtonWideFill, BsFillGearFill, BsBoxArrowRight,BsArrowsAngleContract   } from "react-icons/bs"
-export function Sidebar({openSidebar, openSidebarToggle}) {
+import { Context } from "../../store/appContext";
+
+export function Sidebar() {
+    const { store, actions } = useContext(Context);
+
   return (
-    <aside className={`sidebar ${openSidebar ? "sidebar-responsive":""}`}>
+    <aside className={`sidebar ${store.openSidebar ? "sidebar-responsive":""}`}>
         <div className='sidebar-title'>
             <div className="sidebar-brand">
                 <BsArrowsAngleContract  className="icon-header"/>SKILLSWAP
             </div>
-            <span className="icon close_icon" onClick={openSidebarToggle}>X</span>
+            <span className="icon close_icon" onClick={actions.openSidebarToggle}>X</span>
         </div>
 
         <ul className='sidebar-list'>
@@ -33,7 +37,7 @@ export function Sidebar({openSidebar, openSidebarToggle}) {
                 </Link>
             </li>
 
-            <li className='sidebar-list-item'>
+            {/* <li className='sidebar-list-item'>
                 <Link to="/report" className='sidebar-link'>
                     <BsMenuButtonWideFill className='icon'/>Report
                 </Link>
@@ -42,7 +46,7 @@ export function Sidebar({openSidebar, openSidebarToggle}) {
                 <Link to="/settings" className='sidebar-link'>
                     <BsFillGearFill className='icon'/>Settings
                 </Link>
-            </li>
+            </li> */}
             <li className='sidebar-list-item'>
                 <Link to="/profile" className='sidebar-link'>
                     <BsFillPersonVcardFill className='icon'/>Profile

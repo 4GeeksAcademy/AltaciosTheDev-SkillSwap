@@ -5,24 +5,16 @@ import Header from "../component/Dashboard/Header";
 import Sidebar from "../component/Dashboard/Sidebar";
 import Main from "../component/Dashboard/Main";
 
-
-
 import { Context } from "../store/appContext";
 
 export const Dashboard = () => {
 	const { store, actions } = useContext(Context);
 
-	const [openSidebar, setOpenSidebar] = useState(false)
-
-	const openSidebarToggle = () => {
-		setOpenSidebar(!openSidebar)
-	}
-
 	return (
 		<div className="dashboard">
 			<div className="grid-container">
-				<Header openSidebarToggle={openSidebarToggle}/>
-				<Sidebar openSidebar={openSidebar} openSidebarToggle={openSidebarToggle}/>
+				<Header/>
+				<Sidebar />
 				<Main/>
 			</div>
 		</div>

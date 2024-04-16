@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 export const Footer = () => {
 
 	const location = useLocation();
-    const excludePaths = ["/dashboard"]; //insert in this array other paths where navbar is not wanted.
+    const excludePaths = ["/dashboard","/learn","/history","/profile","/favorites"]; //insert in this array other paths where navbar is not wanted.
     const shouldExcludeFooter = excludePaths.includes(location.pathname);
 
     if (shouldExcludeFooter) {
