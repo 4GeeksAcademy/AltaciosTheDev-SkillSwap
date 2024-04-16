@@ -13,40 +13,40 @@ export function Sidebar({openSidebar, openSidebarToggle}) {
 
         <ul className='sidebar-list'>
             <li className='sidebar-list-item'>
-                <a href='' className='sidebar-link'>
+                <Link to="/dashboard" className='sidebar-link'>
                     <BsGrid1X2Fill className='icon'/>Dashboard
-                </a>
+                </Link>
             </li>
             <li className='sidebar-list-item' >
-                <a href='' className='sidebar-link'>
+                <Link to="/learn" className='sidebar-link'>
                     <BsFillArchiveFill className='icon'/>Learn
-                </a>
+                </Link>
             </li>
             <li className='sidebar-list-item'>
-                <a href='' className='sidebar-link'>
+                <Link to="/favorites" className='sidebar-link'>
                     <BsStarFill  className='icon'/>Favorites
-                </a>
+                </Link>
             </li>
             <li className='sidebar-list-item'>
-                <a href='' className='sidebar-link'>
+                <Link to="/history" className='sidebar-link'>
                     <BsClockHistory  className='icon'/>History
-                </a>
+                </Link>
             </li>
 
             <li className='sidebar-list-item'>
-                <a href='' className='sidebar-link'>
+                <Link to="/report" className='sidebar-link'>
                     <BsMenuButtonWideFill className='icon'/>Report
-                </a>
+                </Link>
             </li>
             <li className='sidebar-list-item'>
-                <a href='' className='sidebar-link'>
+                <Link to="/settings" className='sidebar-link'>
                     <BsFillGearFill className='icon'/>Settings
-                </a>
+                </Link>
             </li>
             <li className='sidebar-list-item'>
-                <a href='' className='sidebar-link'>
+                <Link to="/profile" className='sidebar-link'>
                     <BsFillPersonVcardFill className='icon'/>Profile
-                </a>
+                </Link>
             </li>
             <li className='logout sidebar-list-item'>
                 <Link to="/" className="sidebar-link">
