@@ -12,6 +12,7 @@ import injectContext from "./store/appContext";
 import {Form} from "./pages/form";
 import { Login } from "./pages/login";
 import { Testimonials } from "./pages/Testimonials";
+import {Dashboard} from "./pages/Dashboard";
 
 
 import { Navbar } from "./component/navbar";
@@ -33,6 +34,7 @@ const Layout = () => {
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<Demo />} path="/demo" />
+                        <Route element={<Dashboard />} path="/dashboard" />
                         <Route element={<Howitworks />} path="/howitworks"/>
                         <Route element={<Pricing/>} path="/pricing"/>
                         <Route element={<Testimonials/>} path="/testimonials"/>

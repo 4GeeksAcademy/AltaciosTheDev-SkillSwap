@@ -11,8 +11,8 @@ function TheCard( {title, text} ) {
         <div className="card-body">
           <h5 className="card-title">Cooking</h5>
           <div className="d-flex justify-content-between">
-            <p className="card-text"><i class="fa-solid fa-book"></i> Skills: 5</p>
-            <p className="card-text"><i class="fa-regular fa-user"></i> Users teaching: 205</p>
+            <p className="card-text"><i className="fa-solid fa-book"></i> Skills: 5</p>
+            <p className="card-text"><i className="fa-regular fa-user"></i> Users teaching: 205</p>
           </div>
 
 
