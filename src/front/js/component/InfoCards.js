@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const InfoCards = ({ title, description, btn, info }) => {
     return <>
         <div className='rounded-1 infocard'>

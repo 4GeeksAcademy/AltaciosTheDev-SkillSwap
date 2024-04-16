@@ -6,6 +6,7 @@ import "../../styles/home.css";
 import InfoCards from "../component/InfoCards";
 import TheCard from "../component/TheCard"; 
 import TestimonialCard from "../component/TestimonialCard";
+import personLogo from "../../img/personLogo.png"
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -105,37 +106,37 @@ export const Home = () => {
       <div className="bg-carne  ">
         <h1 className="text-center p-4 mb-5">Learn some of the most demand skills</h1>
         <div className="container d-flex justify-content-center">
-          <Row xs={2} md={2} lg={4} className="">
+          <Row xs={1} md={2} lg={4} >
           
-              <Col className=" mb-3">
+              <Col className="d-flex justify-content-center mb-3">
                 <TheCard />
               </Col>
 
-              <Col className="mb-3">
+              <Col className="d-flex justify-content-center mb-3">
                 <TheCard />
               </Col>
 
-              <Col className="mb-3">
+              <Col className="d-flex justify-content-center mb-3">
                 <TheCard />
               </Col>
 
-              <Col className="mb-3">
+              <Col className="d-flex justify-content-center mb-3">
                 <TheCard />
               </Col>
 
-              <Col className="mb-3">
+              <Col className="d-flex justify-content-center mb-3">
                 <TheCard />
               </Col>
 
-              <Col className="mb-3">
+              <Col className="d-flex justify-content-center mb-3">
                 <TheCard />
               </Col>
 
-              <Col className="mb-3">
+              <Col className="d-flex justify-content-center mb-3">
                 <TheCard />
               </Col>
               
-              <Col className="mb-3">
+              <Col className="d-flex justify-content-center mb-3">
                 <TheCard />
               </Col>
             
@@ -152,7 +153,7 @@ export const Home = () => {
         </div>
 
         <div className="d-flex justify-content-center gap-4 pb-5 mx-3">
-          <Row xs={1} md={2} lg={4} className="d-flex justify-content-center">
+          <Row xs={1} md={1} lg={4} className="d-flex justify-content-center">
 
             <Col className="  mb-3">
               <TestimonialCard
