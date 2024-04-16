@@ -1,4 +1,4 @@
-import rigoImageUrl from "../../img/rigo-baby.jpg";
+import personLogo from "../../img/personLogo.png"
 import { Link } from 'react-router-dom';
 
 function TheCard( {title, text} ) {
@@ -6,8 +6,8 @@ function TheCard( {title, text} ) {
   
     
     <div className="card  shadow" style={{maxWidth: "20rem"}}>
-      <div className="rounded-2 bg-danger p-2">
-      <img src={rigoImageUrl} className="card-img-top rounded-2  border-2 "  />
+      <div className="rounded-2 p-2">
+      <img src={personLogo} className="card-img-top rounded-2  border-2 "style={{maxWidth: "100%"}}  />
         <div className="card-body">
           <h5 className="card-title">Cooking</h5>
           <div className="d-flex justify-content-between">
