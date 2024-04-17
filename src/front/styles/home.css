@@ -4,25 +4,27 @@
 
 .boton {
     background-color: transparent;
-    border: 3px solid #3f63a1;
+    border: 3px solid #263043;
     padding: 8px 34px;
+    background-color: #263043;
     transition: all .3s ease-in-out;
+    color: white;
 }
 .boton:hover {
-    background-color: #3f63a1;
+    background-color: #1d2634;
     transition: all .3s ease-in;
     color: white;
 }
 
 .boton-hero {
     background-color: transparent;
-    border: 3px solid #3f63a1;
+    border: 3px solid #1d2634;
     padding: 8px 34px;
     transition: all .3s ease-in-out;
     font-size: 20px;
 }
 .boton-hero:hover {
-    background-color: #3f63a1;
+    background-color: #1d2634;
     transition: all .3s ease-in;
     color: white;
 }
