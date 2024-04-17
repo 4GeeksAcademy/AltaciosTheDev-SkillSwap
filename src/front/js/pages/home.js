@@ -30,11 +30,11 @@ export const Home = () => {
       <div className=" ">
         <div className='container'>
         <Row xs={1} md={1} lg={2} xxl={2} className="d-flex justify-content-center">
-          <Col className="d-flex justify-content-between">
+          <Col className="">
             <InfoCards 
-              title={"Exclusive 1-on-1 Learning—Completely Free"} 
+              title={"Exclusive 1-on-1 Learning—Completely"} 
             
-              description="While other platforms may charge for personalized learning experiences, SkillSwap offers something truly unique: direct 1-on-1 interactions between learners and mentors, entirely free of charge" 
+              description="While other platforms may charge for personalized learning experiences, SkillSwap offers something truly unique: direct 1-on-1 interactions between learners and mentors, entirely free of charge Sharing your own expertise in return. With SkillSwap, accessing tailored mentorship and guidance has never been easier and affordable." 
             
               btn="Your only commitment?" 
             

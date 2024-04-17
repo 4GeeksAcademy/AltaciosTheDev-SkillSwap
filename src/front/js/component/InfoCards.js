@@ -1,9 +1,23 @@
 import React from 'react'
 
 
-const InfoCards = ({ title, description, btn, info }) => {
+const InfoCards = ({ title, description, btn, info, id }) => {
     return <>
-        <div className='rounded-1 infocard'>
+
+        <div class="accordion accordion-flush mb-5 pb-5" id="accordionFlushExample" style={{minWidth: "25rem"}}>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapse">
+                    {title}
+                </button>  
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                 <div class="accordion-body"><h3>Your only commitment?</h3>{description}</div>
+                </div>
+            </div>
+        </div>
+
+        {/* <div className='rounded-1 infocard'>
             <h3  className='text-center '>{title}</h3>
             <p className='text-center'>{description}</p>
 
@@ -23,7 +37,7 @@ const InfoCards = ({ title, description, btn, info }) => {
             </div>
             </div>
 
-        </div>
+        </div> */}
     </>
 }
 
