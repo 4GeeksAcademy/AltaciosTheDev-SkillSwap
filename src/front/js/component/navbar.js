@@ -14,7 +14,7 @@ export const Navbar = () => {
     }
 
 	return (
-		<nav className="navbar navbar-expand-lg bg-navbar border-bottom border-body" data-bs-theme="dark">
+		<nav className="navbar navbar-expand-lg bg-navbar  border-body" data-bs-theme="dark">
 			<div className="container-fluid ">
 				<Link to="/" className="decoration" >
 					<img src={SKILLSWAP} className="navbar-brand sidebar-link text-logo navbar-img"/>

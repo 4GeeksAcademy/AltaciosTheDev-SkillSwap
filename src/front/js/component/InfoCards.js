@@ -1,10 +1,18 @@
 import React from 'react'
 
 
-const InfoCards = ({ title, description, btn, info, id }) => {
+
+const InfoCards = ({ title, description, img, }) => {
     return <>
 
-        <div class="accordion accordion-flush mb-5 pb-5" id="accordionFlushExample" style={{minWidth: "25rem"}}>
+        <div className='text-center'>
+            <img className='mb-2' src={img} style={{maxWidth: "20rem", minHeight: "8rem"}} alt=""/>
+            <h1>{title}</h1>
+            <p className='p-info'>{description}</p>
+        </div>
+
+
+        {/* <div class="accordion accordion-flush mb-5 pb-5" id="accordionFlushExample" style={{minWidth: "25rem"}}>
             <div class="accordion-item">
                 <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapse">
@@ -15,7 +23,7 @@ const InfoCards = ({ title, description, btn, info, id }) => {
                  <div class="accordion-body"><h3>Your only commitment?</h3>{description}</div>
                 </div>
             </div>
-        </div>
+        </div> */}
 
         {/* <div className='rounded-1 infocard'>
             <h3  className='text-center '>{title}</h3>

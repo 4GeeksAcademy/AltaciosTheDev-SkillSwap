@@ -7,6 +7,18 @@ import InfoCards from "../component/InfoCards";
 import TheCard from "../component/TheCard"; 
 import TestimonialCard from "../component/TestimonialCard";
 import personLogo from "../../img/personLogo.png"
+import imginfo from "../../img/1 a 1.jpg"
+import teachImg from "../../img/teachImg.png"
+import connectImg from "../../img/connect.png"
+import sports from "../../img/sport.jpg"
+import coocking from "../../img/coocking.jpg"
+import programming from "../../img/programming.png"
+import english from "../../img/english.jpg"
+import matematica from "../../img/matematica.jpg"
+import history from "../../img/history.jpg"
+import meditation from "../../img/meditation.webp"
+import psychology from "../../img/psychology.jpg"
+
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -15,8 +27,8 @@ export const Home = () => {
 		<div className="container-fluid hero-navbar pt-3 m-0">    
         <div className="container ">
           <div className="fade-in">
-            <div className=" mt-5">
-              <h4 className="text-hero"><strong> <span className="barra ">/</span> Learn, Teach, Connect, One Skill at a Time</strong></h4>
+            <div className="txt-right mx-5 me-5 mt-5">
+              <h4 className="text-hero"><strong> <span className="rosa ">/</span> Learn, Teach, Connect, One Skill at a Time</strong></h4>
               <p className="p-hero">Exchange Skills and Knowledge with a Global Community of Learners and Mentors</p>
               <button className="boton-hero">Join Now!</button>
             </div>
@@ -25,14 +37,15 @@ export const Home = () => {
     </div>
 
 
-    <div className=" justify-content-center bg-carne mt-0 p-4 ">
+    <div className=" justify-content-center bg-azul-oscuro mt-0 p-4 ">
 
-      <div className=" ">
+      <div className=" my-5">
         <div className='container'>
-        <Row xs={1} md={1} lg={2} xxl={2} className="d-flex justify-content-center">
-          <Col className="">
+        <Row xs={1} md={1} lg={3} xxl={3} className="d-flex justify-content-center">
+          <Col className="mb-3">
             <InfoCards 
-              title={"Exclusive 1-on-1 Learning—Completely"} 
+              img={imginfo}
+              title={"Exclusive 1-on-1"} 
             
               description="While other platforms may charge for personalized learning experiences, SkillSwap offers something truly unique: direct 1-on-1 interactions between learners and mentors, entirely free of charge Sharing your own expertise in return. With SkillSwap, accessing tailored mentorship and guidance has never been easier and affordable." 
             
@@ -41,8 +54,9 @@ export const Home = () => {
               info="Sharing your own expertise in return. With SkillSwap, accessing tailored mentorship and guidance has never been easier and affordable." />
           </Col>
 
-          <Col>
+          <Col className="mb-3">
             <InfoCards 
+            img={teachImg}
               title={"Empowerment Through Teaching"} 
             
               description="SkillSwap not only allows users to learn new skills but also empowers them to share their expertise and contribute to the learning community." 
@@ -52,9 +66,10 @@ export const Home = () => {
               info="By serving as mentors and teachers, users can make a positive impact on others while reinforcing their own knowledge and skills. This empowerment through teaching fosters a sense of fulfillment and accomplishment among users." />
           </Col>
 
-          <Col>
+          <Col className="mb-3">
             <InfoCards 
-              title={"Personalized Connected Experience "} 
+              img={connectImg} 
+              title={"Personalized Experience "} 
             
               description="Unlike traditional learning platforms where users primarily consume content, SkillSwap empowers users to actively engage in skill-sharing sessions tailored to their individual needs and interests." 
             
@@ -63,7 +78,7 @@ export const Home = () => {
               info="This personalized approach fosters deeper learning and meaningful connections between users." />
           </Col>
           
-          <Col>
+          {/* <Col>
             <InfoCards className="p-0 m-0"
               title={"Community of Like-Minded Individuals"} 
             
@@ -72,28 +87,28 @@ export const Home = () => {
               btn="How is this a benefit?"  
             
               info="users can benefit from diverse perspectives, feedback, and support. This sense of community enhances the learning experience and encourages continuous growth and development." />
-          </Col>
+          </Col> */}
          </Row>
           </div>
         
       </div> 
     </div>
-      <div className="d-flex justify-content-end bg-carne pb-5 position-relative"></div>
+      <div className="d-flex justify-content-end bg-azul-oscuro pb-5 position-relative"></div>
 
-      <div className="d-sm-none d-md-block vh-100 bg-amarillo position-relative rounded-2 d-flex">
+      <div className="d-none d-md-block vh-100 bg-amarillo position-relative rounded-2 d-flex">
         <div className="bg-verde caja-flotante position-absolute start-50 translate-middle d-flex gap-3 shadow">
-          <div>
-            <h4 className="mb-5">We can help you reach your potential, <br/> <span className="pink">even if you...</span> </h4>
-            <p className="my-4">. feel OVERWHELMED with learning something new. </p>
-            <p className="my-4">. think you don't have ANYTHING to offer.</p>
-            <p className="my-4">. You've STRUGGLED with Self-learing before. </p>
-            <p className="my-4">. CAN'T AFFORD live and personalized learning anywhere else</p>
+          <div className="gris">
+            <h4 className="mb-5">We can help you reach your potential, <br/> <span className="rosa">even if you...</span> </h4>
+            <p className="my-4">. feel <strong className="rosa">OVERWHELMED</strong> with learning something new. </p>
+            <p className="my-4">. think you don't have <strong className="rosa">ANYTHING</strong> to offer.</p>
+            <p className="my-4">. You've <strong className="rosa">STRUGGLED</strong> with Self-learing before. </p>
+            <p className="my-4">. <strong className="rosa">CAN'T AFFORD</strong> live and personalized learning anywhere else</p>
           </div>
           
 
-          <div className=" w-50 p-4 bg-carne h-75 mt-5 rounded-3 shadow">
+          <div className=" w-50 p-4 bg-azul-oscuro h-75 mt-5 rounded-3 shadow">
             <h1 className="text-center"> Sound like you?</h1>
-            <p className="my-5  ">"If so, SkillSwap provides the community you need and empowers 
+            <p className="my-5  gris">"If so, <strong className="rosa">Skillswap</strong> provides the community you need and empowers 
               you to make a difference within it."</p>
               <div className="d-sm-none d-lg-block d-flex justify-content-end">
               <button className="boton mt-3">Trust us and JOIN!</button>
@@ -103,47 +118,63 @@ export const Home = () => {
 
         </div>
       </div>
-      <div className="bg-carne  ">
+      <div className="bg-azul-oscuro pb-5 ">
         <h1 className="text-center p-4 mb-5">Learn some of the most demand skills</h1>
         <div className="container d-flex justify-content-center">
-          <Row xs={1} md={2} lg={4} >
+          <Row xs={1} md={2} lg={2} xl={4} >
           
               <Col className="d-flex justify-content-center mb-3">
-                <TheCard />
+                <TheCard 
+                  img={sports}
+                  skill={"Sport"}/>
               </Col>
 
               <Col className="d-flex justify-content-center mb-3">
-                <TheCard />
+                <TheCard 
+                  img={programming}
+                  skill={"Programming"}/>
               </Col>
 
               <Col className="d-flex justify-content-center mb-3">
-                <TheCard />
+                <TheCard 
+                  img={coocking}
+                  skill={"Cooking"}/>
               </Col>
 
               <Col className="d-flex justify-content-center mb-3">
-                <TheCard />
+                <TheCard 
+                  img={history}
+                  skill={"History"}/>
               </Col>
 
               <Col className="d-flex justify-content-center mb-3">
-                <TheCard />
+                <TheCard 
+                  img={matematica}
+                  skill={"Math"}/>
               </Col>
 
               <Col className="d-flex justify-content-center mb-3">
-                <TheCard />
+                <TheCard
+                  img={english} 
+                  skill={"English"}/>
               </Col>
 
               <Col className="d-flex justify-content-center mb-3">
-                <TheCard />
+                <TheCard
+                  img={meditation} 
+                  skill={"Meditation"}/>
               </Col>
               
               <Col className="d-flex justify-content-center mb-3">
-                <TheCard />
+                <TheCard
+                  img={psychology} 
+                  skill={"Psycology"}/>
               </Col>
             
           </Row>
         </div>
       </div>
-      <div className="bg-carne"></div>
+      <div className="bg-azul-oscuro"></div>
 
       <div className="bg-amarillo ">
 

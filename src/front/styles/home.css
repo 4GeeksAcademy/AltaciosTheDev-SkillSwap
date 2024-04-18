@@ -4,54 +4,62 @@
 
 .boton {
     background-color: transparent;
-    border: 3px solid #263043;
+    border: 3px solid #cf1259;
+    border-radius: 3px;
     padding: 8px 34px;
-    background-color: #263043;
+    background-color: #cf1259;
     transition: all .3s ease-in-out;
     color: white;
 }
 .boton:hover {
-    background-color: #1d2634;
+    background-color: #cf1259;
     transition: all .3s ease-in;
-    color: white;
+    
 }
-
+.p-home{
+    font-size: 300;
+}
 .boton-hero {
     background-color: transparent;
-    border: 3px solid #1d2634;
+    border: 3px solid #cf1259;
     padding: 8px 34px;
+    border-radius: 3px;
     transition: all .3s ease-in-out;
+    color: white;
     font-size: 20px;
 }
 .boton-hero:hover {
-    background-color: #1d2634;
+    background-color: #cf1259;
     transition: all .3s ease-in;
     color: white;
 }
 
 /* Colors */
+.gris {
+    color: #9e93a4;
+}
+.rosa {
+    color: #cf1259;
+}
+.bg-azul-oscuro {
+    background-color: #1d2634;
+}
+.p-info{
+    color: #9e93a4;
+}
 
-.barra {
-    color: #2d5eb2;
-}
-.bg-carne {
-    background-color: #F3D7CA;
-}
-.bg-amarillo {
-    background-color: #ece2c4;
-}
 .amarillo {
     color: #e4bc44;
 }
 .bg-amarillo {
-    background-color: #ece2c4;
+    background-color: #9e93a4;
 }
 
 .bg-verde {
-    background-color: #CCD3CA;
+    background-color: #263046;
 }
-.pink {
- color: #9a65bb;
+.txt-right {
+    text-align: right;
 }
 
 /* Home */
@@ -61,10 +69,17 @@
 }
 @media (min-width: 768px) {
     .text-hero {
-        font-size: 100px;
+        font-size: 140px;
     }
 }
-
+@media (min-width: 500px) {
+    .text-hero {
+        font-size: 80px;
+    }
+}
+.bg-card {
+    background-color: #263046;
+}
 .p-hero {
     font-size: 25px;
 }
@@ -79,8 +94,9 @@
     margin-bottom: 3rem;
 }
 .hero-navbar {
-    background-color: #F5EEE6;
+    background-color: #263046;
     height: 100vh;
+    color: white;
 }
 .caja-flotante {
     position: absolute;
