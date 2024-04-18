@@ -1,19 +1,8 @@
 import React from "react";
 import {
-  BsGrid1X2Fill,
-  BsFillArchiveFill,
-  BsFillGrid3X3GapFill,
-  BsPeopleFill,
-  BsListCheck,
-  BsMenuButtonWideFill,
-  BsFillGearFill,
-  BsFillBellFill,
   BsNewspaper,
-  BsPersonPlusFill,
-  BsPersonWorkspace,
-  BsMortarboardFill,
-  BsFillPeopleFill 
 } from "react-icons/bs";
+
 import {
   BarChart,
   Bar,
@@ -28,10 +17,10 @@ import {
   Line,
 } from "recharts";
 
-
 import aitakingover from "../../../img/aitakingover.jpg"
-import { TutorCard } from "./TutorCard";
-
+import {TutorCard} from "./TutorCard";
+import AchievementCard from "./AchievementCard";
+import PendingCard from "./PendingCard";
 
 export function Main() {
   const data = [
@@ -85,9 +74,9 @@ export function Main() {
         <div className="tutors">
           <h4>Recommended</h4>
           <div className="tutor-cards">
-            <TutorCard/>
-            <TutorCard/>
-            <TutorCard/>
+            <TutorCard />
+            <TutorCard />
+            <TutorCard />
           </div>
         </div>
         <div className="statistics">
@@ -153,29 +142,9 @@ export function Main() {
         <div className="achievements">
           <h4>Achievements</h4>
           <div className="achievement-cards">
-          <div className="dashboard-card">
-              <div className="dashboard-card-inner">
-                <h5 className="card-title">Taught:</h5>
-                <BsPersonWorkspace className="card_icon" />
-              </div>
-              <h5>300</h5>
-            </div>
-
-            <div className="dashboard-card">
-              <div className="dashboard-card-inner">
-                <h5 className="card-title">Learned:</h5>
-                <BsMortarboardFill  className="card_icon" />
-              </div>
-              <h5>12</h5>
-            </div>
-            
-            <div className="dashboard-card">
-              <div className="dashboard-card-inner">
-                <h5 className="card-title">Connected:</h5>
-                <BsFillPeopleFill className="card_icon" /> 
-              </div>
-              <h5>33</h5>
-            </div>
+            <AchievementCard />
+            <AchievementCard />
+            <AchievementCard />
           </div>
         </div>
       </div>
@@ -184,31 +153,18 @@ export function Main() {
           <div>
             <h4>Trending</h4>
             <div className="dashboard-card news-card">
-                <div className="dashboard-card-inner">
-                  <h5>AI is taking over:</h5>
-                  <BsNewspaper  className="card_icon" />
-                </div>
-                <img className="news-image" src={aitakingover}/>
-                <button type="button" className="btn btn-primary">Read more</button>
+              <div className="dashboard-card-inner">
+                <h5>AI is taking over:</h5>
+                <BsNewspaper className="card_icon" />
+              </div>
+              <img className="news-image" src={aitakingover} />
+              <button type="button" className="btn btn-primary">Read more</button>
             </div>
           </div>
         </div>
         <div className="pending">
           <h4>Pending</h4>
-            <div className="pending-card">
-              <div>
-                <h5>Details:</h5>
-              </div>
-              <p>User: Enzo Altamirano</p>
-              <p>Skill: Javascript</p>
-              <p>Date: 04/03/2024</p>
-              <p>Time: 10:30</p>
-              <p>Status: Pending</p>
-              <div className="pending-card-inner">
-                <button type="button" className="btn btn-danger pending-btn">Reject</button>
-                <button type="button" className="btn btn-success pending-btn">Accept</button>
-              </div>
-            </div>
+          <PendingCard/>  
         </div>
       </div>
     </main>

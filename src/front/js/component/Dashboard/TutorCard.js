@@ -7,12 +7,13 @@ export const TutorCard = () => {
             <h5>Enzo Altamirano</h5>
             <div className="dashboard-card-inner">
                 <img src={personLogo} className="tutor-img" />
-                <div className="tutor-skill">
-                    <p>Teaches: Javascript</p>
-                    <p>Level: Intermediate</p>
+                <div className="tutor-text-container">
+                    <p className="tutor-text"><strong>Skill:</strong> Javascript</p>
+                    <p className="tutor-text"><strong>Level:</strong> Intermediate</p>
+                    <p className="tutor-text"><strong>Role:</strong> Tutor</p>
+                    <button type="button" className="btn btn-primary tutor-btn">Contact</button>
                 </div>
             </div>
-            <button type="button" className="btn btn-primary tutor-btn">Contact</button>
         </div>
     )
 }
