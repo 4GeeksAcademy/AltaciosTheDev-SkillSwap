@@ -1,5 +1,4 @@
 .testimonial-container{
-    background: #E8E8E8;
 }
 
 .testimonial-grid{
@@ -11,8 +10,8 @@
     
 }
 
-.testimonial-text{
-
+.testimonial-card:hover{
+    border: 2px solid #cf1259;
 }
 
 .testimonial-col-1{

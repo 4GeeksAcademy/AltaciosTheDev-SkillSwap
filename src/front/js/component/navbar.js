@@ -14,8 +14,8 @@ export const Navbar = () => {
     }
 
 	return (
-		<nav className="header navbar navbar-expand-lg  bg-navbar border-bottom border-body" data-bs-theme="dark">
-			<div className="container-fluid">
+		<nav className="navbar navbar-expand-lg bg-navbar border-bottom border-body" data-bs-theme="dark">
+			<div className="container-fluid ">
 				<Link to="/" className="decoration" >
 					<img src={SKILLSWAP} className="navbar-brand sidebar-link text-logo navbar-img"/>
 					{/* <span className="navbar-brand sidebar-link text-logo">SkillSwap</span> */}

@@ -9,7 +9,7 @@ export const Testimonials = () => {
   const { store, actions } = useContext(Context);
   return <>
     <div className="testimonial-container">
-    <h1 className="text-center p-5">The SkillSwap Teachers & Learnes Experiences</h1>
+    <h1 className="text-center p-5">The SkillSwap Teachers & Learners Experiences</h1>
       <div className="container">
         <div className="testimonial-grid">
           <div className="testimonial-col-1">

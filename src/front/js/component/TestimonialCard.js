@@ -6,7 +6,7 @@ import personLogo from "../../img/personLogo.png"
 const TestimonialCard = ({name , description}) => {
     return <>
 
-        <div className="card  shadow" style={{ maxWidth: "45rem", height: "auto", borderRadius: "15px"}}>
+        <div className="card  testimonial-card shadow" style={{ maxWidth: "45rem", height: "auto", borderRadius: "15px"}}>
             <div className="rounded-2 p-3">
 
                 <div className='d-flex gap-3 align-items-center'>
