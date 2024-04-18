@@ -1,18 +1,18 @@
-import rigoImageUrl from "../../img/rigo-baby.jpg";
+import personLogo from "../../img/personLogo.png"
 import { Link } from 'react-router-dom';
 
 function TheCard( {title, text} ) {
   return <>
   
     
-    <div className="card shadow" style={{minWidth: "20rem"}}>
-      <img src={rigoImageUrl} className="card-img-top p-2 border-2 "  />
+    <div className="card  shadow" style={{maxWidth: "20rem"}}>
+      <div className="rounded-2 p-2">
+      <img src={personLogo} className="card-img-top rounded-2  border-2 "style={{maxWidth: "100%"}}  />
         <div className="card-body">
-          <h5 className="card-title">{title}</h5>
+          <h5 className="card-title">Cooking</h5>
           <div className="d-flex justify-content-between">
-            <p className="card-text"><i class="fa-solid fa-book"></i> Lesson: 5</p>
-            <p className="card-text"><i class="fa-regular fa-user"></i> Student: 205</p>
-            <p className="card-text"><i class="fa-solid fa-trophy"></i> Averge</p>
+            <p className="card-text"><i className="fa-solid fa-book"></i> Skills: 5</p>
+            <p className="card-text"><i className="fa-regular fa-user"></i> Users teaching: 205</p>
           </div>
 
 
@@ -28,6 +28,8 @@ function TheCard( {title, text} ) {
           </div>
           
         </div>
+        
+      </div>
     </div>
   
   </>

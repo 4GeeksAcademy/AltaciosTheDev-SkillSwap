@@ -5,6 +5,8 @@ import Col from 'react-bootstrap/Col';
 import "../../styles/home.css";
 import InfoCards from "../component/InfoCards";
 import TheCard from "../component/TheCard"; 
+import TestimonialCard from "../component/TestimonialCard";
+import personLogo from "../../img/personLogo.png"
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -14,25 +16,25 @@ export const Home = () => {
         <div className="container ">
           <div className="fade-in">
             <div className=" mt-5">
-              <h4><strong> <span className="barra">/</span> Learn, Teach, Connect, One Skill at a Time</strong></h4>
-              <p>Exchange Skills and Knowledge with a Global Community of Learners and Mentors</p>
-              <button className="boton">Join Now!</button>
+              <h4 className="text-hero"><strong> <span className="barra ">/</span> Learn, Teach, Connect, One Skill at a Time</strong></h4>
+              <p className="p-hero">Exchange Skills and Knowledge with a Global Community of Learners and Mentors</p>
+              <button className="boton-hero">Join Now!</button>
             </div>
           </div>
         </div>
     </div>
 
 
-    <div className="d-flex  justify-content-center bg-carne mt-0 p-4 ">
+    <div className=" justify-content-center bg-carne mt-0 p-4 ">
 
-      <div className="d-flex justify-content-between ">
+      <div className=" ">
         <div className='container'>
-        <Row xs={1} md={1} lg={2} xxl={2}>
-          <Col >
+        <Row xs={1} md={1} lg={2} xxl={2} className="d-flex justify-content-center">
+          <Col className="">
             <InfoCards 
-              title={"Exclusive 1-on-1 Learning—Completely Free"} 
+              title={"Exclusive 1-on-1 Learning—Completely"} 
             
-              description="While other platforms may charge for personalized learning experiences, SkillSwap offers something truly unique: direct 1-on-1 interactions between learners and mentors, entirely free of charge." 
+              description="While other platforms may charge for personalized learning experiences, SkillSwap offers something truly unique: direct 1-on-1 interactions between learners and mentors, entirely free of charge Sharing your own expertise in return. With SkillSwap, accessing tailored mentorship and guidance has never been easier and affordable." 
             
               btn="Your only commitment?" 
             
@@ -78,7 +80,7 @@ export const Home = () => {
     </div>
       <div className="d-flex justify-content-end bg-carne pb-5 position-relative"></div>
 
-      <div className="vh-100 bg-amarillo position-relative rounded-2 d-flex">
+      <div className="d-sm-none d-md-block vh-100 bg-amarillo position-relative rounded-2 d-flex">
         <div className="bg-verde caja-flotante position-absolute start-50 translate-middle d-flex gap-3 shadow">
           <div>
             <h4 className="mb-5">We can help you reach your potential, <br/> <span className="pink">even if you...</span> </h4>
@@ -89,7 +91,7 @@ export const Home = () => {
           </div>
           
 
-          <div className="w-50 p-4 bg-carne h-75 mt-5 rounded-3 shadow">
+          <div className=" w-50 p-4 bg-carne h-75 mt-5 rounded-3 shadow">
             <h1 className="text-center"> Sound like you?</h1>
             <p className="my-5  ">"If so, SkillSwap provides the community you need and empowers 
               you to make a difference within it."</p>
@@ -101,48 +103,88 @@ export const Home = () => {
 
         </div>
       </div>
-      <div className="bg-carne vh-100 ">
+      <div className="bg-carne  ">
         <h1 className="text-center p-4 mb-5">Learn some of the most demand skills</h1>
         <div className="container d-flex justify-content-center">
-          <Row xs={2} md={2} lg={4}>
+          <Row xs={1} md={2} lg={4} >
           
-              <Col className=" d-flex justify-content-center mb-3">
+              <Col className="d-flex justify-content-center mb-3">
                 <TheCard />
               </Col>
 
-              <Col className=" d-flex justify-content-center mb-3">
+              <Col className="d-flex justify-content-center mb-3">
                 <TheCard />
               </Col>
 
-              <Col className=" d-flex justify-content-center mb-3">
+              <Col className="d-flex justify-content-center mb-3">
                 <TheCard />
               </Col>
 
-              <Col className=" d-flex justify-content-center mb-3">
+              <Col className="d-flex justify-content-center mb-3">
                 <TheCard />
               </Col>
 
-              <Col className=" d-flex justify-content-center mb-3">
+              <Col className="d-flex justify-content-center mb-3">
                 <TheCard />
               </Col>
 
-              <Col className=" d-flex justify-content-center mb-3">
+              <Col className="d-flex justify-content-center mb-3">
                 <TheCard />
               </Col>
 
-              <Col className=" d-flex justify-content-center mb-3">
+              <Col className="d-flex justify-content-center mb-3">
                 <TheCard />
               </Col>
               
-              <Col className=" d-flex justify-content-center mb-3">
+              <Col className="d-flex justify-content-center mb-3">
                 <TheCard />
               </Col>
             
-      
           </Row>
         </div>
       </div>
-      <div className="bg-carne vh-50 "></div>
+      <div className="bg-carne"></div>
+
+      <div className="bg-amarillo ">
+
+        <div className="d-flex justify-content-between p-5">
+          <h1>Stories from real <span className="pink">people</span></h1>
+          <button className="boton rounded-2">View All</button>
+        </div>
+
+        <div className="d-flex justify-content-center gap-4 pb-5 mx-3">
+          <Row xs={1} md={1} lg={4} className="d-flex justify-content-center">
+
+            <Col className="  mb-3">
+              <TestimonialCard
+                name={"enzo"} 
+
+                description={"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who  "}/>
+            </Col>
+
+            <Col className="  mb-3">
+            <TestimonialCard
+              name={"miguel"} 
+
+              description={"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual "}/>
+            </Col>
+
+            <Col className="  mb-3">
+              <TestimonialCard
+                name={"jean"} 
+                
+                description={"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who  "}/>
+            </Col>
+
+          </Row>
+        </div>
+
+
+      </div>
+      
+
+      
+
       
 
 
