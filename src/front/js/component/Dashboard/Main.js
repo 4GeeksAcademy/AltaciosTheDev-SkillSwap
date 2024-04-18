@@ -30,7 +30,8 @@ import {
 
 
 import aitakingover from "../../../img/aitakingover.jpg"
-import personLogo from "../../../img/personLogo.png"
+import { TutorCard } from "./TutorCard";
+
 
 export function Main() {
   const data = [
@@ -84,42 +85,9 @@ export function Main() {
         <div className="tutors">
           <h4>Recommended</h4>
           <div className="tutor-cards">
-            <div className="dashboard-card">
-              <h5>Enzo Altamirano</h5>
-              <div className="dashboard-card-inner">
-                <img src={personLogo} className="tutor-img"/>
-                <div className="tutor-skill">
-                  <p>Teaches: Javascript</p>
-                  <p>Level: Intermediate</p>
-                </div>
-              </div>
-              <button type="button" className="btn btn-primary tutor-btn">Contact</button>
-            </div>
-
-            <div className="dashboard-card">
-              <h5>Enzo Altamirano</h5>
-              <div className="dashboard-card-inner">
-                <img src={personLogo} className="tutor-img"/>
-                <div className="tutor-skill">
-                  <p>Teaches: Javascript</p>
-                  <p>Level: Intermediate</p>
-                </div>
-              </div>
-              <button type="button" className="btn btn-primary tutor-btn">Contact</button>
-            </div>
-            
-            <div className="dashboard-card">
-              <h5>Enzo Altamirano</h5>
-              <div className="dashboard-card-inner">
-                <img src={personLogo} className="tutor-img"/>
-                <div className="tutor-skill">
-                  <p>Teaches: Javascript</p>
-                  <p>Level: Intermediate</p>
-                </div>
-              </div>
-              <button type="button" className="btn btn-primary tutor-btn">Contact</button>
-            </div>
-
+            <TutorCard/>
+            <TutorCard/>
+            <TutorCard/>
           </div>
         </div>
         <div className="statistics">
