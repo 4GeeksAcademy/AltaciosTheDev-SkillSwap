@@ -1,19 +1,24 @@
 import React from "react"
 import personLogo from "../../../img/personLogo.png"
+import { BsStar } from "react-icons/bs";
+import { BsStarFill } from "react-icons/bs";
 
-export const TutorCard = () => {
+export const TutorCard = ({name, skill, level, role}) => {
     return (
         <div className="dashboard-card">
-            <h5>Enzo Altamirano</h5>
+            <div className="tutor-card-header">   
+                <h5 className="tutor-card-title">{name}</h5>
+                <BsStarFill className="tutor-card-icon icon-favorite"/>
+            </div>
             <div className="dashboard-card-inner">
                 <img src={personLogo} className="tutor-img" />
                 <div className="tutor-text-container">
-                    <p className="tutor-text"><strong>Skill:</strong> Javascript</p>
-                    <p className="tutor-text"><strong>Level:</strong> Intermediate</p>
-                    <p className="tutor-text"><strong>Role:</strong> Tutor</p>
-                    <button type="button" className="btn btn-primary tutor-btn">Contact</button>
+                    <p className="tutor-text"><strong>Skill:</strong> {skill}</p>
+                    <p className="tutor-text"><strong>Level:</strong> {level}</p>
+                    <p className="tutor-text"><strong>Role:</strong> {role}</p>
                 </div>
             </div>
+            <button type="button" className="btn btn-primary tutor-btn">Contact</button>
         </div>
     )
 }
