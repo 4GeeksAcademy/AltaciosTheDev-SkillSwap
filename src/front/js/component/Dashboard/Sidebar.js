@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import { Link } from "react-router-dom";
 import {BsCart3,BsFillPersonVcardFill,BsStarFill,BsClockHistory ,BsGrid1X2Fill, BsFillArchiveFill,BsFillGrid3X3GapFill, BsPeopleFill, BsListCheck, BsMenuButtonWideFill, BsFillGearFill, BsBoxArrowRight,BsArrowsAngleContract   } from "react-icons/bs"
 import { Context } from "../../store/appContext";
+import SKILLSWAP from "../../../img/brand/SKILLSWAP-DARK.png"
 
 export function Sidebar() {
     const { store, actions } = useContext(Context);
@@ -10,7 +11,8 @@ export function Sidebar() {
     <aside className={`sidebar ${store.openSidebar ? "sidebar-responsive":""}`}>
         <div className='sidebar-title'>
             <div className="sidebar-brand">
-                <BsArrowsAngleContract  className="icon-header"/>SKILLSWAP
+                <img className="brand-logo" src={SKILLSWAP}/>
+                {/* <BsArrowsAngleContract  className="icon-header"/>SKILLSWAP */}
             </div>
             <span className="icon close_icon" onClick={actions.openSidebarToggle}>X</span>
         </div>
