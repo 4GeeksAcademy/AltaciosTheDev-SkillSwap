@@ -46,6 +46,7 @@
 }
 .p-info{
     color: #9e93a4;
+    font-weight: 500;
 }
 
 .amarillo {
@@ -101,9 +102,9 @@
 .caja-flotante {
     position: absolute;
     top: 18%;
-    border-radius: 2px;
+    border-radius: 4px;
     width: 80%;
-    height: 460px;
+    height: 500px;
     padding: 20px;
     
 }

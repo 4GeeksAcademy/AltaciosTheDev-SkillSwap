@@ -42,7 +42,7 @@ export const Home = () => {
       <div className=" my-5">
         <div className='container'>
         <Row xs={1} md={1} lg={3} xxl={3} className="d-flex justify-content-center">
-          <Col className="mb-3">
+          <Col className="mb-3 ">
             <InfoCards 
               img={imginfo}
               title={"Exclusive 1-on-1"} 
@@ -99,16 +99,16 @@ export const Home = () => {
         <div className="bg-verde caja-flotante position-absolute start-50 translate-middle d-flex gap-3 shadow">
           <div className="gris">
             <h4 className="mb-5">We can help you reach your potential, <br/> <span className="rosa">even if you...</span> </h4>
-            <p className="my-4">. feel <strong className="rosa">OVERWHELMED</strong> with learning something new. </p>
-            <p className="my-4">. think you don't have <strong className="rosa">ANYTHING</strong> to offer.</p>
-            <p className="my-4">. You've <strong className="rosa">STRUGGLED</strong> with Self-learing before. </p>
-            <p className="my-4">. <strong className="rosa">CAN'T AFFORD</strong> live and personalized learning anywhere else</p>
+            <p className="my-4 p-info">. feel <strong className="rosa">OVERWHELMED</strong> with learning something new. </p>
+            <p className="my-4 p-info">. think you don't have <strong className="rosa">ANYTHING</strong> to offer.</p>
+            <p className="my-4 p-info" >. You've <strong className="rosa">STRUGGLED</strong> with Self-learing before. </p>
+            <p className="my-4 p-info" >. <strong className="rosa">CAN'T AFFORD</strong> live and personalized learning anywhere else</p>
           </div>
           
 
           <div className=" w-50 p-4 bg-azul-oscuro h-75 mt-5 rounded-3 shadow">
             <h1 className="text-center"> Sound like you?</h1>
-            <p className="my-5  gris">"If so, <strong className="rosa">Skillswap</strong> provides the community you need and empowers 
+            <p className="my-5 p-info ">"If so, <strong className="rosa">Skillswap</strong> provides the community you need and empowers 
               you to make a difference within it."</p>
               <div className="d-sm-none d-lg-block d-flex justify-content-end">
               <button className="boton mt-3">Trust us and JOIN!</button>
