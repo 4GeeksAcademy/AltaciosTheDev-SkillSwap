@@ -226,6 +226,20 @@
     color: #9e93a4; 
 }
 
+.tutor-card-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tutor-card-icon{
+    font-size: 25px;
+}
+
+.icon-favorite{
+    color: #fcba04;
+}
+
 /* row align center and separate when you need a specific row with elements separated */
 .dashboard-card-inner{
     display: flex;
@@ -240,7 +254,7 @@
 /* Differences for tutor cards */
 .tutor-btn{
     margin-left: auto;
-    width: 100%;
+    /* width: 100%; */
     /* so btn is all to the right */
 }
 
@@ -252,6 +266,10 @@
     height: auto; /* Maintain aspect ratio */
     flex-shrink:1000;
 
+}
+
+.tutor-card-title{
+    text-align: start;
 }
 
 .tutor-text-container{
@@ -297,6 +315,10 @@
     gap: 20px;
     margin-top:10px;
 }
+
+/* .achievement-icon{
+    color: #cf1259;
+} */
 /* ACHIEVEMENT SECTION END */
 /* LEFT SIDE END */
 

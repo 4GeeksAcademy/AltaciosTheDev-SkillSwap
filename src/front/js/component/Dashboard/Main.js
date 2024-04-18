@@ -1,6 +1,9 @@
 import React from "react";
 import {
   BsNewspaper,
+  BsPersonWorkspace,
+  BsMortarboardFill,
+  BsFillPeopleFill
 } from "react-icons/bs";
 
 import {
@@ -74,9 +77,9 @@ export function Main() {
         <div className="tutors">
           <h4>Recommended</h4>
           <div className="tutor-cards">
-            <TutorCard />
-            <TutorCard />
-            <TutorCard />
+            <TutorCard name="Enzo Altamirano" skill="Javascript" role="Tutor" level="Intermediate"/>
+            <TutorCard name="Miguel Reyes" skill="Java" role="Tutor" level="Intermediate"/>
+            <TutorCard name="Jean Nounon" skill="Python" role="Tutor" level="Intermediate"/>
           </div>
         </div>
         <div className="statistics">
@@ -142,9 +145,9 @@ export function Main() {
         <div className="achievements">
           <h4>Achievements</h4>
           <div className="achievement-cards">
-            <AchievementCard />
-            <AchievementCard />
-            <AchievementCard />
+            <AchievementCard title="Taught" icon={<BsPersonWorkspace className="card_icon achievement-icon"/>}/>
+            <AchievementCard title="Learned"icon={<BsMortarboardFill className="card_icon achievement-icon"/>}/>
+            <AchievementCard title="Connected" icon={<BsFillPeopleFill className="card_icon achievement-icon"/>}/>
           </div>
         </div>
       </div>
