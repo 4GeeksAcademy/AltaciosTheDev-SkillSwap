@@ -1,6 +1,9 @@
 import React from "react";
 import {
   BsNewspaper,
+  BsPersonWorkspace,
+  BsMortarboardFill,
+  BsFillPeopleFill
 } from "react-icons/bs";
 
 import {
@@ -142,9 +145,9 @@ export function Main() {
         <div className="achievements">
           <h4>Achievements</h4>
           <div className="achievement-cards">
-            <AchievementCard />
-            <AchievementCard />
-            <AchievementCard />
+            <AchievementCard title="Taught" icon={<BsPersonWorkspace className="card_icon"/>}/>
+            <AchievementCard title="Learned"icon={<BsMortarboardFill className="card_icon"/>}/>
+            <AchievementCard title="Connected" icon={<BsFillPeopleFill className="card_icon"/>}/>
           </div>
         </div>
       </div>
