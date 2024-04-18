@@ -42,21 +42,24 @@
 
 }
 
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1190px){
     /* below 768px cards will be 1 row */
 
     .testimonial-grid{
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
         grid-template-areas: 
-            "col-1 col-2"
-            "col-3 col-3";
+            "col-1 col-3"
+            "col-2 col-2";
     }
 
-    .testimonial-col-3{
-        display: grid;
+    .testimonial-col-2{
+        /* display: grid;
         gap: 20px;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; */
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        grid-gap: 10px; 
         
     
     }
@@ -68,7 +71,7 @@
 
 
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 992px){
     /* below 1200px cards will be 1 row */
 
     .testimonial-grid{
