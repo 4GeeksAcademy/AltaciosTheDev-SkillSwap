@@ -20,9 +20,30 @@
 h1 {
     font-family: "Poppins", sans-serif;
     font-weight: bold;
+    color: #cf1259;
 }
 p {
     font-family: "Poppins", sans-serif;
     font-weight: 200;
 }
 
+.navbar-img{
+    max-width: 130px;
+}
+
+.navbar{
+    padding: 20px;
+}
+
+.nav-link{
+    font-size: 1.1rem;
+    color: #E8E8E8;
+}
+
+.nav-link:hover{
+    color: #cf1259;
+}
+
+.login-link:hover{
+    color: #fcba04 !important;
+}

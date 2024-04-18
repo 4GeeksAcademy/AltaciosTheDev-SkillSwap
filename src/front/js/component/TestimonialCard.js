@@ -6,7 +6,7 @@ import personLogo from "../../img/personLogo.png"
 const TestimonialCard = ({name , description}) => {
     return <>
 
-        <div className="card  shadow" style={{ maxWidth: "45rem", height: "auto" }}>
+        <div className="card  shadow" style={{ maxWidth: "45rem", height: "auto", borderRadius: "15px"}}>
             <div className="rounded-2 p-3">
 
                 <div className='d-flex gap-3 align-items-center'>
@@ -14,7 +14,7 @@ const TestimonialCard = ({name , description}) => {
                     <h5 className="card-title">{name}</h5>
                 </div>
                 <div className="card-body">
-                    <p className='mb-4'>{description}</p>
+                    <p className='mb-4 testimonial-text'>{description}</p>
 
                     <div className="d-flex justify-content-between align-items-center">
                         <span className="amarillo">

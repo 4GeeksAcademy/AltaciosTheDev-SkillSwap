@@ -1,13 +1,19 @@
+.testimonial-container{
+    background: #E8E8E8;
+}
+
 .testimonial-grid{
     display: grid;
     grid-template-columns: repeat(3,1fr);
     gap: 20px;
     grid-template-areas: "col-1 col-2 col-3";
-    padding: 20px 0 20px 0;
+    padding: 20px 0 100px 0;
     
 }
 
+.testimonial-text{
 
+}
 
 .testimonial-col-1{
     grid-area: col-1;
