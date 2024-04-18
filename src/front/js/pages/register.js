@@ -14,7 +14,7 @@ export const Register= ()=> {
                 <a>Have already an account?</a>
                 <a href="/login" class="link-underline-primary">Login</a>
             </div>
-            <div className="pt-3">
+            <div className="pt-2">
                 <p><input type="email" placeholder="Your e-mail" /></p>
                 <p><input type="email" placeholder="Confirm your e-mail" /></p>
                 <p><input type="password" placeholder="Enter your password" /></p>
