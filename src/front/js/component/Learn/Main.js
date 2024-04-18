@@ -9,7 +9,7 @@ function Main() {
 
   return (
     <div className="learn-container">
-      <h4 className="learn-title">Learn Main</h4>
+      <h4 className="learn-title">What are you looking for?</h4>
       <div className="learn-input-container">
         <input className="learn-search" placeholder='Search Student' />
         <input className="learn-search" placeholder='Search Tutor' />
