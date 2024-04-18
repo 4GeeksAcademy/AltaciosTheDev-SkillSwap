@@ -26,6 +26,10 @@
     font-size: 1.7rem;
 }
 
+.brand-logo{
+    width: 120px;
+}
+
 /* space separating each icon with its text */
 .icon, .icon-header{
     margin-right: 0.5rem;
@@ -57,7 +61,7 @@
 /* basic code for a section and selecting where it will be placed */
 .header{
     grid-area: header;
-    height: 60px;
+    height: 70px;
     display: flex;
     align-items: center;
     /* justify-content: space-between; */
@@ -209,7 +213,7 @@
 
 /* each card by default in grid, all space of cell*/
 /* generic card styles, column padding justify center background color and font color */
-.card{
+.dashboard-card{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -220,14 +224,14 @@
 }
 
 /* row align center and separate when you need a specific row with elements separated */
-.card-inner{
+.dashboard-card-inner{
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 /* size for card icon */
-.card-inner > .card_icon{
+.dashboard-card-inner > .card_icon{
     font-size: 25px;
 }
 /* Differences for tutor cards */

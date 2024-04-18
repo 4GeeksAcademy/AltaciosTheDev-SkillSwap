@@ -84,9 +84,9 @@ export function Main() {
         <div className="tutors">
           <h4>Recommended</h4>
           <div className="tutor-cards">
-            <div className="card">
+            <div className="dashboard-card">
               <h5>Enzo Altamirano</h5>
-              <div className="card-inner">
+              <div className="dashboard-card-inner">
                 <img src={personLogo} className="tutor-img"/>
                 <div className="tutor-skill">
                   <p>Teaches: Javascript</p>
@@ -96,9 +96,9 @@ export function Main() {
               <button type="button" className="btn btn-primary tutor-btn">Contact</button>
             </div>
 
-            <div className="card">
+            <div className="dashboard-card">
               <h5>Enzo Altamirano</h5>
-              <div className="card-inner">
+              <div className="dashboard-card-inner">
                 <img src={personLogo} className="tutor-img"/>
                 <div className="tutor-skill">
                   <p>Teaches: Javascript</p>
@@ -108,9 +108,9 @@ export function Main() {
               <button type="button" className="btn btn-primary tutor-btn">Contact</button>
             </div>
             
-            <div className="card">
+            <div className="dashboard-card">
               <h5>Enzo Altamirano</h5>
-              <div className="card-inner">
+              <div className="dashboard-card-inner">
                 <img src={personLogo} className="tutor-img"/>
                 <div className="tutor-skill">
                   <p>Teaches: Javascript</p>
@@ -185,24 +185,24 @@ export function Main() {
         <div className="achievements">
           <h4>Achievements</h4>
           <div className="achievement-cards">
-          <div className="card">
-              <div className="card-inner">
+          <div className="dashboard-card">
+              <div className="dashboard-card-inner">
                 <h5 className="card-title">Taught:</h5>
                 <BsPersonWorkspace className="card_icon" />
               </div>
               <h5>300</h5>
             </div>
 
-            <div className="card">
-              <div className="card-inner">
+            <div className="dashboard-card">
+              <div className="dashboard-card-inner">
                 <h5 className="card-title">Learned:</h5>
                 <BsMortarboardFill  className="card_icon" />
               </div>
               <h5>12</h5>
             </div>
             
-            <div className="card">
-              <div className="card-inner">
+            <div className="dashboard-card">
+              <div className="dashboard-card-inner">
                 <h5 className="card-title">Connected:</h5>
                 <BsFillPeopleFill className="card_icon" /> 
               </div>
@@ -215,8 +215,8 @@ export function Main() {
         <div className="news">
           <div>
             <h4>Trending</h4>
-            <div className="card news-card">
-                <div className="card-inner">
+            <div className="dashboard-card news-card">
+                <div className="dashboard-card-inner">
                   <h5>AI is taking over:</h5>
                   <BsNewspaper  className="card_icon" />
                 </div>
