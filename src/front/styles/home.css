@@ -48,12 +48,17 @@
     color: #9e93a4;
     font-weight: 500;
 }
-
+.white {
+    color: white;
+}
 .amarillo {
     color: #e4bc44;
 }
-.bg-amarillo {
+.bg-gris {
     background-color: #9e93a4;
+}
+.bg-amarillo {
+    background-color: #e4bc44;
 }
 
 .bg-verde {
@@ -102,7 +107,7 @@
 .caja-flotante {
     position: absolute;
     top: 18%;
-    border-radius: 4px;
+    border-radius: 4    px;
     width: 80%;
     height: 500px;
     padding: 20px;

@@ -2,11 +2,18 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
+import PricingCard from "../component/PricingCard";
 
 export const Pricing = () => {
     const { store, actions } = useContext(Context);
-    return (
-        <div className="container text-center">
+    return <>
+    
+    <PricingCard />
+
+    
+    </>
+};
+{/* <div className="container text-center">
             <div className="instructions">
                 <div className="hero">
                     <h1>The Skillswap Plans</h1>
@@ -14,7 +21,7 @@ export const Pricing = () => {
                 <div className="container pb-3">
                     <div className="row">
                         <div className="col-4">
-                            <div className="card">
+                            <div className="card the-card">
                                 <div className="cardback">
                                     <div className="pt-5 pb-5"><h1>Free memebers</h1></div>
                                     <div className="cardinfo">
@@ -66,6 +73,4 @@ export const Pricing = () => {
 
 
 
-        </div>
-    );
-};
+        </div> */}
