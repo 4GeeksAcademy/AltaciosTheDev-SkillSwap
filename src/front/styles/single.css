@@ -1,9 +1,14 @@
+*{
+    box-sizing: border-box;
+}
+
 .single-container{
     padding: 20px;
-    overflow: auto;
-    /* display:grid; */
+    display:grid;
+    align-content: space-around;
     color: rgba(255,255,255,0.95);
     text-align: center;
+    max-height: 100% !important;
 }
 
 .single-title{
@@ -11,12 +16,91 @@
     margin-bottom:20px;
 }
 
-.learn-tutor-cards-container{
+.single-data-container{
+    background-color: #263043;
+    border-radius: 15px;
+    padding:20px;
     margin-top:20px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px,1fr));
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
+    max-height: 600px !important;
+
 }
+
+.left-column, .right-column{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    max-height: 100%;
+}
+
+.right-column{
+    text-align: left;
+}
+
+.single-data-image{
+    max-width: 100% !important; /* Ensure the image fits within the left column */
+    max-height: 500px !important; /* Ensure the image fills the entire height of its container */
+    object-fit: cover !important; /* Ensure the entire image fits within the container without distortion */
+    border-radius: 15px;
+    object-position: 0% 0%;
+}
+
+.nav-link-single{
+    background-color: transparent;
+    padding: 8px 12px;
+    transition: all .3s ease-in-out;
+    color: white;
+    border: none;
+}
+
+.nav-link-single:hover{
+    border-left: 2px solid #cf1259;
+    border-top: 2px solid #cf1259;
+    border-right: 2px solid #cf1259;
+    border-radius: 5px 5px 0 0;
+}
+.nav-link-single:active, .nav-link-single:focus{
+    border-left: 2px solid #cf1259;
+    border-top: 2px solid #cf1259;
+    border-right: 2px solid #cf1259;
+    background-color: #cf1259;
+    border-radius: 5px 5px 0 0;
+    transition: all .3s ease-in;
+    color: white;
+
+}
+
+.nav-tabs{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #cf1259;
+}
+
+.tab-content > .profile-tab.active{
+    display: flex;
+    padding-left: 20px;
+    gap: 20px;
+    text-align: left;
+}
+
+.tab-content > .skills-tab.active{
+    display:flex;
+}
+
+.tab-content > .schedule-tab.active{
+    display:flex;
+}
+
+.tab-content > .tab-pane{
+    display: none;
+}
+
+.profile-properties *{
+    font-weight: bold;
+}
+
 
 .learn-input-container{
     display: flex;
