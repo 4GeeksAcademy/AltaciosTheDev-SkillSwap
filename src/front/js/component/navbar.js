@@ -1,15 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import SKILLSWAP from "../../img/brand/SKILLSWAP-DARK.png"
 
 
 export const Navbar = () => {
 	const location = useLocation();
-    const excludePaths = ["/dashboard","/learn","/history","/profile","/favorites"]; //insert in this array other paths where navbar is not wanted.
+	const params = useParams()
+	const { id } = params;
+    const excludePaths = ["/dashboard","/learn","/history","/profile",`/favorites`]; //insert in this array other paths where navbar is not wanted.
     const shouldExcludeNavbar = excludePaths.includes(location.pathname);
+	const isSinglePage  = location.pathname.startsWith("/single/");
 
-    if (shouldExcludeNavbar) {
+    if (shouldExcludeNavbar || isSinglePage) {
         return null; // Don't render anything if the current path is included in excludePaths
     }
 

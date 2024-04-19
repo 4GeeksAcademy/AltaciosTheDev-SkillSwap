@@ -1,0 +1,48 @@
+.single-container{
+    padding: 20px;
+    overflow: auto;
+    /* display:grid; */
+    color: rgba(255,255,255,0.95);
+    text-align: center;
+}
+
+.single-title{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.learn-tutor-cards-container{
+    margin-top:20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px,1fr));
+    grid-gap: 20px;
+}
+
+.learn-input-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.learn-search{
+    background: #29374C;
+    color: #E8E8E8;
+    border: 1px solid #9e93a4;
+    padding: 8px;
+    border-radius:15px;
+    margin:10px;
+    flex-basis: 200px;
+    min-width:100px;
+    flex-shrink: 1;
+}
+
+.learn-search::placeholder {
+    color: #9e93a4;
+}
+
+.learn-search:focus, .history-search:active, .history-search:hover {
+    background: #29374C;
+    color: #E8E8E8;
+    border: 1px solid #9e93a4;
+}

@@ -7,8 +7,9 @@ export const Footer = () => {
 	const location = useLocation();
     const excludePaths = ["/dashboard","/learn","/history","/profile","/favorites"]; //insert in this array other paths where navbar is not wanted.
     const shouldExcludeFooter = excludePaths.includes(location.pathname);
+	const isSinglePage  = location.pathname.startsWith("/single/");
 
-    if (shouldExcludeFooter) {
+    if (shouldExcludeFooter || isSinglePage) {
         return null; // Don't render anything if the current path is included in excludePaths
     }
 
