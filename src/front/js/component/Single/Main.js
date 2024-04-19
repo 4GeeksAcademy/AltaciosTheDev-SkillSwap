@@ -54,7 +54,9 @@ function Main() {
           </div>
         </div>
       </div>
-
+      <Link to="/dashboard">
+        <button type="button" className="nav-link-single fullborder">Return</button>
+      </Link>
     </div>
   )
 }

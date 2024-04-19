@@ -61,6 +61,23 @@
     border-right: 2px solid #cf1259;
     border-radius: 5px 5px 0 0;
 }
+
+.fullborder{
+    margin-right: auto;
+    display: inline-block;
+    width: 100px;
+}
+
+.single-container > a{
+    margin-right: auto;
+}
+
+.fullborder:hover{
+    border: 2px solid #cf1259;
+    border-radius: 10px;
+
+}
+
 .nav-link-single:active, .nav-link-single:focus{
     border-left: 2px solid #cf1259;
     border-top: 2px solid #cf1259;
@@ -70,6 +87,12 @@
     transition: all .3s ease-in;
     color: white;
 
+}
+
+.fullborder:active, .fullborder:focus{
+    border: 2px solid #cf1259;
+    background-color: #cf1259;
+    border-radius: 10px
 }
 
 .nav-tabs{

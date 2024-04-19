@@ -258,6 +258,11 @@
     /* so btn is all to the right */
 }
 
+.dashboard-card > a{
+    margin-left: auto;
+
+}
+
 /* needs a limit */
 .tutor-img{
     width: auto; /* Allow the image to adjust its width based on content */
