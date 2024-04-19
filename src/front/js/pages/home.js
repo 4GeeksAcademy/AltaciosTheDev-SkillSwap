@@ -95,7 +95,7 @@ export const Home = () => {
     </div>
       <div className="d-flex justify-content-end bg-azul-oscuro pb-5 position-relative"></div>
 
-      <div className="d-none d-md-block vh-100 bg-amarillo position-relative rounded-2 d-flex">
+      <div className="d-none d-md-block vh-100 bg-gris position-relative rounded-2 d-flex">
         <div className="bg-verde caja-flotante position-absolute start-50 translate-middle d-flex gap-3 shadow">
           <div className="gris">
             <h4 className="mb-5">We can help you reach your potential, <br/> <span className="rosa">even if you...</span> </h4>
@@ -176,7 +176,7 @@ export const Home = () => {
       </div>
       <div className="bg-azul-oscuro"></div>
 
-      <div className="bg-amarillo ">
+      <div className="bg-gris ">
 
         <div className="d-flex justify-content-between p-5">
           <h1>Stories from real <span className="pink">people</span></h1>
