@@ -20,10 +20,10 @@ import {
   Line,
 } from "recharts";
 
-import aitakingover from "../../../img/aitakingover.jpg"
-import {TutorCard} from "./TutorCard";
+import { TutorCard } from "./TutorCard";
 import AchievementCard from "./AchievementCard";
 import PendingCard from "./PendingCard";
+import NewsCard from "./NewsCard";
 
 export function Main() {
   const data = [
@@ -77,9 +77,9 @@ export function Main() {
         <div className="tutors">
           <h4>Recommended</h4>
           <div className="tutor-cards">
-            <TutorCard name="Enzo Altamirano" skill="Javascript" role="Tutor" level="Intermediate"/>
-            <TutorCard name="Miguel Reyes" skill="Java" role="Tutor" level="Intermediate"/>
-            <TutorCard name="Jean Nounon" skill="Python" role="Tutor" level="Intermediate"/>
+            <TutorCard name="Enzo Altamirano" skill="Javascript" role="Tutor" level="Intermediate" />
+            <TutorCard name="Miguel Reyes" skill="Java" role="Tutor" level="Intermediate" />
+            <TutorCard name="Jean Nounon" skill="Python" role="Tutor" level="Intermediate" />
           </div>
         </div>
         <div className="statistics">
@@ -145,29 +145,17 @@ export function Main() {
         <div className="achievements">
           <h4>Achievements</h4>
           <div className="achievement-cards">
-            <AchievementCard title="Taught" icon={<BsPersonWorkspace className="card_icon achievement-icon"/>}/>
-            <AchievementCard title="Learned"icon={<BsMortarboardFill className="card_icon achievement-icon"/>}/>
-            <AchievementCard title="Connected" icon={<BsFillPeopleFill className="card_icon achievement-icon"/>}/>
+            <AchievementCard title="Taught" icon={<BsPersonWorkspace className="card_icon achievement-icon" />} />
+            <AchievementCard title="Learned" icon={<BsMortarboardFill className="card_icon achievement-icon" />} />
+            <AchievementCard title="Connected" icon={<BsFillPeopleFill className="card_icon achievement-icon" />} />
           </div>
         </div>
       </div>
       <div className="right-side">
-        <div className="news">
-          <div>
-            <h4>Trending</h4>
-            <div className="dashboard-card news-card">
-              <div className="dashboard-card-inner">
-                <h5>AI is taking over:</h5>
-                <BsNewspaper className="card_icon" />
-              </div>
-              <img className="news-image" src={aitakingover} />
-              <button type="button" className="btn btn-primary">Read more</button>
-            </div>
-          </div>
-        </div>
+        <NewsCard />
         <div className="pending">
           <h4>Pending</h4>
-          <PendingCard/>  
+          <PendingCard />
         </div>
       </div>
     </main>

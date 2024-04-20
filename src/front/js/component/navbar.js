@@ -11,7 +11,7 @@ export const Navbar = () => {
     const excludePaths = ["/dashboard","/learn","/history","/profile",`/favorites`]; //insert in this array other paths where navbar is not wanted.
     const shouldExcludeNavbar = excludePaths.includes(location.pathname);
 	const isSinglePage  = location.pathname.startsWith("/single/");
-
+	
     if (shouldExcludeNavbar || isSinglePage) {
         return null; // Don't render anything if the current path is included in excludePaths
     }
