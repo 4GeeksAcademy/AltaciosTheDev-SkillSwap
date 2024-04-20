@@ -6,8 +6,8 @@ const pricingCard = () => {
   <div className='bg-gris'>
     
   
-    <h1 className='text-center py-5'>The SkillSwap Plans</h1>
-    <div className='pricing-group gap-xs-5 gap-lg-0 pb-5'>
+    <h1 className='text-center pt-3 pb-4'>The SkillSwap Plans</h1>
+    <div className='pricing-group gap-xs-5 gap-md-5 gap-lg-0 pb-5'>
       
       {/* Free Card */}
       <div className='pricing-card-free mb-5 pb-1 mb-md-0'>
@@ -56,11 +56,11 @@ const pricingCard = () => {
               </i>
               <i className="fa-regular fa-circle-check "></i>
               <i className="fa-regular fa-circle-check "></i>
-              <i className="fa-regular fa-circle-check "></i>
+              
             </div>
 
             <div className='d-flex justify-content-center price-btn-margin'>
-              <button className='boton price-btn'>$9.99/Monthly</button>
+              <button className='boton price-btn mt-5'>$9.99/Monthly</button>
             </div>
 
          </div>
@@ -88,7 +88,7 @@ const pricingCard = () => {
            </div>
 
             <div className='d-flex justify-content-center price-btn-margin'>
-              <button className='boton price-btn'>$199/One Time Only</button>
+              <button className='boton price-btn mt-4'>$199/One Time Only</button>
             </div>
           </div>
 

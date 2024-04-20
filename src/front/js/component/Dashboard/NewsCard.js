@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useEffect, useState}from 'react';
 import {
     BsNewspaper
 } from "react-icons/bs";
 import aitakingover from "../../../img/aitakingover.jpg"
 
-
+// const newsApi = async () => {
+//     const res = await fetch('')
+//    }
+// useEffect(() => {
+   
+// },[])
 
 function NewsCard() {
     return (
