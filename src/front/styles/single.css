@@ -110,11 +110,46 @@
 
 .tab-content > .skills-tab.active{
     display:flex;
+    padding-left: 20px;
+    gap: 20px;
+    text-align: left;
+}
+
+.skills{
+    display: flex;
+    width: 100%;
+    gap: 100px;
+}
+
+.learning, .tutoring{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+        "title  title"
+        "skills levels";
+    gap: 20px;  
+}
+
+.learning-title, .tutoring-title{
+    grid-area: title;
+}
+
+.learning-skills, .tutoring-skills{
+    grid-area: skills;
+}
+
+.learning-levels, .tutoring-levels{
+    grid-area: levels;
 }
 
 .tab-content > .schedule-tab.active{
     display:flex;
 }
+
+.tab-content > .reviews-tab.active{
+    display:flex;
+}
+
 
 .tab-content > .tab-pane{
     display: none;
@@ -123,6 +158,17 @@
 .profile-properties *{
     font-weight: bold;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 .learn-input-container{
