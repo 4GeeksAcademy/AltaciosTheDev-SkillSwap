@@ -67,7 +67,7 @@ const pricingCard = () => {
       </div>
     
     {/* life time card */}
-      <div className='pricing-card-free'>
+      <div className='pricing-card-free mb-5 pb-1 mb-md-0'>
         <div className='header-card-free white text-center'>
           <h1 className='header-item white'>Life Time</h1>
           <h2 className='header-item white'></h2>

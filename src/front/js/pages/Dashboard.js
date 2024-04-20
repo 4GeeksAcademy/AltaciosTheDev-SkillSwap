@@ -13,9 +13,9 @@ export const Dashboard = () => {
 	return (
 		<div className="dashboard">
 			<div className="grid-container">
-				<Header/>
-				<Sidebar />
-				<Main/>
+				<Header/>     
+				<Sidebar />   
+				<Main/>       
 			</div>
 		</div>
 		
