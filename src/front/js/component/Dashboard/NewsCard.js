@@ -13,7 +13,7 @@ function NewsCard() {
     const [news, setNews] = useState();
     
     const newsApi = async () => {
-        const res = await fetch(  process.env.BACKEND_URL + '/api/news')
+        const res = await fetch( process.env.BACKEND_URL + '/api/news')
     
         const data = await res.json();
         const randomIndex = Math.floor(Math.random() * data.articles.length);
