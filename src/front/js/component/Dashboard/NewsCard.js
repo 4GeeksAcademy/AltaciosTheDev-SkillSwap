@@ -6,20 +6,21 @@ import aitakingover from "../../../img/aitakingover.jpg"
 
 
 
-const newsApi = async () => {
-    const res = await fetch('https://newsapi.org/v2/everything?q=technology&from=2024-03-25&sortBy=publishedAt&apiKey=' + process.env.NEWS_API_KEY)
 
-    const data = await res.json();
-    const randomIndex = Math.floor(Math.random() * data.articles.length);
-
-    setNews(data.articles[randomIndex]) 
-    
-   }
-  
 
 
 function NewsCard() {
     const [news, setNews] = useState();
+    
+    const newsApi = async () => {
+        const res = await fetch(  process.env.BACKEND_URL + '/api/news')
+    
+        const data = await res.json();
+        const randomIndex = Math.floor(Math.random() * data.articles.length);
+    
+        setNews(data.articles[randomIndex]) 
+        
+       }
 
     useEffect(() => {
         newsApi()
@@ -34,8 +35,8 @@ function NewsCard() {
                         <h5> {news && news.title}</h5>
                         <BsNewspaper className="card_icon" />
                     </div>
-                    <img className="news-image" src={aitakingover} /> {/* REEMPLAZAR SRC DE IMAGE CON SRC DE API */}
-                    <button type="button" className="btn btn-primary">Read more</button>{/* REEMPLAZAR LINK CON LINK DE API */}
+                    <img className="news-image" src={news && news.urlToImage} />
+                    <button type="button" className="btn btn-primary"><a href={news && news.url}>Read More</a></button>
                 </div>
             </div>
         </div>

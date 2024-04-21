@@ -10,6 +10,7 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from datetime import timedelta
+import requests
 
 
 
@@ -70,6 +71,16 @@ def private():
     }
     return jsonify(dictionary)
 
+
+
+
+#api news
+@api.route('/news', methods=['GET'])
+def news():
+
+    response = requests.get(f"https://newsapi.org/v2/everything?q=technology&from=2024-03-25&sortBy=publishedAt&apiKey={os.environ.get('NEWS_API_KEY')}")
+
+    return jsonify(response.json()), 200
 
 
 

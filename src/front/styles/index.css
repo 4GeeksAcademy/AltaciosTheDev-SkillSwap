@@ -47,3 +47,8 @@ p {
 .login-link:hover{
     color: #fcba04 !important;
 }
+
+a{
+    text-decoration: none;
+    color: white;
+}
