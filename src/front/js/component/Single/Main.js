@@ -2,15 +2,13 @@ import React from 'react'
 // import singleData from "./skills-mock-data.json.json"
 import { Link, useParams } from "react-router-dom";
 import facePhoto from "../../../img/facePhoto.jpg"
-
+import DateTime from "./DateTime.js"
 function Main() {
   // const { store, actions } = useContext(Context);
   const params = useParams();
 
 
   return (
-
-
     <div className="single-container">
       <h4 className="single-title">Skill Swapper Information</h4>
       <div className="container single-data-container">
@@ -90,7 +88,7 @@ function Main() {
             </div>
 
             <div className="tab-pane fade schedule-tab" id="nav-schedule" role="tabpanel" aria-labelledby="nav-schedule-tab" tabindex="0">
-              <h4>Calendar feature in maintenance</h4>
+              <DateTime /> 
             </div>
             <div className="tab-pane fade reviews-tab" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab" tabindex="0">
               <h4>Reviews feature in maintenance</h4>

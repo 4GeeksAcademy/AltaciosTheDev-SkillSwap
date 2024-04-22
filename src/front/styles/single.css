@@ -159,43 +159,76 @@
     font-weight: bold;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-.learn-input-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+.MuiFormLabel-root{
+    color: #E8E8E8 !important;
 }
 
-.learn-search{
-    background: #29374C;
-    color: #E8E8E8;
-    border: 1px solid #9e93a4;
-    padding: 8px;
-    border-radius:15px;
-    margin:10px;
-    flex-basis: 200px;
-    min-width:100px;
-    flex-shrink: 1;
+.MuiFormLabel-root *{
+    color: #E8E8E8 !important;
 }
 
-.learn-search::placeholder {
-    color: #9e93a4;
+.MuiInputBase-input{
+    color: #E8E8E8 !important;
+
 }
 
-.learn-search:focus, .history-search:active, .history-search:hover {
-    background: #29374C;
-    color: #E8E8E8;
-    border: 1px solid #9e93a4;
+.MuiInputBase-input *{
+    color: #E8E8E8 !important;
 }
+
+
+.MuiFormControl-root{
+    color: #E8E8E8 !important;
+}
+
+.MuiFormControl-root *{
+    color: #E8E8E8 !important;
+}
+
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline{
+    border-color: #E8E8E8 !important;
+}
+
+
+.schedule-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-content: space-around;
+    grid-template-areas: 
+        "datetime skills"
+        "schedule schedule";
+        gap: 100px;
+    }
+
+.choose-pickers{
+    grid-area: datetime;
+}
+
+.choose-skills{
+    grid-area: skills;
+}
+
+.send-session-details{
+    grid-area: schedule;
+    border: 2px solid #cf1259;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: transparent;
+    color: white !important;
+}
+
+.send-session-details:hover{
+    border: 2px solid #cf1259;
+    background-color: #cf1259;
+    transition: all .3s ease-in;
+
+}
+
+
+
+
+
+
+
+
+
