@@ -251,6 +251,10 @@
 .dashboard-card-inner > .card_icon{
     font-size: 25px;
 }
+
+.news-icon{
+    min-font-size: 25px;        
+}
 /* Differences for tutor cards */
 .tutor-btn{
     margin-left: auto;

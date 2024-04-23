@@ -33,10 +33,10 @@ function NewsCard() {
                 <div className="dashboard-card news-card">
                     <div className="dashboard-card-inner">
                         <h5> {news && news.title}</h5>
-                        <BsNewspaper className="card_icon" />
+                        <BsNewspaper className="card_icon new-icon" />
                     </div>
                     <img className="news-image" src={news && news.urlToImage} />
-                    <button type="button" className="btn btn-primary"><a href={news && news.url}>Read More</a></button>
+                    <button type="button" className="btn btn-primary"><a href={news && news.url } target="_blank">Read More</a></button>
                 </div>
             </div>
         </div>
