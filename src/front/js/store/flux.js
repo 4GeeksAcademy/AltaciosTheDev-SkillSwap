@@ -1,3 +1,4 @@
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -14,9 +15,91 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			openSidebar: false
+			openSidebar: false,
+
+			token: null || localStorage.getItem("token"),
+			profile: null
 		},
 		actions: {
+
+			login: async (email, password) => {
+				const opts = {
+					method: 'POST',
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({
+						"email": email,
+						"password": password
+					})
+				}
+				
+				try{ 
+					const resp = await fetch(process.env.BACKEND_URL + "/api/login", opts)
+					if(resp.status !== 200){
+						alert("Bad Email or Password")
+						return false;
+					} 
+
+					const data = await resp.json();
+					localStorage.setItem("token", data.access_token);
+					setStore({ token: data.access_token })
+					return true;
+
+				}
+
+			
+				catch(error) {
+					console.error("there was a error");
+				}
+		
+			},
+
+			logout: () => {
+				localStorage.removeItem("token");
+			    setStore({ token: null });
+			},
+			
+
+
+			getProfile: async (user) => {
+				const store = getStore()
+				
+				try{ 
+					const resp = await fetch(process.env.BACKEND_URL + "/api/protected", {
+						method: 'POST',
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": "Bearer " + store.token 
+						},
+					})
+					if(resp.status !== 200){
+						alert("there has been some error")
+						return false;
+					} 
+
+					const data = await resp.json();
+					setStore({ profile: data })
+
+				}
+				catch(error) {
+					console.error("there was an error");
+				}
+		
+			},
+
+
+
+
+
+
+
+
+
+
+
+
+
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");

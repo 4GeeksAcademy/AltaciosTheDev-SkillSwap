@@ -12,7 +12,7 @@ export const Register= ()=> {
         <div className="text-center">
             <div>
                 <a>Have already an account?</a>
-                <a href="/login" class="link-underline-primary">Login</a>
+                <a href="/login" className="link-underline-primary">Login</a>
             </div>
             <div className="pt-2">
                 <p><input type="email" placeholder="Your e-mail" /></p>

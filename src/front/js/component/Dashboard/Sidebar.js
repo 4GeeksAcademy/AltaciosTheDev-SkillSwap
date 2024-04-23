@@ -55,8 +55,8 @@ export function Sidebar() {
                 </Link>
             </li>
             <li className='logout sidebar-list-item'>
-                <Link to="/" className="sidebar-link">
-                    <BsBoxArrowRight className='icon'/>Logout
+                <Link to="/" onClick={() => actions.logout()} className="sidebar-link">
+                    <BsBoxArrowRight  className='icon'/>Logout
                 </Link>		        
             </li>
         </ul>

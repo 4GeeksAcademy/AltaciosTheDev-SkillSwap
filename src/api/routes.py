@@ -58,7 +58,7 @@ def login():
     return jsonify(user=user.serialize(), access_token=access_token)
 
 
-@api.route("/private", methods=["GET"])
+@api.route("/protected", methods=["GET"])
 @jwt_required()
 def private():
     email = get_jwt_identity()
@@ -66,6 +66,7 @@ def private():
     user = User.query.filter_by(email=email).first()
     if user is None:
         return jsonify({"msg": "user not Found 🙁"}), 404
+    
     dictionary = {
         "user": user.serialize()
     }
