@@ -17,8 +17,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			openSidebar: false,
 
-			token: null || localStorage.getItem("token"),
-			profile: null
+			token: localStorage.getItem("token") || null,
+			profile: JSON.parse(localStorage.getItem("profile")) || null
 		},
 		actions: {
 
@@ -44,6 +44,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await resp.json();
 					localStorage.setItem("token", data.access_token);
 					setStore({ token: data.access_token })
+					getActions().getProfile()
 					return true;
 
 				} 
@@ -55,7 +56,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			logout: () => {
 				localStorage.removeItem("token");
+				localStorage.removeItem("profile");
 			    setStore({ token: null });
+				setStore({ profile: null });
 			},
 			
 			getProfile: async (user) => {
@@ -63,7 +66,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				
 				try{ 
 					const resp = await fetch(process.env.BACKEND_URL + "/api/protected", {
-						method: 'POST',
+						method: 'GET',
 						headers: {
 							"Content-Type": "application/json",
 							"Authorization": "Bearer " + store.token 
@@ -75,6 +78,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					} 
 
 					const data = await resp.json();
+					localStorage.setItem("profile", JSON.stringify(data));
 					setStore({ profile: data })
 
 				}

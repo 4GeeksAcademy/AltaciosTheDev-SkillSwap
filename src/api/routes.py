@@ -67,10 +67,7 @@ def private():
     if user is None:
         return jsonify({"msg": "user not Found 🙁"}), 404
     
-    dictionary = {
-        "user": user.serialize()
-    }
-    return jsonify(dictionary)
+    return jsonify(user.serialize())
 
 
 #api news

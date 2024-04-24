@@ -19,7 +19,7 @@ export function Header() {
             <div className="user-badge">
               <img src={personLogo} className="user-badge-image"/>
               <div className="user-details">
-                <h6>Enzo</h6>
+                <h6>{store.profile && store.profile.name}</h6>
               </div>
             </div>
         </div>
