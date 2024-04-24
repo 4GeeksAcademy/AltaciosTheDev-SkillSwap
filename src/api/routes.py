@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint, current_app
-from api.models import db, User
+from api.models import db, User, Category
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token
@@ -86,6 +86,13 @@ def get_users():
 
     users = User.query.all()
     return jsonify([user.serialize() for user in users]),200
+    
+#Route for receiving CATEGORIES
+@api.route("/categories", methods=["GET"])
+def categories():
+
+    categories = Category.query.all()
+    return jsonify([category.serialize() for category in categories]),200
     
 
 @api.route('/hello', methods=['POST', 'GET'])
