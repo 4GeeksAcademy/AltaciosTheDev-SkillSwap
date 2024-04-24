@@ -44,14 +44,14 @@ def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
 
-    user = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(email=email, password=password).one_or_none()
     if user is None:
         return jsonify({"msg": "User not Found"}), 404
 
-    decrypted_password = current_app.bcrypt.check_password_hash(user.password, password)
+    # decrypted_password = current_app.bcrypt.check_password_hash(user.password, password)
 
-    if email != user.email or decrypted_password is False:
-        return jsonify({"msg": "Bad email or password"}), 401
+    # if email != user.email or decrypted_password is False:
+    #     return jsonify({"msg": "Bad email or password"}), 401
 
     access_token = create_access_token(identity=email)
     create_access_token(identity = user.email, expires_delta=timedelta(hours=3))
@@ -71,8 +71,6 @@ def private():
         "user": user.serialize()
     }
     return jsonify(dictionary)
-
-
 
 
 #api news

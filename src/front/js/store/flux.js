@@ -46,9 +46,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ token: data.access_token })
 					return true;
 
-				}
-
-			
+				} 
 				catch(error) {
 					console.error("there was a error");
 				}
@@ -60,8 +58,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			    setStore({ token: null });
 			},
 			
-
-
 			getProfile: async (user) => {
 				const store = getStore()
 				
