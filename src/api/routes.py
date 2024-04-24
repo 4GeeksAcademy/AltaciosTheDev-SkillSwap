@@ -79,11 +79,14 @@ def news():
     return jsonify(response.json()), 200
 
 
+#Routes for receiving back end info 
+#Route for receiving USERS
+@api.route("/users", methods=["GET"])
+def get_users():
 
-
-
-
-
+    users = User.query.all()
+    return jsonify([user.serialize() for user in users]),200
+    
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():

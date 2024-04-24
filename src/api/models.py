@@ -22,6 +22,11 @@ class User(db.Model):
             "id": self.id,  
             "name": self.name,  
             "email": self.email,  
+            "number": self.number,
+            "country": self.country,
+            "city": self.city,
+            "gender": self.gender,
+            "bio":self.bio if self.bio else None
             # do not serialize the password, its a security breach
         }
     
