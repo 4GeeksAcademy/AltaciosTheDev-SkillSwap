@@ -26,7 +26,8 @@ class User(db.Model):
             "country": self.country,
             "city": self.city,
             "gender": self.gender,
-            "bio":self.bio if self.bio else None
+            "bio":self.bio if self.bio else None,
+            "skills": [skill.serialize() for skill in self.skills] if self.skills else None
             # do not serialize the password, its a security breach
         }
     
@@ -58,6 +59,33 @@ class Skill(db.Model):
         return {
             "id": self.id,  
             "name": self.name,
-            "category": self.category.name if self.category else None
+            "category": self.category.name if self.category else None,
+            "users": [user.serialize() for user in self.users] if self.users else None
+
         }
     
+class User_Skill_Association(db.Model):
+    id = db.Column(db.Integer, primary_key=True)   
+    level = db.Column(db.String(80), nullable=False)  
+    role = db.Column(db.String(80),  nullable=False)   
+
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))    
+    user = db.relationship("User", backref="skills")      
+    
+    skill_id = db.Column(db.Integer, db.ForeignKey('skill.id'))   
+    skill = db.relationship("Skill", backref="users")   
+ 
+    def __repr__(self): 
+        return f'<User_Skill_Association {self.id}>' 
+
+    def serialize(self):
+        return {
+            "id": self.id,  
+            "user": self.user.name,
+            "skill": self.skill.name,
+            "level": self.level,
+            "role": self.role
+        }
+
+
+

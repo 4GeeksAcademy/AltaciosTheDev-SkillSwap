@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint, current_app
-from api.models import db, User, Category, Skill
+from api.models import db, User, Category, Skill, User_Skill_Association
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token
@@ -100,7 +100,13 @@ def get_skills():
 
     skills = Skill.query.all()
     return jsonify([skill.serialize() for skill in skills]),200
-    
+
+#Route for receiving ASSOCIATIONS
+@api.route("/associations", methods=["GET"])
+def get_users_skills_associations():
+
+    associations = User_Skill_Association.query.all()
+    return jsonify([association.serialize() for association in associations]),200
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
