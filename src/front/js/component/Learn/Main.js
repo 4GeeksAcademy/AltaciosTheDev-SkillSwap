@@ -1,11 +1,31 @@
-import React from 'react'
-import {TutorCard} from "../Dashboard/TutorCard";
+import React, { useEffect, useContext } from 'react'
+import { TutorCard } from "../Dashboard/TutorCard";
 import skillsData from "./skills-mock-data.json.json"
+import { Context } from "../../store/appContext";
+
 
 function Main() {
- const userSkillElements = skillsData.map((userSkill) => {
-  return <TutorCard key={userSkill.id} name={userSkill.Name} skill={userSkill.Skill} role={userSkill.Role} level={userSkill.Level}/>
- })
+  const { store, actions } = useContext(Context)
+
+  useEffect(() => {
+    actions.getAssociations()
+  }, [])
+
+  // Declare userSkillElements variable
+  let userSkillElements = null;
+
+  // Check if store.userSkillsAssociations is available
+  if (store.userSkillsAssociations) {
+    userSkillElements = store.userSkillsAssociations.map((association) => (
+      <TutorCard
+        key={association.id}
+        name={association.user}
+        skill={association.skill}
+        role={association.role}
+        level={association.level}
+      />
+    ));
+  }
 
   return (
     <div className="learn-container">

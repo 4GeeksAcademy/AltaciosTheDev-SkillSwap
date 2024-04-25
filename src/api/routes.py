@@ -103,6 +103,7 @@ def get_skills():
 
 #Route for receiving ASSOCIATIONS
 @api.route("/associations", methods=["GET"])
+@jwt_required()
 def get_users_skills_associations():
 
     associations = User_Skill_Association.query.all()

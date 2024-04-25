@@ -87,6 +87,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 		
 			},
+			getAssociations: async () => {
+				const store = getStore()
+
+				try{
+					//fetch the associations from the back end
+					const resp = await fetch(process.env.BACKEND_URL + "api/associations",{
+						method: 'GET',
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": `Bearer ${store.token}`
+						},
+					})
+					const data = await resp.json()
+
+					if(!resp.ok){
+						throw new Error(data.msg)
+					}
+					setStore({userSkillsAssociations: data})
+					return true
+				}
+
+				catch(error){
+					console.log("Error from backend", error)
+					return false
+				}
+			},
 
 
 
