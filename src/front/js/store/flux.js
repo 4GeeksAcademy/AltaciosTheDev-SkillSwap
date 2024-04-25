@@ -58,8 +58,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logout: () => {
 				localStorage.removeItem("token");
 				localStorage.removeItem("profile");
-			    setStore({ token: null });
-				setStore({ profile: null });
+			    setStore({ token: null, profile: null });
 			},
 			
 			getProfile: async (user) => {
@@ -84,7 +83,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				}
 				catch(error) {
-					console.error("there was an error");
+					console.error("there was an error getting the profile");
 				}
 		
 			},
