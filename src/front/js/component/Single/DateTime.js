@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Stack, TextField } from '@mui/material'; // Import Stack from Material-UI
 import { LocalizationProvider, DatePicker, TimePicker, DateTimePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
@@ -7,15 +7,16 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { Context } from "../../store/appContext";
 
-export default function DateTime({tutorSkills}) {
-
+export default function DateTime({ tutorSkills }) {
+    const { store, actions } = useContext(Context);
     const [selectedDate, setSelectedDate] = useState(null)
     const [selectedTime, setSelectedTime] = useState(null)
     const [selectedSkill, setSelectedSkill] = useState(null)
     const [sessionDetails, setSessionDetails] = useState({
-        learner_id: "",
-        tutor_id: "",
+        learner_id: store.profile.id,
+        tutor_id: store.tutorProfile.id,
         skill_id: null,
         date: null,
         time: null
@@ -30,7 +31,7 @@ export default function DateTime({tutorSkills}) {
     useEffect(() => {
         setSessionDetails(prevSessionDetails => ({
             ...prevSessionDetails,
-            skill_id: selectedSkill,
+            skill_id: selectedSkill ? parseInt(selectedSkill) : null,
             date: selectedDate ? selectedDate.toLocaleDateString() : null,
             time: selectedTime ? selectedTime.toLocaleTimeString() : null
         }));
@@ -39,7 +40,7 @@ export default function DateTime({tutorSkills}) {
     function handleSubmit(event) {
         event.preventDefault()
 
-        if (sessionDetails.skill_id && sessionDetails.date && sessionDetails.time){
+        if (sessionDetails.skill_id && sessionDetails.date && sessionDetails.time) {
             console.log({
                 msg: "Session request successfully sent",
                 sessionDetails: sessionDetails
@@ -83,12 +84,19 @@ export default function DateTime({tutorSkills}) {
                             >
                                 {tutorSkills.map(tutorSkill => {
                                     return (
-                                        <FormControlLabel value={tutorSkill.skill} control={<Radio sx={{
-                                            color: "#E8E8E8",
-                                            '&.Mui-checked': {
-                                                color: "#cf1259",
-                                            },
-                                        }} />} label={tutorSkill.skill} />
+                                        <FormControlLabel
+                                            key={tutorSkill.skill_id}
+                                            value={tutorSkill.skill_id} // Convert to number
+                                            control={
+                                                <Radio sx={{
+                                                    color: "#E8E8E8",
+                                                    '&.Mui-checked': {
+                                                        color: "#cf1259",
+                                                    },
+                                                }} />
+                                            }
+                                            label={tutorSkill.skill}
+                                        />
                                     )
                                 })}
                             </RadioGroup>
