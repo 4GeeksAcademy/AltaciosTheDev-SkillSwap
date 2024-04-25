@@ -80,7 +80,7 @@ function Main() {
             </div>
 
             <div className="tab-pane fade schedule-tab" id="nav-schedule" role="tabpanel" aria-labelledby="nav-schedule-tab" tabindex="0">
-              <DateTime /> 
+              <DateTime tutorSkills={tutorSkills}/> 
             </div>
             <div className="tab-pane fade reviews-tab" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab" tabindex="0">
               <h4>Reviews feature in maintenance</h4>

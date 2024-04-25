@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import { Stack, TextField } from '@mui/material'; // Import Stack from Material-UI
 import { LocalizationProvider, DatePicker, TimePicker, DateTimePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
@@ -8,7 +8,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-export default function DateTime() {
+export default function DateTime({tutorSkills}) {
+
     const [selectedDate, setSelectedDate] = useState(null)
     const [selectedTime, setSelectedTime] = useState(null)
     const [selectedSkill, setSelectedSkill] = useState(null)
@@ -80,36 +81,16 @@ export default function DateTime() {
                                 value={selectedSkill}
                                 onChange={(event => setSelectedSkill(event.target.value))}
                             >
-                                <FormControlLabel value="javacript" control={<Radio sx={{
-                                    color: "#E8E8E8",
-                                    '&.Mui-checked': {
-                                        color: "#cf1259",
-                                    },
-                                }} />} label="javacript" />
-                                <FormControlLabel value="python" control={<Radio sx={{
-                                    color: "#E8E8E8",
-                                    '&.Mui-checked': {
-                                        color: "#cf1259",
-                                    },
-                                }} />} label="python" />
-                                <FormControlLabel value="java" control={<Radio sx={{
-                                    color: "#E8E8E8",
-                                    '&.Mui-checked': {
-                                        color: "#cf1259",
-                                    },
-                                }} />} label="java" />
-                                <FormControlLabel value="react" control={<Radio sx={{
-                                    color: "#E8E8E8",
-                                    '&.Mui-checked': {
-                                        color: "#cf1259",
-                                    },
-                                }} />} label="react" />
-                                <FormControlLabel value="angular" control={<Radio sx={{
-                                    color: "#E8E8E8",
-                                    '&.Mui-checked': {
-                                        color: "#cf1259",
-                                    },
-                                }} />} label="angular" />
+                                {tutorSkills.map(tutorSkill => {
+                                    return (
+                                        <FormControlLabel value={tutorSkill.skill} control={<Radio sx={{
+                                            color: "#E8E8E8",
+                                            '&.Mui-checked': {
+                                                color: "#cf1259",
+                                            },
+                                        }} />} label={tutorSkill.skill} />
+                                    )
+                                })}
                             </RadioGroup>
                         </FormControl>
                     </Stack>
