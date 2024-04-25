@@ -59,8 +59,8 @@ class Skill(db.Model):
         return {
             "id": self.id,  
             "name": self.name,
-            "category": self.category.name if self.category else None,
-            "users": [user.serialize() for user in self.users] if self.users else None
+            "category": self.category.name if self.category else None,  
+            "users": [user.serialize() for user in self.users] if self.users else None  
 
         }
     
