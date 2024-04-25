@@ -1,12 +1,20 @@
-import React from 'react'
+import React,{useContext} from 'react'
 // import singleData from "./skills-mock-data.json.json"
-import { Link, useParams } from "react-router-dom";
+import { Link} from "react-router-dom";
 import facePhoto from "../../../img/facePhoto.jpg"
 import DateTime from "./DateTime.js"
+import { Context } from "../../store/appContext";
 function Main() {
-  // const { store, actions } = useContext(Context);
-  const params = useParams();
+  const { store, actions } = useContext(Context);
 
+  const tutorSkills = store.tutorProfile.skills.filter((skill) => {
+    return skill.role == "Tutor"
+  })
+  const learnerSkills = store.tutorProfile.skills.filter((skill) => {
+    return skill.role == "Learner"
+  })
+  console.log(tutorSkills)
+  console.log(learnerSkills)
 
   return (
     <div className="single-container">
@@ -16,7 +24,7 @@ function Main() {
           <img className="single-data-image" src={facePhoto} />
         </div>
         <div className="right-column">
-          <h4>Enzo Altamirano</h4>
+          <h4>{store.tutorProfile && store.tutorProfile.name}</h4>
           <nav>
             <div className="nav nav-tabs" id="nav-tab" role="tablist">
               <button className="nav-link-single" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
@@ -36,12 +44,12 @@ function Main() {
                 <p>Bio:</p>
               </div>
               <div className="profile-values">
-                <p>Honduras</p>
-                <p>San Pedro Sula</p>
-                <p>enzo.altamirano@gmail.com</p>
-                <p>+504-3355-5344</p>
-                <p>Male</p>
-                <p>Innovative Software Developer and Mechatronics Engineer with a commitment for crafting elegant solutions and enhancing user experiences. Leveraging a solid foundation in both frontend and backend development, combined with 2 years of experience in automotive engineering, hardware systems and electronics.</p>
+                <p>{store.tutorProfile && store.tutorProfile.country}</p>
+                <p>{store.tutorProfile && store.tutorProfile.city}</p>
+                <p>{store.tutorProfile && store.tutorProfile.email}</p>
+                <p>{store.tutorProfile && store.tutorProfile.number}</p>
+                <p>{store.tutorProfile && store.tutorProfile.gender}</p>
+                <p>{store.tutorProfile && store.tutorProfile.bio ? store.tutorProfile.bio : "Pending for user to write bio."}</p>
               </div>
             </div>
             <div className="tab-pane fade skills-tab" id="nav-skills" role="tabpanel" aria-labelledby="nav-skills-tab" tabindex="0">
@@ -50,38 +58,22 @@ function Main() {
                   <h5 className="learning-title">Learning</h5>
                   <div className="learning-skills">
                     <h6>Skills</h6>
-                    <p>Javascript:</p>
-                    <p>Python:</p>
-                    <p>Java:</p>
-                    <p>React:</p>
-                    <p>Data bases:</p>
+                    {learnerSkills.map(learnerSkill => <p key={learnerSkill.id}>{`${learnerSkill.skill}:`}</p>)}
                   </div>
                   <div className="learning-levels">
                     <h6>Level</h6>
-                    <p>Basic</p>
-                    <p>Intermediate</p>
-                    <p>Advanced</p>
-                    <p>Intermediate</p>
-                    <p>Advanced</p>
+                    {learnerSkills.map(learnerSkill => <p key={learnerSkill.id}>{`${learnerSkill.level}`}</p>)}
                   </div>
                 </div>
                 <div className='tutoring'>
                   <h5 className="tutoring-title">Tutoring</h5>
                   <div className="tutoring-skills">
                     <h6>Skills</h6>
-                    <p>Javascript:</p>
-                    <p>Python:</p>
-                    <p>Java:</p>
-                    <p>React:</p>
-                    <p>Data bases:</p>
+                    {tutorSkills.map(tutorSkill => <p key={tutorSkill.id}>{`${tutorSkill.skill}:`}</p>)}
                   </div>
                   <div className="tutoring-levels">
                     <h6>Level</h6>
-                    <p>Basic</p>
-                    <p>Intermediate</p>
-                    <p>Advanced</p>
-                    <p>Intermediate</p>
-                    <p>Advanced</p>
+                    {tutorSkills.map(tutorSkill => <p key={tutorSkill.id}>{`${tutorSkill.level}`}</p>)}
                   </div>
                 </div>
               </div>
