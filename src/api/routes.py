@@ -86,6 +86,19 @@ def get_users():
 
     users = User.query.all()
     return jsonify([user.serialize() for user in users]),200
+
+#Route for receiving specific user info 
+@api.route("/users/<int:id>", methods=["GET"])
+@jwt_required()
+def get_user(id):
+
+    user = User.query.filter_by(id=id).one_or_none()
+
+    if user == None:
+        return jsonify({"msg": "User not found"}), 404
+    
+    return jsonify(user.serialize()),200
+  
     
 #Route for receiving CATEGORIES
 @api.route("/categories", methods=["GET"])
