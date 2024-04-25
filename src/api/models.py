@@ -16,6 +16,17 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<User {self.email}>'
+    
+    def __init__(self, name,email,password,number,gender,country,city,is_active,bio=None):
+        self.name = name
+        self.email = email
+        self.password = password
+        self.number = number
+        self.gender = gender
+        self.country = country
+        self.city = city
+        self.bio = bio
+        self.is_active = is_active
 
     def serialize(self):
         return {
@@ -54,14 +65,13 @@ class Skill(db.Model):
 
     def __repr__(self):
         return f'<Skill {self.name}>'
-
+    
     def serialize(self):
         return {
             "id": self.id,  
             "name": self.name,
             "category": self.category.name if self.category else None,  
-            "users": [user.serialize() for user in self.users] if self.users else None  
-
+            # "users": [user.serialize() for user in self.users] if self.users else None  
         }
     
 class User_Skill_Association(db.Model):
@@ -77,6 +87,12 @@ class User_Skill_Association(db.Model):
  
     def __repr__(self): 
         return f'<User_Skill_Association {self.id}>' 
+    
+    def __init__(self, level, role, user_id, skill_id): 
+        self.level = level           
+        self.role = role             
+        self.user_id = user_id       
+        self.skill_id = skill_id     
 
     def serialize(self):
         return {

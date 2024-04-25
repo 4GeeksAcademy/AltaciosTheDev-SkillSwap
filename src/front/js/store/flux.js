@@ -18,7 +18,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			openSidebar: false,
 
 			token: localStorage.getItem("token") || null,
-			profile: JSON.parse(localStorage.getItem("profile")) || null
+			profile: JSON.parse(localStorage.getItem("profile")) || null,
+			userSkillsAssociations: null 
 		},
 		actions: {
 
