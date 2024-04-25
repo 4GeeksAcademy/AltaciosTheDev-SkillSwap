@@ -23,6 +23,7 @@ function Main() {
         skill={association.skill}
         role={association.role}
         level={association.level}
+        gender={association.user_gender}
         getTutorProfile={() => actions.getTutorProfile(association.user_id)}
       />
     ));

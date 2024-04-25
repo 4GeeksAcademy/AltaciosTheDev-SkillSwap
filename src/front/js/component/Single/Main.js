@@ -2,6 +2,9 @@ import React,{useContext} from 'react'
 // import singleData from "./skills-mock-data.json.json"
 import { Link} from "react-router-dom";
 import facePhoto from "../../../img/facePhoto.jpg"
+import personLogo from "../../../img/personLogo.png"
+import femaleLogo from "../../../img/femaleLogo.png"
+
 import DateTime from "./DateTime.js"
 import { Context } from "../../store/appContext";
 function Main() {
@@ -21,10 +24,10 @@ function Main() {
       <h4 className="single-title">Skill Swapper Information</h4>
       <div className="container single-data-container">
         <div className='left-column'>
-          <img className="single-data-image" src={facePhoto} />
+          <img className="single-data-image" src={store.tutorProfile.gender == "Male"? personLogo : femaleLogo} />
         </div>
         <div className="right-column">
-          <h4>{store.tutorProfile && store.tutorProfile.name}</h4>
+          <h3>{store.tutorProfile && store.tutorProfile.name}</h3>
           <nav>
             <div className="nav nav-tabs" id="nav-tab" role="tablist">
               <button className="nav-link-single" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>

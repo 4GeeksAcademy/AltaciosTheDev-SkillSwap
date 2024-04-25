@@ -102,7 +102,8 @@ class User_Skill_Association(db.Model):
             "level": self.level,
             "role": self.role,
             "user_id": self.user.id,
-            "skill_id": self.skill.id
+            "skill_id": self.skill.id,
+            "user_gender": self.user.gender
         }
 
 

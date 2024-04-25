@@ -1,10 +1,11 @@
 import React from "react"
 import personLogo from "../../../img/personLogo.png"
+import femaleLogo from "../../../img/femaleLogo.png"
 import { BsStar } from "react-icons/bs";
 import { BsStarFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 
-export const TutorCard = ({ name, skill, level, role, getTutorProfile }) => {
+export const TutorCard = ({ name, skill, level, role, getTutorProfile, gender }) => {
     const navigate = useNavigate()
    // Define goToTutorProfile as async function
    const goToTutorProfile = async () => {
@@ -29,7 +30,7 @@ export const TutorCard = ({ name, skill, level, role, getTutorProfile }) => {
                 <BsStarFill className="tutor-card-icon icon-favorite" />
             </div>
             <div className="dashboard-card-inner">
-                <img src={personLogo} className="tutor-img" />
+                <img src={gender == "Male" ? personLogo : femaleLogo} className="tutor-img" />
                 <div className="tutor-text-container">
                     <p className="tutor-text"><strong>Skill:</strong> {skill}</p>
                     <p className="tutor-text"><strong>Level:</strong> {level}</p>
