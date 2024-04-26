@@ -181,7 +181,21 @@ def get_skills():
 @jwt_required()
 def get_users_skills_associations():
 
-    associations = User_Skill_Association.query.all()
+    level = request.args.get("level")
+    role = request.args.get("role")
+
+    if level and role:
+        associations = User_Skill_Association.query.filter_by(level=level, role=role)
+
+    elif level: 
+        associations = User_Skill_Association.query.filter_by(level=level)
+
+    elif role: 
+        associations = User_Skill_Association.query.filter_by(role=role)
+
+    else: 
+        associations = User_Skill_Association.query.all()
+
     return jsonify([association.serialize() for association in associations]),200
 
 @api.route('/hello', methods=['POST', 'GET'])

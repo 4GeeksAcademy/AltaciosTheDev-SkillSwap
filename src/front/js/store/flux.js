@@ -93,30 +93,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 		
 			},
-			getAssociations: async () => {
+			getAssociations: async (level, role) => {
 				const store = getStore()
 
-				try{
-					//fetch the associations from the back end
-					const resp = await fetch(process.env.BACKEND_URL + "api/associations",{
+				try {
+					// Construct URL with query parameters
+					const url = new URL(process.env.BACKEND_URL + "api/associations");
+					url.searchParams.append("level", level);
+					url.searchParams.append("role", role);
+			
+					// Fetch the associations from the backend
+					const resp = await fetch(url, {
 						method: 'GET',
 						headers: {
 							"Content-Type": "application/json",
 							"Authorization": `Bearer ${store.token}`
-						},
-					})
-					const data = await resp.json()
-
-					if(!resp.ok){
-						throw new Error(data.msg)
+						}
+					});
+			
+					const data = await resp.json();
+			
+					if (!resp.ok) {
+						throw new Error(data.msg);
 					}
-					setStore({userSkillsAssociations: data})
-					return true
-				}
-
-				catch(error){
-					console.log("Error from backend", error)
-					return false
+			
+					setStore({ userSkillsAssociations: data });
+					return true;
+				} catch (error) {
+					console.log("Error from backend", error);
+					return false;
 				}
 			},
 			getTutorProfile: async (id) => {
