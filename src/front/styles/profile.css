@@ -3,3 +3,43 @@
     justify-content: center;
     align-items: center;
 }
+
+.profile-card-container{
+    display: flex;
+
+}
+
+.container-border-profile {
+    border: 2px solid #c2bac7;   /* <-- en review */
+    padding: 30px 10px 30px 10px;
+    border-radius: 8px;
+    background-color: #263046;
+    margin-right: 10px;
+    
+}
+.fa-user-pen {
+    margin-right: 40px;
+    font-size: 30px;
+    color: white;
+    transition: transform .5s;
+}
+.fa-user-pen:hover {
+    cursor: pointer;
+    transform: scale(1.3);
+}
+
+hr {
+    padding: 0;
+    margin: 0;
+}
+.height-profile {
+    height: 100%;
+    
+}
+
+.modal-profile {
+    background-color: #263046;
+}
+.Modal {
+    border-radius: 3px solid #263046;
+}

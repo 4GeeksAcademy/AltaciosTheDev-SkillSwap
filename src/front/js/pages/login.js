@@ -11,7 +11,7 @@ import "../../styles/loginst.css";
 export const Login = () => {
     const { store, actions } = useContext(Context);
     const [ email, setEmail ] = useState("");
-    const  [password, setPassword]  = useState("");
+    const [password, setPassword]  = useState("");
     const navigate = useNavigate();
 
 

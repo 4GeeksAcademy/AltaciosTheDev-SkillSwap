@@ -98,6 +98,64 @@ def get_user(id):
         return jsonify({"msg": "User not found"}), 404
     
     return jsonify(user.serialize()),200
+
+
+#edit profile
+@api.route("/profile/<int:id>", methods=["PUT"])
+@jwt_required()
+def update_user(id):
+    # Fetch the user from the database
+    usuario = User.query.get(id)
+
+    # Check if the user exists
+    if usuario is None:
+        return jsonify({"msg": "User not found"}), 404
+
+    # Get the updated data from the request
+    datos_usuario = request.get_json()
+
+    # Update the user's attributes
+    if 'name' in datos_usuario:
+        usuario.nombre = datos_usuario['name']
+    if 'email' in datos_usuario:
+        usuario.email = datos_usuario['email']
+    if 'number' in datos_usuario:
+        usuario.number = datos_usuario['number']
+    if 'gender' in datos_usuario:
+        usuario.gender = datos_usuario['gender']
+    if 'country' in datos_usuario:
+        usuario.country = datos_usuario['country']
+    if 'city' in datos_usuario:
+        usuario.city = datos_usuario['city']
+    if 'bio' in datos_usuario:
+        usuario.bio = datos_usuario['bio']
+
+    # Commit the changes to the database
+    db.session.commit()
+
+    # Return a response
+    return jsonify({
+        'mensaje': 'Usuario actualizado con éxito',
+        'usuario': {
+            'id': usuario.id,
+            'name': usuario.name,
+            'email': usuario.email,
+            'number': usuario.number,
+            'gender': usuario.gender,
+            'country': usuario.country,
+            'city': usuario.city,
+            'bio': usuario.bio,
+}})
+
+
+
+    # email = request.json.get("email", None)
+    # user = User.query.filter_by(id=id).one_or_none()
+
+    # if user == None:
+    #     return jsonify({"msg": "User not found"}), 404
+    
+    # return jsonify(user.serialize()),200
   
     
 #Route for receiving CATEGORIES

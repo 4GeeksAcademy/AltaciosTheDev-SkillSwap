@@ -20,7 +20,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: localStorage.getItem("token") || null,
 			profile: JSON.parse(localStorage.getItem("profile")) || null,
 			userSkillsAssociations: null,
-			tutorProfile: null
+			tutorProfile: null,
+
+			
 		},
 		actions: {
 
@@ -141,6 +143,50 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false
 				}
 			},
+
+			editProfile: async (newUser, id) => {
+				const store = getStore()
+					try {
+						const res = await fetch(process.env.BACKEND_URL + `/api/profile/${id}`, {
+							method: 'PUT',
+							body: JSON.stringify({
+
+								"email": newUser.email,
+								"name": newUser.name,
+								"country": newUser.country,
+								"city": newUser.city,
+								"number": newUser.number,
+								"gender": newUser.gender,
+								"phone": newUser.phone
+
+
+							}),
+							headers: {
+								'Content-Type': 'application/json',
+								"Authorization": `Bearer ${store.token}`
+							},
+						})
+						if(res.ok) {
+							setStore({ profile: newUser })
+							localStorage.setItem("profile", JSON.stringify(newUser));
+							
+							
+						}
+					} catch (error) {
+						return false
+						
+					}
+
+			},
+
+			// saveEdit: (id) => {
+			// 	const store = getStore()
+
+			// 	const profileToEdit = store.profileList.find((profile) => {
+			// 		return id === profile.id
+			// 	})
+			// 	setStore({ edit: contactToEdit })
+			// },
 
 
 

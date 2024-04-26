@@ -143,6 +143,7 @@
 /* hover effects */
 .sidebar-list-item:hover{
     /* background-color: rgba(255,255,255,0.2); */
+    transition: all .1s ease-in;
     background-color: #cf1259;
     cursor: pointer;
 }
