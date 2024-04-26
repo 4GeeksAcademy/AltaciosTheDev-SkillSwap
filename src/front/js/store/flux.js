@@ -67,7 +67,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			    setStore({ token: null, profile: null });
 			},
 			
-			getProfile: async (user) => {
+			getProfile: async () => {
 				const store = getStore()
 				
 				try{ 
@@ -78,13 +78,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"Authorization": "Bearer " + store.token 
 						},
 					})
-					if(resp.status !== 200){
+					if(!resp.ok){
 						alert("there has been some error")
 						return false;
 					} 
 
 					const data = await resp.json();
 					localStorage.setItem("profile", JSON.stringify(data));
+					console.log(data)
 					setStore({ profile: data })
 
 				}
@@ -155,23 +156,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			editProfile: async (newUser, id) => {
 				const store = getStore()
 					try {
-						const res = await fetch(process.env.BACKEND_URL + `/api/profile/${id}`, {
+						const res = await fetch(process.env.BACKEND_URL + `/api/profile`, {
 							method: 'PUT',
-							body: JSON.stringify({
-
-								"email": newUser.email,
-								"name": newUser.name,
-								"country": newUser.country,
-								"city": newUser.city,
-								"number": newUser.number,
-								"gender": newUser.gender,
-								"phone": newUser.phone
-
-
-							}),
+							body: JSON.stringify(
+								newUser
+							),
 							headers: {
 								'Content-Type': 'application/json',
-								"Authorization": `Bearer ${store.token}`
+								"Authorization": `Bearer ${localStorage.getItem("token")}`
 							},
 						})
 						if(res.ok) {

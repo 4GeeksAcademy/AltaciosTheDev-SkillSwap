@@ -16,12 +16,12 @@ function Main() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const id = store.profile.id
+  
 
   console.log(newUser);
   
   const updateProfile = async () => {
-    actions.editProfile(newUser, id);
+    actions.editProfile(newUser);
     handleClose()
     
   }
@@ -32,10 +32,20 @@ function Main() {
   // }
    
   useEffect(() => {
+      setNewUser({ 
+        "name": store.profile.name,  
+        "email": store.profile.email,  
+        "number": store.profile.number,
+        "country": store.profile.country,
+        "city": store.profile.city,
+        "gender": store.profile.gender,
+        "bio":store.profile.bio
+        
+    })
     
-    
-  }, [newUser])
+  }, [store.profile])
   
+
   
 
   return <>
@@ -192,32 +202,36 @@ function Main() {
         <div className='row ms-xs-3'>
           <div className='col-xs-6 col-md-2 mt-sm-3 ms-md-3 d-flex flex-column'>
             <span className='gris'>skill</span>
-            <p>{store.userSkillsAssociations && store.userSkillsAssociations.skill}</p>
+            {store.profile.skills && store.profile.skills.length > 0 && store.profile.skills.map((item, index) => {
+              return (
+                <p key={index}>{item.skill}</p>
+              )
+            }) }
           </div>
 
           <div className='col-xs-6 col-md-2 mt-sm-3 d-flex flex-column'>
             <span className='gris'>City</span>
-            <p>{store.profile && store.profile.city}</p>
+            <p></p>
           </div>
 
           <div className='col-xs-6 mt-sm-3 col-md-2 d-flex flex-column'>
             <span className='gris'>Phone</span>
-            <p>{store.profile && store.profile.number}</p>
+            <p></p>
           </div>
 
           <div className='col-xs-6 mt-sm-3 col-md-2 me-5 d-flex flex-column'>
             <span className='gris'>Email</span>
-            <p>{store.profile && store.profile.email}</p>
+            <p></p>
           </div>
 
           <div className='col-xs-6 mt-sm-3 col-md-2 col-ms-5 d-flex flex-column'>
             <span className='gris'>Gender</span>
-            <p>{store.profile && store.profile.gender}</p>
+            <p></p>
           </div>
           
           <div className='col-12 mt-sm-3 ms-md-3 d-flex flex-column'>
             <span className='gris'>Biography</span>
-            <p>{store.profile && store.profile.bio}</p>
+            <p></p>
           </div>
         </div>
 

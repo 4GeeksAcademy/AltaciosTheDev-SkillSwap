@@ -78,7 +78,7 @@ def private():
 @api.route('/news', methods=['GET'])
 def news():
 
-    response = requests.get(f"https://newsapi.org/v2/everything?q=technology&from=2024-04-01&sortBy=publishedAt&apiKey={os.environ.get('NEWS_API_KEY')}")
+    response = request.get(f"https://newsapi.org/v2/everything?q=technology&from=2024-04-15&sortBy=publishedAt&apiKey={os.environ.get('NEWS_API_KEY')}")
 
     return jsonify(response.json()), 200
 
@@ -105,11 +105,13 @@ def get_user(id):
 
 
 #edit profile
-@api.route("/profile/<int:id>", methods=["PUT"])
+@api.route("/profile", methods=["PUT"])
 @jwt_required()
-def update_user(id):
+def update_user():
     # Fetch the user from the database
-    usuario = User.query.get(id)
+    email = get_jwt_identity()
+
+    usuario = User.query.filter_by(email=email).first()
 
     # Check if the user exists
     if usuario is None:
@@ -119,37 +121,35 @@ def update_user(id):
     datos_usuario = request.get_json()
 
     # Update the user's attributes
-    if 'name' in datos_usuario:
-        usuario.nombre = datos_usuario['name']
-    if 'email' in datos_usuario:
-        usuario.email = datos_usuario['email']
-    if 'number' in datos_usuario:
-        usuario.number = datos_usuario['number']
-    if 'gender' in datos_usuario:
-        usuario.gender = datos_usuario['gender']
-    if 'country' in datos_usuario:
-        usuario.country = datos_usuario['country']
-    if 'city' in datos_usuario:
-        usuario.city = datos_usuario['city']
-    if 'bio' in datos_usuario:
-        usuario.bio = datos_usuario['bio']
+
+    for key in datos_usuario:
+        for col in usuario.serialize():
+            if key == col and key != "id":
+                setattr(usuario, key, datos_usuario[key])
+
+    # if 'name' in datos_usuario:
+    #     usuario.nombre = datos_usuario['name']
+    # if 'email' in datos_usuario:
+    #     usuario.email = datos_usuario['email']
+    # if 'number' in datos_usuario:
+    #     usuario.number = datos_usuario['number']
+    # if 'gender' in datos_usuario:
+    #     usuario.gender = datos_usuario['gender']
+    # if 'country' in datos_usuario:
+    #     usuario.country = datos_usuario['country']
+    # if 'city' in datos_usuario:
+    #     usuario.city = datos_usuario['city']
+    # if 'bio' in datos_usuario:
+    #     usuario.bio = datos_usuario['bio']
 
     # Commit the changes to the database
     db.session.commit()
+    db.session.refresh(usuario)
 
     # Return a response
     return jsonify({
         'mensaje': 'Usuario actualizado con éxito',
-        'usuario': {
-            'id': usuario.id,
-            'name': usuario.name,
-            'email': usuario.email,
-            'number': usuario.number,
-            'gender': usuario.gender,
-            'country': usuario.country,
-            'city': usuario.city,
-            'bio': usuario.bio,
-}})
+        'usuario': usuario.serialize()})
 
 
 
@@ -181,6 +181,12 @@ def get_skills():
 @jwt_required()
 def get_users_skills_associations():
 
+    email = get_jwt_identity()
+
+    usuario = User.query.filter_by(email=email).first()
+
+    associations = User_Skill_Association.query.filter_by(user_id = usuario.id).all()
+
     level = request.args.get("level")
     role = request.args.get("role")
 
@@ -195,6 +201,8 @@ def get_users_skills_associations():
 
     else: 
         associations = User_Skill_Association.query.all()
+
+
 
     return jsonify([association.serialize() for association in associations]),200
 
