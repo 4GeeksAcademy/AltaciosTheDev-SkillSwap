@@ -14,17 +14,7 @@ import { Register3 } from "./register3";
 export const Form = () => {
     const [page, setpage] = useState(0);
 
-    const TitleRegister = ["General Infomation", "Region", "Interestes Skills"];
 
-    const Pageregister = () => {
-        if (page === 0) {
-            return <Register />
-        } else if (page === 1) {
-            return <Register2 />
-        } else {
-            return <Register3 />
-        }
-    };
     return (
         <div className="backimage">
             
@@ -32,25 +22,12 @@ export const Form = () => {
                         <div className="backcard">
                             <div className="cardregister">
                             <div>
-                                <h1>{TitleRegister[page]}</h1>
+                                <h1>General Infomation</h1>
                             </div>
                             <div>
-                                {Pageregister()}
+                                <Register/>
                             </div>
-                            <div className="footer">
-                                <button disabled={page == 0} onClick={() => {
-
-                                    setpage((currpage) => currpage - 1);
-                                }}>Previous</button>
-                                <button className="btn bnt-succes" onClick={() => {
-                                    if (page === TitleRegister.length - 1) {
-                                        alert("Register Succes");
-                                    } else {
-                                        setpage((currpage) => currpage + 1);
-                                    }
-                                }}>{page === TitleRegister.length - 1 ? "Submit Register" : "Next"}
-                                </button>
-                            </div>
+        
                         </div>
                         </div>
                         

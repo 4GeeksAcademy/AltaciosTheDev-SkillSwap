@@ -1,25 +1,103 @@
-import React, { useContext } from "react";
+import React, { useContext,useState } from "react";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
-import { Link } from "react-router-dom";
-
-
+import { Link , Navigate, useNavigate} from "react-router-dom";
 
 export const Register= ()=> {
+
+    const navigate=useNavigate();
+    const{actions}=useContext(Context);
+    const[password,setPassword]=useState('');
+    const[email,setEmail]=useState('');
+    const[confirmpassword,setConfirmpassword]=useState('');
+    const[number,setNumber]=useState('');
+    const[errorMessage,setErrorMessage]=useState('');
+    const[name,setUsername]=useState('');
+
+
+    const handleInputChange=()=>{
+        setErrorMessage('');
+    };
+
+    const handleSingUp=async(e)=>{
+        e.preventDefault();
+
+        if(password!==confirmpassword)
+        {
+            setErrorMessage("Las contraseñas no coinciden");
+            return;
+        }
+
+
+        try{
+            const data= await actions.register(name,email,password,number);
+            console.log("Usuario registrado con exito:",data);
+            navigate("/dashboard");
+        }catch(error){
+            console.error('Error en la creacion de usuario', error.message);
+            setErrorMessage(error.message);
+            setEmail("");
+            setPassword("");
+            setConfirmpassword("");
+            setUsername("");
+
+        }
+    };
+
 
     return (
         <div className="text-center">
             <div>
                 <a>Have already an account?</a>
-                <a href="/login" className="link-underline-primary">Login</a>
+                <a href="/login" className="links"> Login</a>
             </div>
             <div className="pt-2">
-                <p><input type="email" placeholder="Your e-mail" /></p>
-                <p><input type="email" placeholder="Confirm your e-mail" /></p>
-                <p><input type="password" placeholder="Enter your password" /></p>
-                <p><input type="password" placeholder="Confirm your password" /></p>
-                <p><input type="text" placeholder="Your phone" /></p>
+                {errorMessage && (
+                    <div className="alert alert-danger" role="alert">
+                        {errorMessage}
+                    </div>
+                )}
+                <form onSubmit={handleSingUp}>
+                <p><input 
+                className="loginput" 
+                type="text" 
+                placeholder="Your name" 
+                value={name} 
+                onChange={(e)=>{setUsername(e.target.value); handleInputChange();}}
+                required
+                /></p>
+                    <p><input 
+                className="loginput" 
+                type="email" 
+                placeholder="Your e-mail" 
+                value={email} 
+                onChange={(e)=>{setEmail(e.target.value); handleInputChange();}}
+                required
+                /></p>
+                <p><input 
+                className="loginput" 
+                type="password" 
+                placeholder="Enter your password" 
+                value={password}
+                onChange={(e)=>{setPassword(e.target.value); handleInputChange();}}
+                /></p>
+                <p><input 
+                className="loginput" 
+                type="password" 
+                placeholder="Confirm your password"
+                value={confirmpassword}
+                onChange={(e)=>{setConfirmpassword(e.target.value); handleInputChange();}}
+                required
+                 /></p>
+                <p><input 
+                className="loginput" 
+                type="text" 
+                placeholder="Your phone"
+                value={number}
+                onChange={(e)=>{setNumber(e.target.value); handleInputChange();}}
+                 /></p> 
+                 <button type="submit"  className="nextbutton">Next</button>
+                </form>
             </div>
         </div>
 

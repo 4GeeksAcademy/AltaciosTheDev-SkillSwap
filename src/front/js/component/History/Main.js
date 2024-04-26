@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import DataTable from 'react-data-table-component';
+// #import DataTable from 'react-data-table-component';
 import customStyles from "./tableCustomStyles"
 import mockdata from "./MOCK_DATA.json"
 import "../../../styles/history.css";

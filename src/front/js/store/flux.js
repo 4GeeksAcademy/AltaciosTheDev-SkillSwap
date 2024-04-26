@@ -1,3 +1,4 @@
+import { Register } from "../pages/register";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -20,7 +21,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: localStorage.getItem("token") || null,
 			profile: JSON.parse(localStorage.getItem("profile")) || null,
 			userSkillsAssociations: null,
-			tutorProfile: null,
+			tutorProfile: null
+
+			
 
 			
 		},
@@ -206,14 +209,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getMessage: async () => {
-				try{
+				try {
 					// fetching data from the backend
 					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
 					const data = await resp.json()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves
 					return data;
-				}catch(error){
+				} catch (error) {
 					console.log("Error loading message from backend", error)
 				}
 			},
@@ -233,7 +236,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			openSidebarToggle: () => {
 				const store = getStore()
-				setStore({openSidebar: !store.openSidebar})
+				setStore({ openSidebar: !store.openSidebar })
+			},
+
+			register: async (name,email,number,password) => {
+
+				try{
+					let datos={
+						name:name,
+						emai:email,
+						number:number,
+						password:password
+					};
+					const resp =await fetch(procces.env.BACKEND_URL+"/signup",{
+						method:"POST",
+						headers:{"Content-Type":"application/json",
+						},
+						body:JSON.stringify(datos),
+					});
+					const data = await resp.json();
+					setStore({ message: data.msg });
+				}catch(error){
+					console.log("Error en el registro del usuario:", error);
+					return false;
+				}
+
+
 			}
 		}
 	};

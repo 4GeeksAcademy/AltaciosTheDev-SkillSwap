@@ -6,6 +6,7 @@
 
 }
 .cardlogin{
+    font-family: "Poppins", sans-serif;
     font-weight: bold;
     text-align: center;
    align-content: center ;
@@ -16,6 +17,7 @@
 }
 
 .cardregister{
+    font-family: "Poppins", sans-serif;
     font-weight: bold;
     text-align: center;
    align-content: center ;
@@ -27,6 +29,35 @@
 
 .backcard{
     background-color: azure;
-    border-radius: 10px;
+    border-radius: 0  50px 50px 0;
     opacity: .95;
+}
+
+.loginput{
+    background: #29374C;
+    color: #E8E8E8;
+    border: 1px solid #9E93A4;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.nextbutton{
+    background-color: green;
+    border-radius: 5px;
+    border: 1px solid white;
+    color:white;
+    width: 7rem;
+    height: 3rem;
+}
+
+.previousbutton{
+    background-color: red;
+    border-radius: 5px;
+    border: 1px solid white;
+    color:white;
+    width: 7rem;
+    height: 3rem;
+}
+.links{
+    color: blue;
 }
