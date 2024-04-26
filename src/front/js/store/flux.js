@@ -1,7 +1,4 @@
-<<<<<<< Updated upstream
-=======
 import { Register } from "../pages/register";
->>>>>>> Stashed changes
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
