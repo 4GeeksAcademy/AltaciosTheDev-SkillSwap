@@ -53,7 +53,7 @@ class Category(db.Model):
         return {
             "id": self.id,  
             "name": self.name,
-            "skills": [skill.serialize() for skill in self.skills] if self.skills else None
+            # "skills": [skill.serialize() for skill in self.skills] if self.skills else None
         }
     
 class Skill(db.Model):

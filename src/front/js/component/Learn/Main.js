@@ -11,16 +11,20 @@ import Select from '@mui/material/Select';
 
 function Main() {
   const { store, actions } = useContext(Context)
-
+  const [category, setCategory] = useState('');
   const [level, setLevel] = useState('');
   const [role, setRole] = useState('');
 
   useEffect(() => {
+    actions.getCategories()
     actions.getAssociations(level, role)
   }, [])
 
   // Declare userSkillElements variable
   let userSkillElements = null;
+
+  // Declare categoryElements variable
+  let categoriesElements = null
 
   // Check if store.userSkillsAssociations is available
   if (store.userSkillsAssociations) {
@@ -35,6 +39,13 @@ function Main() {
         getTutorProfile={() => actions.getTutorProfile(association.user_id)}
       />
     ));
+  }
+
+  //Check if store.categories is available 
+  if (store.categories) {
+    categoriesElements = store.categories.map(category => (
+      <MenuItem key={category.id} value={category.name}>{category.name}</MenuItem>
+    ))
   }
 
   return (
@@ -60,7 +71,7 @@ function Main() {
             >
               <MenuItem value="">
                 <em>None</em>
-              </MenuItem>              
+              </MenuItem>
               <MenuItem value="Beginner">Beginner</MenuItem>
               <MenuItem value="Intermediate">Intermediate</MenuItem>
               <MenuItem value="Advanced">Advanced</MenuItem>
@@ -79,9 +90,26 @@ function Main() {
             >
               <MenuItem value="">
                 <em>None</em>
-              </MenuItem> 
+              </MenuItem>
               <MenuItem value="Learner">Learner</MenuItem>
               <MenuItem value="Tutor">Tutor</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+        <Box sx={{ minWidth: 120, mr: 2 }}>
+          <FormControl fullWidth>
+            <InputLabel id="category-select-label">Category</InputLabel>
+            <Select
+              labelId="category-select-label"
+              id="category-select"
+              value={category}
+              label="Category"
+              onChange={(event) => setCategory(event.target.value)}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              {categoriesElements}
             </Select>
           </FormControl>
         </Box>

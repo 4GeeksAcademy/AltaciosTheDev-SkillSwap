@@ -136,6 +136,7 @@ def get_users_skills_associations():
 
     return jsonify([association.serialize() for association in associations]),200
 
+
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
 
