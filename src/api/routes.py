@@ -74,7 +74,7 @@ def private():
 @api.route('/news', methods=['GET'])
 def news():
 
-    response = requests.get(f"https://newsapi.org/v2/everything?q=technology&from=2024-03-25&sortBy=publishedAt&apiKey={os.environ.get('NEWS_API_KEY')}")
+    response = requests.get(f"https://newsapi.org/v2/everything?q=technology&from=2024-04-01&sortBy=publishedAt&apiKey={os.environ.get('NEWS_API_KEY')}")
 
     return jsonify(response.json()), 200
 
