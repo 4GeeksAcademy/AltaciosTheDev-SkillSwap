@@ -38,7 +38,7 @@ function NewsCard() {
                         <h5> {news ? news.title : "Loading title:"}</h5>
                         <BsNewspaper className="card_icon new-icon" />
                     </div>
-                    <img className="news-image" src={news && news.urlToImage} />
+                    <img className="news-image" src={news ? news.urlToImage : aitakingover} />
                     <button type="button" className="btn btn-primary"><a href={news && news.url} target="_blank">Read More</a></button>
                 </div>
             </div>
