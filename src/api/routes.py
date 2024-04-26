@@ -10,7 +10,7 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from datetime import timedelta
-import requests
+
 
 
 
@@ -23,7 +23,11 @@ CORS(api)
 @api.route("/signup", methods=["POST"])
 def signup():
     email = request.json.get("email", None)
+    name=request.json.get("name", None)
     password = request.json.get("password", None)
+    number=request.json.get("number",None)
+    
+
 
     user = User.query.filter_by(email=email).first()
     if user:
@@ -31,7 +35,7 @@ def signup():
 
     password_hash = current_app.bcrypt.generate_password_hash(password).decode("utf-8")
 
-    new_user = User(email=email, password=password_hash, is_active=True)
+    new_user = User(email=email, password=password_hash,number=number, is_active=True)
     db.session.add(new_user)
     db.session.commit()
 
@@ -44,7 +48,7 @@ def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
 
-    user = User.query.filter_by(email=email, password=password).one_or_none()
+    user = User.query.filter_by(email=email,password=password).one_or_none()
     if user is None:
         return jsonify({"msg": "User not Found"}), 404
 

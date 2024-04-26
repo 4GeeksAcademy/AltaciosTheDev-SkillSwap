@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
-import "../../styles/home.css";
+
+import "../../styles/howit.css";
 
 export const Howitworks = () => {
     const { store, actions } = useContext(Context);
     return (
-        <div className="container text-center">
-            <div className="instructions">
+
+        <div className="instructions">
+            <div className="container text-center">
 
                 <div className="hero">
                     

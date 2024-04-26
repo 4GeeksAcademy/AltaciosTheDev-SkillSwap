@@ -12,9 +12,13 @@ export const Register2=()=> {
         
                     <div className="text-center">
                         <div className="pt-3">
-                            <p><input type="text" placeholder="Country" /></p>
-                            <p><input type="text" placeholder="City" /></p>
-                            <p><input type="text" placeholder="ZIP Code" /></p>
+                            <p><input 
+                            className="loginput" 
+                            type="text" 
+                            placeholder="Country" 
+                            va
+                            /></p>
+                            <p><input className="loginput" type="text" placeholder="City" /></p>
                         </div>
                     </div>
 
