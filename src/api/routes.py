@@ -129,21 +129,6 @@ def update_user():
             if key == col and key != "id":
                 setattr(usuario, key, datos_usuario[key])
 
-    # if 'name' in datos_usuario:
-    #     usuario.nombre = datos_usuario['name']
-    # if 'email' in datos_usuario:
-    #     usuario.email = datos_usuario['email']
-    # if 'number' in datos_usuario:
-    #     usuario.number = datos_usuario['number']
-    # if 'gender' in datos_usuario:
-    #     usuario.gender = datos_usuario['gender']
-    # if 'country' in datos_usuario:
-    #     usuario.country = datos_usuario['country']
-    # if 'city' in datos_usuario:
-    #     usuario.city = datos_usuario['city']
-    # if 'bio' in datos_usuario:
-    #     usuario.bio = datos_usuario['bio']
-
     # Commit the changes to the database
     db.session.commit()
     db.session.refresh(usuario)
