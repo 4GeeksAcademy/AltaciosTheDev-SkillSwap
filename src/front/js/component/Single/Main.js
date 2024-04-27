@@ -55,6 +55,7 @@ function Main() {
                 <p>{store.tutorProfile && store.tutorProfile.bio ? store.tutorProfile.bio : "Pending for user to write bio."}</p>
               </div>
             </div>
+            {/* section de skills */}
             <div className="tab-pane fade skills-tab" id="nav-skills" role="tabpanel" aria-labelledby="nav-skills-tab" tabindex="0">
               <div className="skills">
                 <div className="learning">
@@ -81,6 +82,7 @@ function Main() {
                 </div>
               </div>
             </div>
+            {/* section de skills */}
 
             <div className="tab-pane fade schedule-tab" id="nav-schedule" role="tabpanel" aria-labelledby="nav-schedule-tab" tabindex="0">
               <DateTime tutorSkills={tutorSkills}/> 
