@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {BsFillBellFill, BsFillEnvelopeFill, BsPersonCircle, BsSearch, BsJustify} from "react-icons/bs"
 import personLogo from "../../../img/personLogo.png"
 import { Context } from "../../store/appContext";
+import femaleLogo from "../../../img/femaleLogo.png"
 
 export function Header() {
   const { store, actions } = useContext(Context);
@@ -17,7 +18,7 @@ export function Header() {
             <BsFillBellFill className="icon"/>
             <BsFillEnvelopeFill className="icon"/>
             <div className="user-badge">
-              <img src={personLogo} className="user-badge-image"/>
+              <img src={store.profile.gender == "Male" ? personLogo : femaleLogo} className="user-badge-image"/>
               <div className="user-details">
                 <h6>{store.profile && store.profile.name}</h6>
               </div>
