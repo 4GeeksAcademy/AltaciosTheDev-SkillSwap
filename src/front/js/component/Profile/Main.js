@@ -74,7 +74,7 @@ function Main() {
           <div className='d-flex justify-content-between'>
            <div className='d-flex flex-column gap-2'>
               <label className='gris'>Email</label>
-              <input 
+              <input className='loginput' 
                 type="email" placeholder="Your e-mail" 
                 value={newUser.email} 
                 onChange={(e) => setNewUser({...newUser, email:e.target.value})}
@@ -82,7 +82,7 @@ function Main() {
             </div>
            <div className='d-flex flex-column gap-2'>
               <label className='gris'>Name</label>
-              <input 
+              <input className='loginput' 
                 type="text" placeholder="Your Name" 
                 value={newUser.name} 
                 onChange={(e) => setNewUser({...newUser, name:e.target.value})}
@@ -92,7 +92,7 @@ function Main() {
           <div className='d-flex justify-content-between'>
            <div className='d-flex flex-column gap-2'>
               <label className='gris'>Country</label>
-              <input 
+              <input className='loginput' 
                 type="text" placeholder="Your Country" 
                 value={newUser.country} 
                 onChange={(e) => setNewUser({...newUser, country:e.target.value})}
@@ -100,7 +100,7 @@ function Main() {
             </div>
             <div className='d-flex flex-column gap-2'>
               <label className='gris'>City</label>
-              <input 
+              <input className='loginput' 
                 type="text" placeholder="Your City" 
                 value={newUser.city} 
                 onChange={(e) => setNewUser({...newUser, city:e.target.value})}
@@ -110,7 +110,7 @@ function Main() {
           <div className='d-flex justify-content-between'>
            <div className='d-flex flex-column gap-2'>
               <label className='gris'>Gender</label>
-              <input 
+              <input className='loginput' 
                 type="text" placeholder="Your Gender" 
                 value={newUser.gender} 
                 onChange={(e) => setNewUser({...newUser, gender:e.target.value})}
@@ -119,7 +119,7 @@ function Main() {
           
            <div className='d-flex flex-column gap-2'>
               <label className='gris'>Phone Number</label>
-              <input 
+              <input className='loginput' 
                 type="number" placeholder="Your Number" 
                 value={newUser.number} 
                 onChange={(e) => setNewUser({...newUser, number:e.target.value})}
