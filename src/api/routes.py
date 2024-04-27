@@ -168,12 +168,6 @@ def get_skills():
 @jwt_required()
 def get_users_skills_associations():
 
-    email = get_jwt_identity()
-
-    usuario = User.query.filter_by(email=email).first()
-
-    associations = User_Skill_Association.query.filter_by(user_id = usuario.id).all()
-
     level = request.args.get("level")
     role = request.args.get("role")
 
