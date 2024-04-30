@@ -34,7 +34,6 @@ hr {
 }
 .height-profile {
     height: 100%;
-    
 }
 
 .modal-profile {
@@ -42,4 +41,29 @@ hr {
 }
 .Modal {
     border-radius: 3px solid #263046;
+}
+.fondo-profile {
+    background-color: #263046;
+}
+.color-link {
+    color: rgb(177, 203, 252);
+}
+
+.color-link:hover {
+    color: rgb(156, 190, 255);
+}
+
+/* .status-contenedor {
+
+} */
+
+@media (min-width: 500px) {
+    .status-contenedor {
+        display: flex ;
+        justify-content: space-between;
+        gap: 30px;
+        align-items: center;
+        align-content: center;
+
+    }
 }

@@ -4,8 +4,10 @@ import personLogo from "../../../img/personLogo.png"
 import { BiSolidTired } from 'react-icons/bi';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useParams } from "react-router-dom";
+
 import { useEffect } from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 function Main() {
   const { store, actions } = useContext(Context);
@@ -26,10 +28,14 @@ function Main() {
 
   }
 
-  // const editSuccesfull = actions.editProfile()
-  // if(editSuccesfull) {
-  //   actions.getProfile()
-  // }
+  const tutorSkills = store.profile.skills && store.profile.skills.length > 0 && store.profile.skills.filter((skill) => {
+    return skill.role == "Tutor"
+  })
+  const learnerSkills = store.profile.skills.filter((skill) => {
+    return skill.role == "Learner"
+  })
+   console.log(tutorSkills)
+   console.log(learnerSkills)
 
   useEffect(() => {
     setNewUser({
@@ -45,19 +51,17 @@ function Main() {
 
   }, [store.profile])
 
-
+  
 
 
   return <>
-    <div className='height-profile'>
-      <div className="pt-4 px-3 d-flex flex-column gap-4 ">
+    <div className='height-profile '>
+      <div className="pt-4 px-3 d-flex flex-column gap-4  ">
 
-        <div className='d-flex justify-content-between align-items-center'>
+        <div className='d-flex align-items-center'>
           <h2 className='rosa '>Your Profile</h2>
 
-          <Button variant="primary" onClick={handleShow}>
-            Edit Profile
-          </Button>
+          
 
           <Modal
             className='Modal'
@@ -71,72 +75,61 @@ function Main() {
             </Modal.Header>
             <Modal.Body className='modal-profile '>
 
-              <div className='d-flex justify-content-between'>
-                <div className='d-flex flex-column gap-2'>
-                  <label className='gris'>Email</label>
-                  <input className='loginput' 
-                    type="email" placeholder="Your e-mail"
-                    value={newUser.email}
-                    onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-                  />
-                </div>
-                <div className='d-flex flex-column gap-2'>
-                  <label className='gris'>Name</label>
-                  <input className='loginput' 
-                    type="text" placeholder="Your Name"
-                    value={newUser.name}
-                    onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-                  />
-                </div>
-              </div>
-              <div className='d-flex justify-content-between'>
-                <div className='d-flex flex-column gap-2'>
-                  <label className='gris'>Country</label>
-                  <input className='loginput' 
-                    type="text" placeholder="Your Country"
-                    value={newUser.country}
-                    onChange={(e) => setNewUser({ ...newUser, country: e.target.value })}
-                  />
-                </div>
-                <div className='d-flex flex-column gap-2'>
-                  <label className='gris'>City</label>
-                  <input className='loginput' 
-                    type="text" placeholder="Your City"
-                    value={newUser.city}
-                    onChange={(e) => setNewUser({ ...newUser, city: e.target.value })}
-                  />
-                </div>
-              </div>
-              <div className='d-flex justify-content-between'>
-                <div className='d-flex flex-column gap-2'>
-                  <label className='gris'>Gender</label>
-                  <input className='loginput' 
-                    type="text" placeholder="Your Gender"
-                    value={newUser.gender}
-                    onChange={(e) => setNewUser({ ...newUser, gender: e.target.value })}
-                  />
-                </div>
+            <Box
+              component="form"
+              sx={{
+                '& > :not(style)': { m: 1, width: '95%' },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <TextField id="outlined-basic" label="Email" variant="outlined" 
+                type="email" placeholder="Your e-mail"
+                value={newUser.email}
+                onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+              />
+              <TextField id="outlined-basic" label="Name" variant="outlined" 
+                type="text" placeholder="Your Name"
+                value={newUser.name}
+                onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
+              />
+              <TextField id="outlined-basic" label="Country" variant="outlined" 
+                type="text" placeholder="Your Country"
+                value={newUser.country}
+                onChange={(e) => setNewUser({ ...newUser, country: e.target.value })}
+              />
+              <TextField id="outlined-basic" label="City" variant="outlined" 
+                type="text" placeholder="Your City"
+                value={newUser.city}
+                onChange={(e) => setNewUser({ ...newUser, city: e.target.value })}
+              />
+              <TextField id="outlined-basic" label="Gender" variant="outlined" 
+                type="text" placeholder="Your Gender"
+                value={newUser.gender}
+                onChange={(e) => setNewUser({ ...newUser, gender: e.target.value })}
+              />
+              <TextField id="outlined-basic" label="Number" variant="outlined" 
+                type="number" placeholder="Your Number"
+                value={newUser.number}
+                onChange={(e) => setNewUser({ ...newUser, number: e.target.value })}
+              />
+              
+            </Box>
 
-                <div className='d-flex flex-column gap-2'>
-                  <label className='gris'>Phone Number</label>
-                  <input className='loginput' 
-                    type="number" placeholder="Your Number"
-                    value={newUser.number}
-                    onChange={(e) => setNewUser({ ...newUser, number: e.target.value })}
-                  />
-                </div>
-              </div>
+              
+            
             </Modal.Body>
             <Modal.Footer className='modal-profile'>
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
-              <Button onClick={() => updateProfile()} variant="primary">Understood</Button>
+              <Button onClick={() => updateProfile()} variant="primary">Save Edit</Button>
             </Modal.Footer>
           </Modal>
+          {/* <i className="fa-solid fa-user-pen"></i> */}
 
 
-          <i className="fa-solid fa-user-pen"></i>
+          
         </div>
 
         <div className=' container-border-profile'>
@@ -145,99 +138,121 @@ function Main() {
             <div className="tutor-text-container ">
               <p className="tutor-text"><strong className='me-2'>Name:</strong>{store.profile && store.profile.name}</p>
               <p className="tutor-text"><strong className='me-2'>Email:</strong>{store.profile && store.profile.email}</p>
-              <p className="tutor-text"><strong>Student</strong></p>
+              <p className="tutor-text"><strong className='amarillo'>Student</strong></p>
             </div>
           </div>
         </div>
 
         {/*<-----About------> */}
         <div className='container-border-profile'>
-          <div>
+          <div className='d-flex justify-content-between'>
             <h4 className='rosa '>About me</h4>
-            <hr />
+            <Button className='amarillo' variant="" onClick={handleShow}>Edit Profile</Button>
           </div>
+            <hr />
 
           <div className='row ms-xs-3'>
             <div className='col-xs-6 col-md-2 mt-sm-3 ms-md-3 d-flex flex-column'>
               <span className='gris'>country</span>
-              <p>{store.profile && store.profile.country}</p>
+              <p className='white'>{store.profile && store.profile.country}</p>
             </div>
 
             <div className='col-xs-6 col-md-2 mt-sm-3 d-flex flex-column'>
               <span className='gris'>City</span>
-              <p>{store.profile && store.profile.city}</p>
+              <p className='white'>{store.profile && store.profile.city}</p>
             </div>
 
             <div className='col-xs-6 mt-sm-3 col-md-2 d-flex flex-column'>
               <span className='gris'>Phone</span>
-              <p>{store.profile && store.profile.number}</p>
+              <p className='white'>{store.profile && store.profile.number}</p>
             </div>
 
             <div className='col-xs-6 mt-sm-3 col-md-2 me-5 d-flex flex-column'>
               <span className='gris'>Email</span>
-              <p>{store.profile && store.profile.email}</p>
+              <p className='white'>{store.profile && store.profile.email}</p>
             </div>
 
             <div className='col-xs-6 mt-sm-3 col-md-2 col-ms-5 d-flex flex-column'>
               <span className='gris'>Gender</span>
-              <p>{store.profile && store.profile.gender}</p>
+              <p className='white'>{store.profile && store.profile.gender}</p>
             </div>
 
             <div className='col-12 mt-sm-3 ms-md-3 d-flex flex-column'>
               <span className='gris'>Biography</span>
-              <p>{store.profile && store.profile.bio}</p>
+              <p className='white'>{store.profile && store.profile.bio}</p>
             </div>
           </div>
 
           {/* <-----status------> */}
+              {/* <span className='gris'>skill</span>
+              {store.profile.skills && store.profile.skills.length > 0 && store.profile.skills.map((item, index) => {
+                return (
+                  <p key={index}>{item.skill}</p>
+                )
+              })} */}
 
         </div>
         <div className='container-border-profile'>
           <div>
             <h4 className='rosa '>Status</h4>
-            <hr />
+              <div className="learning-levels">
+                  <hr />
+                   
+              </div>
           </div>
 
           <div className='row ms-xs-3'>
-            <div className='col-xs-6 col-md-2 mt-sm-3 ms-md-3 d-flex flex-column'>
-              <span className='gris'>skill</span>
-              {store.profile.skills && store.profile.skills.length > 0 && store.profile.skills.map((item, index) => {
-                return (
-                  <p key={index}>{item.skill}</p>
-                )
-              })}
+            <div className='col-xs-6 col-md-5 mt-3 m-md-3 ms-md-3 d-flex flex-column me-5'>
+
+              <div className='status-contenedor'>
+                <div>
+                <h6 className='text-danger'>Rol</h6>
+                  {tutorSkills.map((tutor) => <p key={tutor.id}>{tutor.role}</p>)}
+                </div>
+                <div>
+                <h6 className='text-danger'>Skill</h6>
+                  {tutorSkills.map((tutor) => <p key={tutor.id}>{tutor.skill}</p>)}
+                </div>
+                <div>
+                <h6 className='text-danger'>Level</h6>
+                  {tutorSkills.map((tutor) => <p key={tutor.id}>{tutor.level}</p>)}
+                </div>
+              </div>
             </div>
 
-            <div className='col-xs-6 col-md-2 mt-sm-3 d-flex flex-column'>
-              <span className='gris'>City</span>
-              <p></p>
+            <div className='col-xs-6 col-md-5 mt-sm-3 d-flex flex-column'>
+
+              <div className='status-contenedor'>
+                <div className=''>
+                  <h6 className='text-success'>Rol</h6>
+                    {learnerSkills.map((learner) => <p key={learner.id}>{learner.role}</p>)}  
+                </div>
+
+                <div>
+                  <h6 className='text-success'>Skill</h6>
+                    {learnerSkills.map((learner) => <p key={learner.id}>{learner.skill}</p>)}
+                </div>
+
+                <div>
+                  <h6 className='text-success'>Level</h6>
+                    {learnerSkills.map((learner) => <p key={learner.id}>{learner.level}</p>)}
+                </div>
+              </div>
+
             </div>
 
-            <div className='col-xs-6 mt-sm-3 col-md-2 d-flex flex-column'>
-              <span className='gris'>Phone</span>
-              <p></p>
-            </div>
-
-            <div className='col-xs-6 mt-sm-3 col-md-2 me-5 d-flex flex-column'>
-              <span className='gris'>Email</span>
-              <p></p>
-            </div>
-
-            <div className='col-xs-6 mt-sm-3 col-md-2 col-ms-5 d-flex flex-column'>
-              <span className='gris'>Gender</span>
-              <p></p>
-            </div>
-
-            <div className='col-12 mt-sm-3 ms-md-3 d-flex flex-column'>
-              <span className='gris'>Biography</span>
-              <p></p>
-            </div>
           </div>
-
+          
         </div>
-
       </div>
-    </div>
+    </div>      
+            
+          
+
+        
+
+      
+   
 
 
   </>
