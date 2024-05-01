@@ -11,31 +11,49 @@ import Select from '@mui/material/Select';
 
 function Main() {
   const { store, actions } = useContext(Context)
-
+  const [category, setCategory] = useState('');
   const [level, setLevel] = useState('');
   const [role, setRole] = useState('');
 
   useEffect(() => {
-    actions.getAssociations(level, role)
+    actions.getCategories()
+    actions.getAssociations(level, role, category)
   }, [])
 
   // Declare userSkillElements variable
   let userSkillElements = null;
 
+  // Declare categoryElements variable
+  let categoriesElements = null
+
   // Check if store.userSkillsAssociations is available
   if (store.userSkillsAssociations) {
     userSkillElements = store.userSkillsAssociations.map((association) => (
       <TutorCard
-        key={association.id}
-        name={association.user}
-        skill={association.skill}
+        key={association.user_skill_association_id}
+        user_name={association.user_name}
+        skill_name={association.skill_name}
         role={association.role}
         level={association.level}
-        gender={association.user_gender}
+        user_gender={association.user_gender}
+        category_name={association.category_name}
         getTutorProfile={() => actions.getTutorProfile(association.user_id)}
       />
     ));
   }
+
+  //Check if store.categories is available 
+  if (store.categories) {
+    categoriesElements = store.categories.map(category => (
+      <MenuItem key={category.id} value={category.name}>{category.name}</MenuItem>
+    ))
+  }
+
+  console.log({
+    "level": level,
+    "role": role,
+    "category":category
+  })
 
   return (
     <div className="learn-container">
@@ -60,7 +78,7 @@ function Main() {
             >
               <MenuItem value="">
                 <em>None</em>
-              </MenuItem>              
+              </MenuItem>
               <MenuItem value="Beginner">Beginner</MenuItem>
               <MenuItem value="Intermediate">Intermediate</MenuItem>
               <MenuItem value="Advanced">Advanced</MenuItem>
@@ -79,13 +97,30 @@ function Main() {
             >
               <MenuItem value="">
                 <em>None</em>
-              </MenuItem> 
+              </MenuItem>
               <MenuItem value="Learner">Learner</MenuItem>
               <MenuItem value="Tutor">Tutor</MenuItem>
             </Select>
           </FormControl>
         </Box>
-        <button type="submit" className="send-session-details" onClick={() => actions.getAssociations(level, role)}>Search</button>
+        <Box sx={{ minWidth: 120, mr: 2 }}>
+          <FormControl fullWidth>
+            <InputLabel id="category-select-label">Category</InputLabel>
+            <Select
+              labelId="category-select-label"
+              id="category-select"
+              value={category}
+              label="Category"
+              onChange={(event) => setCategory(event.target.value)}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              {categoriesElements}
+            </Select>
+          </FormControl>
+        </Box>
+        <button type="submit" className="send-session-details" onClick={() => actions.getAssociations(level, role,category)}>Search</button>
 
       </div>
       <div className="learn-tutor-cards-container container">

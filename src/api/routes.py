@@ -187,6 +187,72 @@ def get_users_skills_associations():
 
     return jsonify([association.serialize() for association in associations]),200
 
+
+@api.route("/skills-joined-table", methods=["GET"])
+@jwt_required()
+def get_skills_joined_table():
+
+    # Retrieve query parameters
+    level = request.args.get("level")
+    role = request.args.get("role")
+    category = request.args.get("category")
+
+    # Perform the join using Flask-SQLAlchemy
+    joined_table = db.session.query(
+        User_Skill_Association.id.label('user_skill_association_id'),
+        User_Skill_Association.level,
+        User_Skill_Association.role,
+        User_Skill_Association.user_id,
+        User_Skill_Association.skill_id,
+        Skill.name.label('skill_name'),
+        Category.id.label('category_id'),
+        Category.name.label('category_name'),
+        User.name.label('user_name'),  # Include the user name in the query
+        User.gender.label('user_gender')  # Include the user gender in the query
+    ).join(
+        Skill, User_Skill_Association.skill_id == Skill.id
+    ).join(
+        Category, Skill.category_id == Category.id
+    ).join(
+        User, User_Skill_Association.user_id == User.id  # Join to User to access name and gender
+    )
+
+    # Filter based on query parameters
+    if level and role and category:
+        filtered_joined_table = joined_table.filter(Category.name == category, User_Skill_Association.level == level, User_Skill_Association.role == role).all()
+    elif level and role:
+        filtered_joined_table = joined_table.filter(User_Skill_Association.level == level, User_Skill_Association.role == role).all()
+    elif level and category:
+        filtered_joined_table = joined_table.filter(Category.name == category, User_Skill_Association.level == level).all()
+    elif role and category:
+        filtered_joined_table = joined_table.filter(Category.name == category, User_Skill_Association.role == role).all()
+    elif level:
+        filtered_joined_table = joined_table.filter(User_Skill_Association.level == level).all()
+    elif role:
+        filtered_joined_table = joined_table.filter(User_Skill_Association.role == role).all()
+    elif category:
+        filtered_joined_table = joined_table.filter(Category.name == category).all()
+    else:
+        filtered_joined_table = joined_table.all()
+
+    # Serialize each object into a dictionary
+    serialized_data = []
+
+    for row in filtered_joined_table:
+        serialized_data.append({
+            "user_skill_association_id": row.user_skill_association_id,
+            "level": row.level,
+            "role": row.role,
+            "user_id": row.user_id,
+            "user_name": row.user_name,
+            "user_gender": row.user_gender,
+            "skill_id": row.skill_id,
+            "skill_name": row.skill_name,
+            "category_name": row.category_name
+        })
+
+    return jsonify(serialized_data), 200
+
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
 

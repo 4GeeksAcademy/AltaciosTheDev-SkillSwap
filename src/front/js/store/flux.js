@@ -21,11 +21,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: localStorage.getItem("token") || null,
 			profile: JSON.parse(localStorage.getItem("profile")) || null,
 			userSkillsAssociations: null,
-			tutorProfile: null
-
-			
-
-			
+			tutorProfile: null,
+			categories: null
 		},
 		actions: {
 
@@ -94,14 +91,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 		
 			},
-			getAssociations: async (level, role) => {
+			getAssociations: async (level, role, category) => {
 				const store = getStore()
 
 				try {
 					// Construct URL with query parameters
-					const url = new URL(process.env.BACKEND_URL + "api/associations");
+					const url = new URL(process.env.BACKEND_URL + "api/skills-joined-table");
 					url.searchParams.append("level", level);
 					url.searchParams.append("role", role);
+					url.searchParams.append("category", category);
+
 			
 					// Fetch the associations from the backend
 					const resp = await fetch(url, {
@@ -152,6 +151,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false
 				}
 			},
+			getCategories: async () => {
+				const store = getStore()
+
+				try{
+					//fetch the associations from the back end
+					const resp = await fetch(process.env.BACKEND_URL + `api/categories`,{
+						method: 'GET',
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": `Bearer ${store.token}`
+						},
+					})
+					const data = await resp.json()
+
+					if(!resp.ok){
+						throw new Error(data.msg)
+					}
+					console.log(data)
+					setStore({categories: data})
+					return true
+				}
+
+				catch(error){
+					console.log("Error from backend", error)
+					return false
+				}
+			},
 
 			editProfile: async (newUser, id) => {
 				const store = getStore()
@@ -187,17 +213,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// 	})
 			// 	setStore({ edit: contactToEdit })
 			// },
-
-
-
-
-
-
-
-
-
-
-
 
 
 			// Use getActions to call a function within a fuction
