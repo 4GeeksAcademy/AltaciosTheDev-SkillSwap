@@ -19,7 +19,8 @@ export default function DateTime({ tutorSkills }) {
         tutor_id: store.tutorProfile.id,
         skill_id: null,
         date: null,
-        time: null
+        time: null,
+        status: "Pending"
     });
 
     const minDate = new Date(); // Today's date
@@ -69,7 +70,7 @@ export default function DateTime({ tutorSkills }) {
                             value={selectedTime}
                             inputFormat="HH:mm"
                             name="time"
-                            ampm={false}
+                            ampm={true}
                             onChange={(time) => setSelectedTime(time)}
                         />
                     </Stack>
