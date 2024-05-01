@@ -63,7 +63,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			    setStore({ token: null, profile: null });
 			},
 			
-			getProfile: async (user) => {
+			getProfile: async () => {
 				const store = getStore()
 				
 				try{ 
@@ -89,14 +89,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 		
 			},
-			getAssociations: async (level, role) => {
+			getAssociations: async (level, role, category) => {
 				const store = getStore()
 
 				try {
 					// Construct URL with query parameters
-					const url = new URL(process.env.BACKEND_URL + "api/associations");
+					const url = new URL(process.env.BACKEND_URL + "api/skills-joined-table");
 					url.searchParams.append("level", level);
 					url.searchParams.append("role", role);
+					url.searchParams.append("category", category);
+
 			
 					// Fetch the associations from the backend
 					const resp = await fetch(url, {

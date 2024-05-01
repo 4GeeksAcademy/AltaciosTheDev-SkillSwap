@@ -17,7 +17,7 @@ function Main() {
 
   useEffect(() => {
     actions.getCategories()
-    actions.getAssociations(level, role)
+    actions.getAssociations(level, role, category)
   }, [])
 
   // Declare userSkillElements variable
@@ -30,12 +30,13 @@ function Main() {
   if (store.userSkillsAssociations) {
     userSkillElements = store.userSkillsAssociations.map((association) => (
       <TutorCard
-        key={association.id}
-        name={association.user}
-        skill={association.skill}
+        key={association.user_skill_association_id}
+        user_name={association.user_name}
+        skill_name={association.skill_name}
         role={association.role}
         level={association.level}
-        gender={association.user_gender}
+        user_gender={association.user_gender}
+        category_name={association.category_name}
         getTutorProfile={() => actions.getTutorProfile(association.user_id)}
       />
     ));
@@ -47,6 +48,12 @@ function Main() {
       <MenuItem key={category.id} value={category.name}>{category.name}</MenuItem>
     ))
   }
+
+  console.log({
+    "level": level,
+    "role": role,
+    "category":category
+  })
 
   return (
     <div className="learn-container">
@@ -113,7 +120,7 @@ function Main() {
             </Select>
           </FormControl>
         </Box>
-        <button type="submit" className="send-session-details" onClick={() => actions.getAssociations(level, role)}>Search</button>
+        <button type="submit" className="send-session-details" onClick={() => actions.getAssociations(level, role,category)}>Search</button>
 
       </div>
       <div className="learn-tutor-cards-container container">
