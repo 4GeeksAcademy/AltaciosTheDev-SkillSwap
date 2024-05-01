@@ -40,7 +40,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				
 				try{ 
 					const resp = await fetch(process.env.BACKEND_URL + "/api/login", opts)
-					if(resp.status !== 200){
+					if(!resp.ok){
 						alert("Bad Email or Password")
 						return false;
 					} 
@@ -72,7 +72,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						method: 'GET',
 						headers: {
 							"Content-Type": "application/json",
-							"Authorization": "Bearer " + store.token 
+							"Authorization": "Bearer " + localStorage.getItem("token")
 						},
 					})
 					if(!resp.ok){
@@ -107,7 +107,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						method: 'GET',
 						headers: {
 							"Content-Type": "application/json",
-							"Authorization": `Bearer ${store.token}`
+							"Authorization": `Bearer ${localStorage.getItem("token")}`
 						}
 					});
 			
@@ -133,7 +133,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						method: 'GET',
 						headers: {
 							"Content-Type": "application/json",
-							"Authorization": `Bearer ${store.token}`
+							"Authorization": `Bearer ${localStorage.getItem("token")}`
 						},
 					})
 					const data = await resp.json()
@@ -205,15 +205,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			// saveEdit: (id) => {
-			// 	const store = getStore()
-
-			// 	const profileToEdit = store.profileList.find((profile) => {
-			// 		return id === profile.id
-			// 	})
-			// 	setStore({ edit: contactToEdit })
-			// },
-
+		
 
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {

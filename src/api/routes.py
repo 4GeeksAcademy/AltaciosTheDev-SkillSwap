@@ -184,8 +184,56 @@ def get_users_skills_associations():
         associations = User_Skill_Association.query.all()
 
 
-
     return jsonify([association.serialize() for association in associations]),200
+
+
+
+
+@api.route("/associations", methods=["PUT"])
+@jwt_required()
+def update_user_status():
+    # Fetch the user from the database
+    
+
+    email = get_jwt_identity()
+
+    usuario = User.query.filter_by(email=email).first()
+
+    info_associations = User_Skill_Association.query.filter_by(user_id = usuario.id ).first()
+
+
+
+    # Check if the user exists
+    if info_associations is None:
+        return jsonify({"msg": "User not found"}), 404
+
+    # Get the updated data from the request
+    datos_usuario = request.get_json()
+
+    # Update the user's attributes
+
+    for key in datos_usuario:
+        for col in info_associations.serialize():
+            if key == col and key != "id":
+                setattr(info_associations, key, datos_usuario[key])
+
+    skill_id = datos_usuario.get("skill_id", None)
+
+    if skill_id != None:
+        usuario.skill_id = skill_id
+
+
+
+    # Commit the changes to the database
+    db.session.commit()
+    db.session.refresh(info_associations)
+
+    # Return a response
+    return jsonify({
+        'mensaje': 'Status actualizado con éxito',
+        'usuario': info_associations.serialize()})
+
+
 
 
 @api.route("/skills-joined-table", methods=["GET"])
