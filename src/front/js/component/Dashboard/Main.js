@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useContext, useState } from 'react'
+import { Context } from "../../store/appContext";
+
 import {
   BsNewspaper,
   BsPersonWorkspace,
@@ -70,6 +72,41 @@ export function Main() {
       amt: 2100,
     },
   ];
+  const { store, actions } = useContext(Context)
+  const [category, setCategory] = useState('');
+  const [level, setLevel] = useState('');
+  const [role, setRole] = useState('');
+  const randomCards = []
+
+  useEffect(() => {
+    actions.getAssociations(level, role, category)
+  }, [])
+
+  if (store.userSkillsAssociations && store.userSkillsAssociations.length > 0) {
+      for(let i=0;i<3;i++){
+        const randomIndex = Math.floor(Math.random() * store.userSkillsAssociations.length);
+        randomCards.push(store.userSkillsAssociations[randomIndex])
+      }
+  } 
+
+  console.log(randomCards)
+
+  let randomCardElements = null
+
+  if (randomCards.length > 0) {
+    randomCardElements = randomCards.map((association) => (
+      <TutorCard
+        key={association.user_skill_association_id}
+        user_name={association.user_name}
+        skill_name={association.skill_name}
+        role={association.role}
+        level={association.level}
+        user_gender={association.user_gender}
+        category_name={association.category_name}
+        getTutorProfile={() => actions.getTutorProfile(association.user_id)}
+      />
+    ));
+  }
 
   return (
     <main className="main-container">
@@ -77,9 +114,7 @@ export function Main() {
         <div className="tutors">
           <h4>Recommended</h4>
           <div className="tutor-cards">
-            <TutorCard name="Enzo Altamirano" skill="Javascript" role="Tutor" level="Intermediate" />
-            <TutorCard name="Miguel Reyes" skill="Java" role="Tutor" level="Intermediate" />
-            <TutorCard name="Jean Nounon" skill="Python" role="Tutor" level="Intermediate" />
+            {randomCardElements}
           </div>
         </div>
         <div className="statistics">
