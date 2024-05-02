@@ -39,14 +39,11 @@ export default function DateTime({ tutorSkills }) {
         }));
     }, [selectedSkill, selectedDate, selectedTime]);
 
-    function handleSubmit(event) {
+    function handleSubmit(event){
         event.preventDefault()
 
-        if (sessionDetails.skill_id && sessionDetails.date && sessionDetails.time) {
-            console.log({
-                msg: "Session request successfully sent",
-                sessionDetails: sessionDetails
-            })
+        if(sessionDetails.date && sessionDetails.skill_id && sessionDetails.time){
+            actions.scheduleSession(sessionDetails)
         }
     }
 

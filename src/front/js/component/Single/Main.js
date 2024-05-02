@@ -1,7 +1,5 @@
 import React,{useContext} from 'react'
-// import singleData from "./skills-mock-data.json.json"
 import { Link} from "react-router-dom";
-import facePhoto from "../../../img/facePhoto.jpg"
 import personLogo from "../../../img/personLogo.png"
 import femaleLogo from "../../../img/femaleLogo.png"
 
