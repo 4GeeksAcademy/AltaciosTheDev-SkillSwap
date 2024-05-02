@@ -39,9 +39,17 @@ export default function DateTime({ tutorSkills }) {
         }));
     }, [selectedSkill, selectedDate, selectedTime]);
 
+    function handleSubmit(event){
+        event.preventDefault()
+
+        if(sessionDetails.date && sessionDetails.skill_id && sessionDetails.time){
+            actions.scheduleSession(sessionDetails)
+        }
+    }
+
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <form >
+            <form onSubmit={handleSubmit}>
                 <div className='schedule-container'>
                     <Stack className="choose-pickers" spacing={4} sx={{ width: "250px" }}>
                         <h5>Choose Date & Time:</h5>
@@ -93,7 +101,7 @@ export default function DateTime({ tutorSkills }) {
                             </RadioGroup>
                         </FormControl>
                     </Stack>
-                    <button type="submit" className="send-session-details" onClick={() => actions.scheduleSession(sessionDetails) }>Send Session Details</button>
+                    <button type="submit" className="send-session-details">Send Session Details</button>
                 </div>
             </form>
         </LocalizationProvider>
