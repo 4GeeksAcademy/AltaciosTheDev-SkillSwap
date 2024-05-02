@@ -310,7 +310,7 @@ def get_sessions():
     return jsonify([session.serialize() for session in sessions]),200
 
 @api.route("/populate", methods=['POST'])
-def generate_categories():
+def generate_database():
 
     # Populate categories
     categories = ['Programming', 'Culinary', 'Creative', 'Interpersonal', 'Sports']
