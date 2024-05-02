@@ -5,6 +5,15 @@ import { BiSolidTired } from 'react-icons/bi';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+
 import { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -14,28 +23,51 @@ function Main() {
 
   const [newUser, setNewUser] = useState("")
 
+  const [associationToEdit, setAssociationToEdit] = React.useState(null);
+
+  const [level, setLevel] = useState('');
+  const [role, setRole] = useState('');
+
+  const [skill, setSkill] = useState('');
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [skillModal, setSkillModal] = useState(false);
+  const handleSkillClose = () => setSkillModal(false);
+  const handleSkillShow = () => setSkillModal(true);
 
 
-  console.log(newUser);
 
+  const handleChange = (event) => {
+    setAssociationToEdit(event.target.value);
+    console.log(associationToEdit);
+  };
+
+  //modals funcions
   const updateProfile = async () => {
     actions.editProfile(newUser);
     handleClose()
+  }
+  const handleUpdateSkill = async () => {
+    await actions.editAssociation(associationToEdit, skill, role, level)
+    handleSkillClose()
+    
 
   }
 
+
   const tutorSkills = store.profile.skills && store.profile.skills.length > 0 && store.profile.skills.filter((skill) => {
-    return skill.role == "Tutor"
+    return skill.role == "tutor"
   })
-  const learnerSkills = store.profile.skills.filter((skill) => {
-    return skill.role == "Learner"
+  const learnerSkills = store.profile.skills && store.profile.skills.length > 0 && store.profile.skills.filter((skill) => {
+    return skill.role == "learner"
   })
-   console.log(tutorSkills)
-   console.log(learnerSkills)
+  
+  // console.log(learnerSkills)
+
+
 
   useEffect(() => {
     setNewUser({
@@ -49,10 +81,26 @@ function Main() {
 
     })
 
+
+
   }, [store.profile])
 
-  
 
+  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+  //  let skillElements = ""
+
+   useEffect(() => {
+    actions.getSkills()
+    
+  }, [])
+
+  //Check if store.skill is available
+  // if (store.skills && store.skills > 0 && store.skills) {
+  //   skillElements = store.skills.map(skill => (
+  //     <MenuItem key={skill.id} value={skill.id}>{skill.name}</MenuItem>
+  //   ))
+  // }
 
   return <>
     <div className='height-profile '>
@@ -61,7 +109,7 @@ function Main() {
         <div className='d-flex align-items-center'>
           <h2 className='rosa '>Your Profile</h2>
 
-          
+
 
           <Modal
             className='Modal'
@@ -75,49 +123,49 @@ function Main() {
             </Modal.Header>
             <Modal.Body className='modal-profile '>
 
-            <Box
-              component="form"
-              sx={{
-                '& > :not(style)': { m: 1, width: '95%' },
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <TextField id="outlined-basic" label="Email" variant="outlined" 
-                type="email" placeholder="Your e-mail"
-                value={newUser.email}
-                onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-              />
-              <TextField id="outlined-basic" label="Name" variant="outlined" 
-                type="text" placeholder="Your Name"
-                value={newUser.name}
-                onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-              />
-              <TextField id="outlined-basic" label="Country" variant="outlined" 
-                type="text" placeholder="Your Country"
-                value={newUser.country}
-                onChange={(e) => setNewUser({ ...newUser, country: e.target.value })}
-              />
-              <TextField id="outlined-basic" label="City" variant="outlined" 
-                type="text" placeholder="Your City"
-                value={newUser.city}
-                onChange={(e) => setNewUser({ ...newUser, city: e.target.value })}
-              />
-              <TextField id="outlined-basic" label="Gender" variant="outlined" 
-                type="text" placeholder="Your Gender"
-                value={newUser.gender}
-                onChange={(e) => setNewUser({ ...newUser, gender: e.target.value })}
-              />
-              <TextField id="outlined-basic" label="Number" variant="outlined" 
-                type="number" placeholder="Your Number"
-                value={newUser.number}
-                onChange={(e) => setNewUser({ ...newUser, number: e.target.value })}
-              />
-              
-            </Box>
+              <Box
+                component="form"
+                sx={{
+                  '& > :not(style)': { m: 1, width: '95%' },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <TextField id="outlined-basic" label="Email" variant="outlined"
+                  type="email" placeholder="Your e-mail"
+                  value={newUser.email}
+                  onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+                />
+                <TextField id="outlined-basic" label="Name" variant="outlined"
+                  type="text" placeholder="Your Name"
+                  value={newUser.name}
+                  onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
+                />
+                <TextField id="outlined-basic" label="Country" variant="outlined"
+                  type="text" placeholder="Your Country"
+                  value={newUser.country}
+                  onChange={(e) => setNewUser({ ...newUser, country: e.target.value })}
+                />
+                <TextField id="outlined-basic" label="City" variant="outlined"
+                  type="text" placeholder="Your City"
+                  value={newUser.city}
+                  onChange={(e) => setNewUser({ ...newUser, city: e.target.value })}
+                />
+                <TextField id="outlined-basic" label="Gender" variant="outlined"
+                  type="text" placeholder="Your Gender"
+                  value={newUser.gender}
+                  onChange={(e) => setNewUser({ ...newUser, gender: e.target.value })}
+                />
+                <TextField id="outlined-basic" label="Number" variant="outlined"
+                  type="number" placeholder="Your Number"
+                  value={newUser.number}
+                  onChange={(e) => setNewUser({ ...newUser, number: e.target.value })}
+                />
 
-              
-            
+              </Box>
+
+
+
             </Modal.Body>
             <Modal.Footer className='modal-profile'>
               <Button variant="secondary" onClick={handleClose}>
@@ -126,10 +174,97 @@ function Main() {
               <Button onClick={() => updateProfile()} variant="primary">Save Edit</Button>
             </Modal.Footer>
           </Modal>
-          {/* <i className="fa-solid fa-user-pen"></i> */}
+          {/* final Modal de edit profile */}
+          <Modal
+            className='Modal'
+            show={skillModal}
+            onHide={handleSkillClose}
+            backdrop="static"
+            keyboard={false}
+          >
+            <Modal.Header className='modal-profile' closeButton>
+              <Modal.Title className='rosa' >Edit Your Profile</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className='modal-profile '>
+
+              <Box
+                component="form"
+                sx={{
+                  '& > :not(style)': { m: 1, width: '95%' },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <Box sx={{ minWidth: 120, mr: 2 }}>
+                  <FormControl fullWidth>
+                    <InputLabel id="skill-select-label">Skill</InputLabel>
+                    <Select
+                      labelId="skill-select-label"
+                      id="skill-select"
+                      value={skill}
+                      label="Skill"
+                      onChange={(event) => setSkill(event.target.value)}
+                    >
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
+                      {store.skills && store.skills.map(skill => (
+                       <MenuItem key={skill.id} value={skill.id}>{skill.name}</MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Box>
+                <Box sx={{ minWidth: 120, mr: 2 }}>
+                  <FormControl fullWidth>
+                    <InputLabel id="level-select-label">Level</InputLabel>
+                    <Select
+                      labelId="level-select-label"
+                      id="level-select"
+                      value={level}
+                      label="Level"
+                      onChange={(event) => setLevel(event.target.value)}
+                    >
+                      <MenuItem value="">
+                        
+                      </MenuItem>
+                      <MenuItem aria-required value="Beginner">beginner</MenuItem>
+                      <MenuItem value="Intermediate">intermediate</MenuItem>
+                      <MenuItem value="Advanced">advanced</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+                <Box sx={{ minWidth: 120, mr: 2 }}>
+                  <FormControl fullWidth>
+                    <InputLabel id="role-select-label">Role</InputLabel>
+                    <Select
+                      labelId="role-select-label"
+                      id="role-select"
+                      value={role}
+                      label="Role"
+                      onChange={(event) => setRole(event.target.value)}
+                    >
+                      <MenuItem value="">
+                        <em>None</em>
+                      </MenuItem>
+                      <MenuItem value="Learner">Learner</MenuItem>
+                      <MenuItem value="Tutor">Tutor</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+
+              </Box>
+
+            </Modal.Body>
+            <Modal.Footer className='modal-profile'>
+              <Button variant="secondary" onClick={handleSkillClose}>
+                Close
+              </Button>
+              <Button onClick={() => handleUpdateSkill()} variant="primary">Save Edit</Button>
+            </Modal.Footer>
+          </Modal>
 
 
-          
+
         </div>
 
         <div className=' container-border-profile'>
@@ -149,7 +284,7 @@ function Main() {
             <h4 className='rosa '>About me</h4>
             <Button className='amarillo' variant="" onClick={handleShow}>Edit Profile</Button>
           </div>
-            <hr />
+          <hr />
 
           <div className='row ms-xs-3'>
             <div className='col-xs-6 col-md-2 mt-sm-3 ms-md-3 d-flex flex-column'>
@@ -184,7 +319,7 @@ function Main() {
           </div>
 
           {/* <-----status------> */}
-              {/* <span className='gris'>skill</span>
+          {/* <span className='gris'>skill</span>
               {store.profile.skills && store.profile.skills.length > 0 && store.profile.skills.map((item, index) => {
                 return (
                   <p key={index}>{item.skill}</p>
@@ -193,34 +328,82 @@ function Main() {
 
         </div>
         <div className='container-border-profile'>
-          <div>
+          <div className='d-flex justify-content-between'>
             <h4 className='rosa '>Status</h4>
-              <div className="learning-levels">
-                  <hr />
-                   
-              </div>
+            <Button className='amarillo' variant="" onClick={handleSkillShow}>Edit Skill</Button>
           </div>
+            <div className="learning-levels">
+              <hr />
+
+            </div>
 
           <div className='row ms-xs-3'>
             <div className='col-xs-6 col-md-5 mt-3 m-md-3 ms-md-3 d-flex flex-column me-5'>
 
               <div className='status-contenedor'>
                 <div>
-                <h6 className='text-danger'>Rol</h6>
-                  {tutorSkills.map((tutor) => <p key={tutor.id}>{tutor.role}</p>)}
+                  <h6 className='text-danger'>Rol</h6>
+                  {store.profile && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) => <p key={tutor.id}>{tutor.role.charAt(0).toUpperCase() + tutor.role.slice(1)}</p>)}
+
+                  {store.profile && store.profile.skills.filter(role => role.role == "Learner").map((tutor) => <p key={tutor.id}>{tutor.role.charAt(0).toUpperCase() + tutor.role.slice(1)}</p>)}
+
+                  {/* {learnerSkills && learnerSkills.length > 0 && learnerSkills.map((learner) => <p key={learner.id}>{learner.role.charAt(0).toUpperCase() + learner.role.slice(1)}</p>)}
+                   */}
                 </div>
                 <div>
-                <h6 className='text-danger'>Skill</h6>
-                  {tutorSkills.map((tutor) => <p key={tutor.id}>{tutor.skill}</p>)}
+                  <h6 className='text-danger'>Skill</h6>
+                  {store.profile && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) => <p key={tutor.id}>{tutor.skill.charAt(0).toUpperCase() + tutor.skill.slice(1)}</p>)}
+
+                  {store.profile && store.profile.skills.filter(role => role.role == "Learner").map((tutor) => <p key={tutor.id}>{tutor.skill.charAt(0).toUpperCase() + tutor.skill.slice(1)}</p>)}
                 </div>
                 <div>
-                <h6 className='text-danger'>Level</h6>
-                  {tutorSkills.map((tutor) => <p key={tutor.id}>{tutor.level}</p>)}
+                  <h6 className='text-danger '>Level</h6>
+                  {store.profile && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) => <p key={tutor.id}>{tutor.level.charAt(0).toUpperCase() + tutor.level.slice(1)}</p>)}
+
+                  {store.profile && store.profile.skills.filter(role => role.role == "Learner").map((tutor) => <p key={tutor.id}>{tutor.level.charAt(0).toUpperCase() + tutor.level.slice(1)}</p>)}
+                  {/* {learnerSkills && learnerSkills.length > 0 && learnerSkills.map((learner) => {
+                    return (
+                      <p key={learner.id}>
+
+                        <span >{learner.level.charAt(0).toUpperCase() + learner.level.slice(1)}</span>
+                        <span className='ms-2 text-danger'></span>
+
+                      </p>
+                    )
+                  })} */}
+                  
                 </div>
+
+                <div className='d-flex flex-column gap-2'>
+                    
+                    <FormControl>
+                      <FormLabel id="demo-radio-buttons-group-label">Edit</FormLabel>
+
+                      <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue=""
+                        name="radio-buttons-group"
+                      >
+                        {store.profile && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) =>
+                      <FormControlLabel key={tutor.id} onChange={handleChange} value={tutor.id} control={<Radio />} label="" />
+                    )}
+
+                        {store.profile && store.profile.skills.filter(role => role.role == "Learner").map((learner) =>
+                      <FormControlLabel key={learner.id} onChange={handleChange} value={learner.id} control={<Radio />} label="" />
+                    )}
+                        
+                        
+                      </RadioGroup>
+                    </FormControl>
+                  </div>
+
+
+
+
               </div>
             </div>
 
-            <div className='col-xs-6 col-md-5 mt-sm-3 d-flex flex-column'>
+            {/* <div className='col-xs-6 col-md-5 mt-sm-3 d-flex flex-column'>
 
               <div className='status-contenedor'>
                 <div className=''>
@@ -239,20 +422,20 @@ function Main() {
                 </div>
               </div>
 
-            </div>
+            </div> */}
 
           </div>
-          
+
         </div>
       </div>
-    </div>      
-            
-          
+    </div>
 
-        
 
-      
-   
+
+
+
+
+
 
 
   </>

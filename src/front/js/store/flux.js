@@ -22,7 +22,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			profile: JSON.parse(localStorage.getItem("profile")) || null,
 			userSkillsAssociations: null,
 			tutorProfile: null,
+			skills: null,
 			categories: null
+
+			
+
+			
 		},
 		actions: {
 
@@ -179,6 +184,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			getSkills: async () => {
+                const store = getStore()
+                try{
+                    //fetch the associations from the back end
+                    const resp = await fetch(`${process.env.BACKEND_URL}/api/skills`,{
+                        method: 'GET',
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${store.token}`
+
+                        },
+                    })
+                    const data = await resp.json()
+                    if(!resp.ok){
+                        throw new Error(data.msg)
+                    }
+                    console.log(data)
+                    setStore({ skills: data })
+                    return true
+                }
+                catch(error){
+                    console.log("Error from backend", error)
+                    return false
+                }
+            },
+
 			editProfile: async (newUser, id) => {
 				const store = getStore()
 					try {
@@ -195,6 +226,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 						if(res.ok) {
 							setStore({ profile: newUser })
 							localStorage.setItem("profile", JSON.stringify(newUser));
+							
+							
+						}
+					} catch (error) {
+						return false
+						
+					}
+
+			},
+			editAssociation: async (id, skill_id, role, level) => {
+				const store = getStore()
+					try {
+						const res = await fetch(process.env.BACKEND_URL + `/api/associations/${id}`, {
+							method: 'PUT',
+							body: JSON.stringify({
+								"skill_id": parseInt(skill_id),
+								"role": role,
+								"level": level
+							}
+								
+							),
+							headers: {
+								'Content-Type': 'application/json',
+								"Authorization": `Bearer ${localStorage.getItem("token")}`
+							},
+						})
+						if(res.ok) {
+							await getActions().getProfile()
 							
 							
 						}
