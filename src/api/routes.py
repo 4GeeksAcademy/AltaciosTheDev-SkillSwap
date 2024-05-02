@@ -303,57 +303,56 @@ def get_skills_joined_table():
     return jsonify(serialized_data), 200
 
 #Route for receiving SKILLS
-@api.route("/sessions", methods=["GET"])
-def get_sessions():
+@api.route("/sessions", methods=["POST","GET"])
+def handle_sessions():
+    if request.method == "POST":
+        learner_id = request.json.get("learner_id", None)
+        tutor_id = request.json.get("tutor_id", None)
+        skill_id = request.json.get("skill_id", None)
+        date = request.json.get("date", None)
+        time = request.json.get("time", None)
+        status = request.json.get("status", None)
 
-    sessions = Session.query.all()
-    return jsonify([session.serialize() for session in sessions]),200
+        if learner_id == None:
+            return jsonify({"msg:" "Missing learner_id"}), 400
+        
+        elif tutor_id == None:
+            return jsonify({"msg:" "Missing tutor_id"}), 400
 
-@api.route("/sessions", methods=["POST"])
-def create_sessions():
-    learner_id = request.json.get("learner_id", None)
-    tutor_id = request.json.get("tutor_id", None)
-    skill_id = request.json.get("skill_id", None)
-    date = request.json.get("date", None)
-    time = request.json.get("time", None)
-    status = request.json.get("status", None)
+        elif skill_id == None:
+            return jsonify({"msg:" "Missing skill_id"}), 400
+        
+        elif date == None:
+            return jsonify({"msg:" "Missing date"}), 400
+        
+        elif time == None:
+            return jsonify({"msg:" "Missing time"}), 400
+        
+        elif status == None:
+            return jsonify({"msg:" "Missing status"}), 400
 
-    if learner_id == None:
-        return jsonify({"msg:" "Missing learner_id"}), 400
-    
-    elif tutor_id == None:
-        return jsonify({"msg:" "Missing tutor_id"}), 400
+        else:
+            tutor = User.query.get(tutor_id)
+            learner = User.query.get(learner_id)
+            skill = Skill.query.get(skill_id)
 
-    elif skill_id == None:
-        return jsonify({"msg:" "Missing skill_id"}), 400
-    
-    elif date == None:
-        return jsonify({"msg:" "Missing date"}), 400
-    
-    elif time == None:
-        return jsonify({"msg:" "Missing time"}), 400
-    
-    elif status == None:
-        return jsonify({"msg:" "Missing status"}), 400
+            if tutor is None:
+                return jsonify({"msg": "tutor with provided ID not found"}), 404
+            
+            if learner is None:
+                return jsonify({"msg": "learner with provided ID not found"}), 404
+            
+            if skill is None:
+                return jsonify({"msg": "skill with provided ID not found"}), 404
+            
+            new_session = Session(date=date, time=time, status=status, learner_id=learner.id, tutor_id=tutor.id, skill_id=skill.id)
+            db.session.add(new_session)
+            db.session.commit()
+            return jsonify({"msg": "Session scheduled successfully", "details": new_session.serialize()  }),200
 
     else:
-        tutor = User.query.get(tutor_id)
-        learner = User.query.get(learner_id)
-        skill = Skill.query.get(skill_id)
-
-        if tutor is None:
-            return jsonify({"msg": "tutor with provided ID not found"}), 404
-        
-        if learner is None:
-            return jsonify({"msg": "learner with provided ID not found"}), 404
-        
-        if skill is None:
-            return jsonify({"msg": "skill with provided ID not found"}), 404
-        
-        new_session = Session(date=date, time=time, status=status, learner_id=learner.id, tutor_id=tutor.id, skill_id=skill.id)
-        db.session.add(new_session)
-        db.session.commit()
-        return jsonify({"msg": "Session scheduled successfully", "details": new_session.serialize()  }),200
+        sessions = Session.query.all()
+        return jsonify([session.serialize() for session in sessions]),200
 
 @api.route("/populate", methods=['POST'])
 def generate_database():
