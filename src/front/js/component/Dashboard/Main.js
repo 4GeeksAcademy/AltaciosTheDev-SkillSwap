@@ -83,11 +83,14 @@ export function Main() {
   }, [])
 
   if (store.userSkillsAssociations && store.userSkillsAssociations.length > 0) {
-      for(let i=0;i<3;i++){
-        const randomIndex = Math.floor(Math.random() * store.userSkillsAssociations.length);
-        randomCards.push(store.userSkillsAssociations[randomIndex])
+    while (randomCards.length < 3) {
+      const randomIndex = Math.floor(Math.random() * store.userSkillsAssociations.length);
+      const randomCard = store.userSkillsAssociations[randomIndex];
+      if (!randomCards.includes(randomCard)) {
+        randomCards.push(randomCard);
       }
-  } 
+    }
+  }
 
   console.log(randomCards)
 
