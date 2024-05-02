@@ -263,34 +263,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 
 			},
-			editAssociation: async (id, skill_id, role, level) => {
-				const store = getStore()
-					try {
-						const res = await fetch(process.env.BACKEND_URL + `/api/associations/${id}`, {
-							method: 'PUT',
-							body: JSON.stringify({
-								"skill_id": parseInt(skill_id),
-								"role": role,
-								"level": level
-							}
-								
-							),
-							headers: {
-								'Content-Type': 'application/json',
-								"Authorization": `Bearer ${localStorage.getItem("token")}`
-							},
-						})
-						if(res.ok) {
-							await getActions().getProfile()
-							
-							
-						}
-					} catch (error) {
-						return false
-						
-					}
-
-			},
 			scheduleSession: async (sessionDetails) => {				
 				try{ 
 					const resp = await fetch(process.env.BACKEND_URL + "/api/sessions", {
@@ -317,8 +289,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 		
 			},
-		
-
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
