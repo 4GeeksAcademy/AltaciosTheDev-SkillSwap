@@ -39,17 +39,6 @@ export default function DateTime({ tutorSkills }) {
         }));
     }, [selectedSkill, selectedDate, selectedTime]);
 
-    function handleSubmit(event) {
-        event.preventDefault()
-
-        if (sessionDetails.skill_id && sessionDetails.date && sessionDetails.time) {
-            console.log({
-                msg: "Session request successfully sent",
-                sessionDetails: sessionDetails
-            })
-        }
-    }
-
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
             <form onSubmit={handleSubmit}>
@@ -104,7 +93,7 @@ export default function DateTime({ tutorSkills }) {
                             </RadioGroup>
                         </FormControl>
                     </Stack>
-                    <button type="submit" className="send-session-details">Send Session Details</button>
+                    <button type="submit" className="send-session-details" onClick={() => actions.scheduleSession(sessionDetails) }>Send Session Details</button>
                 </div>
             </form>
         </LocalizationProvider>

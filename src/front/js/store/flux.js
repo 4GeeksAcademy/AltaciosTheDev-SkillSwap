@@ -204,7 +204,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 
 			},
+			scheduleSession: async (sessionDetails) => {				
+				try{ 
+					const resp = await fetch(process.env.BACKEND_URL + "/api/sessions", {
+						method: 'POST',
+						headers: {
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify(sessionDetails)
+					})
+					const data = await resp.json();
+					if(!resp.ok){
+						throw new Error(data.msg)
+					} 
 
+					// setStore({ token: data.access_token })
+					// getActions().getProfile()
+					alert(data.msg)
+					return true
+
+				} 
+				catch(error) {
+					alert(error)
+					return false
+				}
+		
+			},
 		
 
 			// Use getActions to call a function within a fuction
