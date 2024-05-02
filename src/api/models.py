@@ -13,12 +13,11 @@ class User(db.Model):
     country = db.Column(db.String(120), nullable=False)
     city = db.Column(db.String(120), nullable=False)
     bio = db.Column(db.Text, nullable=True)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
-        return f'<User {self.email}>'
+        return f'<User {self.email}>'    
     
-    def __init__(self, name,email,password,number,gender,country,city,is_active,bio=None):
+    def __init__(self, name,email,password,number,gender,country,city,bio=None):
         self.name = name
         self.email = email
         self.password = password
@@ -27,7 +26,6 @@ class User(db.Model):
         self.country = country
         self.city = city
         self.bio = bio
-        self.is_active = is_active
 
     def serialize(self):
         
@@ -48,9 +46,12 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120),  unique=True, nullable=False)
 
+    def __init__(self, name):
+        self.name = name
+
     def __repr__(self):
         return f'<Category {self.name}>'
-
+    
     def serialize(self):
         return {
             "id": self.id,  
@@ -67,7 +68,11 @@ class Skill(db.Model):
 
     def __repr__(self):
         return f'<Skill {self.name}>'
-    
+
+    def __init__(self, name, category_id):
+        self.name = name
+        self.category_id = category_id
+
     def serialize(self):
         return {
             "id": self.id,  
@@ -108,5 +113,45 @@ class User_Skill_Association(db.Model):
             "user_gender": self.user.gender
         }
 
+class Session(db.Model):
+    id = db.Column(db.Integer, primary_key=True)   
+
+    date = db.Column(db.String(80), nullable=False)  
+    time = db.Column(db.String(80), nullable=False)  
+    status = db.Column(db.String(80), nullable=False)  
+
+    tutor_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable=False)    
+    tutor = db.relationship("User", foreign_keys=[tutor_id], backref="tutor_sessions")  # Specify foreign_keys
+
+    learner_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable=False)    
+    learner = db.relationship("User", foreign_keys=[learner_id], backref="learner_sessions")  # Specify foreign_keys
+    
+    skill_id = db.Column(db.Integer, db.ForeignKey('skill.id'),nullable=False)   
+    skill = db.relationship("Skill", backref="sessions")
+ 
+    def __repr__(self): 
+        return f'<Session {self.id}>' 
+    
+    def __init__(self, date, time,status, learner_id, tutor_id, skill_id): 
+        self.date = date           
+        self.time = time             
+        self.status = status
+        self.learner_id = learner_id
+        self.tutor_id = tutor_id
+        self.skill_id = skill_id 
+
+    def serialize(self):
+        return {
+            "id": self.id,  
+            "date": self.date,
+            "time": self.time,
+            "status": self.status,
+            "tutor_id": self.tutor.id,
+            "tutor_name": self.tutor.name,
+            "learner_id": self.learner.id,
+            "learner_name": self.learner.name,
+            "skill_id": self.skill.id,
+            "skill_name": self.skill.name,
+        }
 
 

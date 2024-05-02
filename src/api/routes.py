@@ -3,13 +3,14 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint, current_app
-from api.models import db, User, Category, Skill, User_Skill_Association
+from api.models import db, User, Category, Skill, User_Skill_Association, Session
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
-from datetime import timedelta
+from random import sample, choice, randint
+from datetime import datetime, timedelta
 import requests
 
 
@@ -301,11 +302,134 @@ def get_skills_joined_table():
 
     return jsonify(serialized_data), 200
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
+#Route for receiving SKILLS
+@api.route("/sessions", methods=["GET"])
+def get_sessions():
 
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
+    sessions = Session.query.all()
+    return jsonify([session.serialize() for session in sessions]),200
+
+@api.route("/populate", methods=['POST'])
+def generate_categories():
+
+    # Populate categories
+    categories = ['Programming', 'Culinary', 'Creative', 'Interpersonal', 'Sports']
+    for category_name in categories:
+        category = Category(name=category_name)
+        db.session.add(category)
+    db.session.commit()
+
+    # Get category IDs
+    category_ids = {category.name: category.id for category in Category.query.all()}
+
+    # Populate skills for each category
+    skills_data = {
+        'Programming': ['Python', 'JavaScript', 'Java', 'C++', 'React', 'Algorithms', 'Golang', 'Django', 'Angular', 'Vue'],
+        'Culinary': ['Baking', 'Cooking', 'Mixology', 'Cutting', 'Roasting', 'Grilling', 'Pastry', 'Deserts', 'Breakfasts'],
+        'Creative': ['Drawing', 'Painting', 'Sculpting', 'Figma', 'UI design', 'UX design'],
+        'Interpersonal': ['Communication', 'Leadership', 'Teamwork', 'Empathy', 'Motivation', 'Ethic'],
+        'Sports': ['Football', 'Basketball', 'Tennis', 'Swimming']
     }
 
-    return jsonify(response_body), 200
+    for category_name, skills in skills_data.items():
+        category_id = category_ids.get(category_name)
+        if category_id:
+            for skill_name in skills:
+                skill = Skill(name=skill_name, category_id=category_id)
+                db.session.add(skill)
+    db.session.commit()
+
+    # Populate users and their skills
+    user_data = [
+        {"name": "Enzo Altamirano",   "email": "enzo.altamirano@gmail.com",   "password": "elephantgun",         "number": "+504-3355-5344", "gender": "Male",   "country": "Honduras",      "city": "San Pedro Sula",   "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+        {"name": "Jean Nounoun",      "email": "jean.nounoun@gmail.com",      "password": "loquetuquieras",      "number": "+504-3340-5432", "gender": "Male",   "country": "Venezuela",     "city": "Caracas",          "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+        {"name": "Miguel Reyes",      "email": "miguel.reyes@gmail.com",      "password": "cosasbonitas",        "number": "+504-3340-5454", "gender": "Male",   "country": "Mexico",        "city": "Ciudad de Mexico", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+        {"name": "Astrid Altamirano", "email": "astrid.altamirano@gmail.com", "password": "madredeloca",         "number": "+504-3334-5674", "gender": "Female", "country": "Costa Rica",    "city": "San Jose",         "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+        {"name": "LeAnn Turcios",     "email": "leaan.turcios@gmail.com",     "password": "justinandkarlton",    "number": "+1-250-550-234", "gender": "Female", "country": "United States", "city": "Thompson Station", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+        {"name": "Emma Cueva",        "email": "emma.cueva@gmail.com",        "password": "anakin",              "number": "+43-2554-55044", "gender": "Female", "country": "United States", "city": "Thompson Station", "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+    ]
+
+    for user_info in user_data:
+        user = User(**user_info)
+        db.session.add(user)
+
+    db.session.commit()
+
+    # Define roles and levels
+    roles = ["Tutor", "Learner"]
+    levels = ["Beginner", "Intermediate", "Advanced"]
+
+    # Get all users and skills
+    users = User.query.all()
+    skills = Skill.query.all()
+
+    # Iterate through each user
+    for user in users:
+        # Randomly select 5 skills for learning and 5 skills for tutoring
+        learn_skills = sample(skills, 5)
+        tutor_skills = sample(skills, 5)
+
+        # Create User_Skill_Associations for learning
+        for skill in learn_skills:
+            level = choice(levels)  # Randomly select a level
+            association = User_Skill_Association(level=level, role="Learner", user_id=user.id, skill_id=skill.id)
+            db.session.add(association)
+
+        # Create User_Skill_Associations for tutoring
+        for skill in tutor_skills:
+            level = choice(levels)  # Randomly select a level
+            association = User_Skill_Association(level=level, role="Tutor", user_id=user.id, skill_id=skill.id)
+            db.session.add(association)
+
+    # Commit the changes
+    db.session.commit()
+        
+# Get all users
+    users = User.query.all()
+    
+    # Get all skills
+    skills = Skill.query.all()
+
+    # Define the number of sessions per user
+    num_sessions = 10
+
+    # Iterate through each user
+    for user in users:
+        # Generate random dates and times for sessions
+        for _ in range(num_sessions):
+            # Generate a random date within the next 30 days
+            date = datetime.now() + timedelta(days=randint(1, 30))
+            date_str = date.strftime("%Y-%m-%d")
+
+            # Generate a random time
+            time = "{:02d}:{:02d}".format(randint(0, 23), randint(0, 59))
+
+            # Select a random skill for the session
+            skill = choice(skills)
+
+            # Select a random tutor ID
+            tutor_id = choice([user.id for user in users])
+
+            # Select a random learner ID not equal to the tutor ID
+            while True:
+                learner_id = choice([user.id for user in users])
+                if learner_id != tutor_id:
+                    break
+
+            # Randomly select a status
+            status = choice(["Pending", "Accepted", "Rejected"])
+
+            # Create the session
+            session = Session(
+                date=date_str,
+                time=time,
+                status=status,
+                learner_id=learner_id,
+                tutor_id=tutor_id,
+                skill_id=skill.id
+            )
+            db.session.add(session)
+
+    # Commit the changes
+    db.session.commit()
+    return jsonify({"msg": "Created"}), 200
