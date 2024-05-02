@@ -8,6 +8,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { Context } from "../../store/appContext";
+import { format } from 'date-fns';
 
 export default function DateTime({ tutorSkills }) {
     const { store, actions } = useContext(Context);
@@ -33,8 +34,8 @@ export default function DateTime({ tutorSkills }) {
         setSessionDetails(prevSessionDetails => ({
             ...prevSessionDetails,
             skill_id: selectedSkill ? parseInt(selectedSkill) : null,
-            date: selectedDate ? selectedDate.toLocaleDateString() : null,
-            time: selectedTime ? selectedTime.toLocaleTimeString() : null
+            date: selectedDate ? format(selectedDate, 'yyyy-MM-dd') : null, // Format the date here
+            time: selectedTime ? format(selectedTime, 'HH:mm') : null  // Format the time here
         }));
     }, [selectedSkill, selectedDate, selectedTime]);
 
@@ -70,7 +71,7 @@ export default function DateTime({ tutorSkills }) {
                             value={selectedTime}
                             inputFormat="HH:mm"
                             name="time"
-                            ampm={true}
+                            ampm={false}
                             onChange={(time) => setSelectedTime(time)}
                         />
                     </Stack>
