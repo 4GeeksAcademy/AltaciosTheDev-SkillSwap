@@ -66,6 +66,8 @@
     margin-right: auto;
     display: inline-block;
     width: 100px;
+    background: #263043;
+    border-radius: 5px;
 }
 
 .single-container > a{
