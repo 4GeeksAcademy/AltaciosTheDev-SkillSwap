@@ -157,7 +157,7 @@ function Main() {
                   onChange={(e) => setNewUser({ ...newUser, gender: e.target.value })}
                 />
                 <TextField id="outlined-basic" label="Number" variant="outlined"
-                  type="number" placeholder="Your Number"
+                  type="text" placeholder="Your Number"
                   value={newUser.number}
                   onChange={(e) => setNewUser({ ...newUser, number: e.target.value })}
                 />
