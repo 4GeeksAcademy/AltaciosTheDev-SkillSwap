@@ -189,9 +189,9 @@ def get_users_skills_associations():
 
 
 
-@api.route("/associations", methods=["PUT"])
+@api.route("/associations/<int:id>", methods=["PUT"])
 @jwt_required()
-def update_user_status():
+def update_user_status(id):
     # Fetch the user from the database
     
 
@@ -199,9 +199,7 @@ def update_user_status():
 
     usuario = User.query.filter_by(email=email).first()
 
-    info_associations = User_Skill_Association.query.filter_by(user_id = usuario.id ).first()
-
-
+    info_associations = User_Skill_Association.query.filter_by(user_id = usuario.id, id = id ).first()
 
     # Check if the user exists
     if info_associations is None:
@@ -217,12 +215,10 @@ def update_user_status():
             if key == col and key != "id":
                 setattr(info_associations, key, datos_usuario[key])
 
-    skill_id = datos_usuario.get("skill_id", None)
+    # skill_id = datos_usuario.get("skill_id", None)
 
-    if skill_id != None:
-        usuario.skill_id = skill_id
-
-
+    # if skill_id != None:
+    #     usuario.skill_id = skill_id
 
     # Commit the changes to the database
     db.session.commit()
