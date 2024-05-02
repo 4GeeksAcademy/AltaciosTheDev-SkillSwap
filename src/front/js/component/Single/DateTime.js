@@ -41,7 +41,7 @@ export default function DateTime({ tutorSkills }) {
 
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <form onSubmit={handleSubmit}>
+            <form >
                 <div className='schedule-container'>
                     <Stack className="choose-pickers" spacing={4} sx={{ width: "250px" }}>
                         <h5>Choose Date & Time:</h5>
