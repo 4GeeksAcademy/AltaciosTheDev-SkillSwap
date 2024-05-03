@@ -1,4 +1,6 @@
 import { Register } from "../pages/register";
+import Swal from 'sweetalert2'
+
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -279,7 +281,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					// setStore({ token: data.access_token })
 					// getActions().getProfile()
-					alert(data.msg)
+					Swal.fire({
+						position: "top-end",
+						icon: "success",
+						title: data.msg,
+						background: "#263043",
+						color: "#FFFFFF",
+						showConfirmButton: false,
+						timer: 1500
+					  });
 					return true
 
 				} 

@@ -26,6 +26,8 @@ import { TutorCard } from "./TutorCard";
 import AchievementCard from "./AchievementCard";
 import PendingCard from "./PendingCard";
 import NewsCard from "./NewsCard";
+import SwiperComponent from "./SwiperComponent";
+
 
 export function Main() {
   const data = [
@@ -197,7 +199,7 @@ export function Main() {
         <NewsCard />
         <div className="pending">
           <h4>Pending</h4>
-          <PendingCard />
+          <SwiperComponent/>
         </div>
       </div>
     </main>

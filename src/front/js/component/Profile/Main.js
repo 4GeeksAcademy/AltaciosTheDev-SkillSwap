@@ -227,9 +227,9 @@ function Main() {
                       <MenuItem value="">
                         
                       </MenuItem>
-                      <MenuItem aria-required value="Beginner">beginner</MenuItem>
-                      <MenuItem value="Intermediate">intermediate</MenuItem>
-                      <MenuItem value="Advanced">advanced</MenuItem>
+                      <MenuItem aria-required value="Beginner">Beginner</MenuItem>
+                      <MenuItem value="Intermediate">Intermediate</MenuItem>
+                      <MenuItem value="Advanced">Advanced</MenuItem>
                     </Select>
                   </FormControl>
                 </Box>
