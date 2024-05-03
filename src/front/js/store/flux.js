@@ -23,8 +23,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			userSkillsAssociations: null,
 			tutorProfile: null,
 			skills: null,
-			categories: null
-
+			categories: null,
+			userSessions: null
 			
 
 			
@@ -112,7 +112,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						method: 'GET',
 						headers: {
 							"Content-Type": "application/json",
-							"Authorization": `Bearer ${localStorage.getItem("token")}`
+							"Authorization": `Bearer ${store.token}`
 						}
 					});
 			
@@ -289,6 +289,41 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 		
 			},
+
+			getUserSessions: async (status) => {
+				const store = getStore()
+
+				try {
+					// Construct URL with query parameters
+					const url = new URL(process.env.BACKEND_URL + "api/user-sessions");
+					url.searchParams.append("status", status);
+					// url.searchParams.append("role", role);
+					// url.searchParams.append("category", category);
+
+			
+					// Fetch the sessions from the backend
+					const resp = await fetch(url, {
+						method: 'GET',
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": `Bearer ${store.token}`
+						}
+					});
+			
+					const data = await resp.json();
+			
+					if (!resp.ok) {
+						throw new Error(data.msg);
+					}
+					setStore({ userSessions: data.sessions });
+					alert(data.msg)
+					return true;
+				} catch (error) {
+					console.log("Error from backend", error);
+					return false;
+				}
+			},
+
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");

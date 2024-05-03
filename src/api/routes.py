@@ -11,6 +11,7 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from random import sample, choice, randint
 from datetime import datetime, timedelta
+from sqlalchemy import or_, and_
 import requests
 
 
@@ -349,6 +350,28 @@ def handle_sessions():
     else:
         sessions = Session.query.all()
         return jsonify([session.serialize() for session in sessions]),200
+    
+#Route for receiving ASSOCIATIONS
+@api.route("/user-sessions", methods=["GET"])
+@jwt_required()
+def get_user_sessions():
+    # Retrieve query parameters
+    status = request.args.get("status")
+
+    user_email = get_jwt_identity()
+
+    user = User.query.filter_by(email=user_email).first()
+    if user is None:
+        return jsonify({"msg": "user not Found"}), 404
+    
+    if status:
+        logged_user_sessions = Session.query.filter(and_(Session.status == status,or_(Session.tutor_id == user.id,Session.learner_id == user.id)))
+
+    else:
+        logged_user_sessions = Session.query.filter(or_(Session.tutor_id == user.id,Session.learner_id == user.id))
+
+    return jsonify({"msg": "User sessions loaded successfully", "sessions": [session.serialize() for session in logged_user_sessions]}),200
+
 
 @api.route("/populate", methods=['POST'])
 def generate_database():
