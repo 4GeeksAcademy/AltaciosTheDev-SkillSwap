@@ -123,9 +123,12 @@ function Main() {
         <button type="submit" className="send-session-details" onClick={() => actions.getAssociations(level, role,category)}>Search</button>
 
       </div>
+      {store.userSkillsAssociations ?
       <div className="learn-tutor-cards-container container">
         {userSkillElements}
-      </div>
+      </div>:
+      <h5 className='mt-5'>Loading skills for you to discover...</h5>
+      }
     </div>
   )
 }

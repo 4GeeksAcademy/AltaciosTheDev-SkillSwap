@@ -316,7 +316,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						throw new Error(data.msg);
 					}
 					setStore({ userSessions: data.sessions });
-					alert(data.msg)
 					return true;
 				} catch (error) {
 					console.log("Error from backend", error);

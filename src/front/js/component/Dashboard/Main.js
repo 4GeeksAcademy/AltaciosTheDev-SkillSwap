@@ -117,7 +117,11 @@ export function Main() {
         <div className="tutors">
           <h4>Recommended</h4>
           <div className="tutor-cards">
-            {randomCardElements}
+            {store.userSkillsAssociations ?
+              randomCardElements :
+              <h5>Loading skills recommended for you...</h5>
+            }
+            
           </div>
         </div>
         <div className="statistics">
