@@ -27,9 +27,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			skills: null,
 			categories: null,
 			userSessions: null
-			
 
-			
+
+
 		},
 		actions: {
 
@@ -44,13 +44,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"password": password
 					})
 				}
-				
-				try{ 
+
+				try {
 					const resp = await fetch(process.env.BACKEND_URL + "/api/login", opts)
-					if(!resp.ok){
+					if (!resp.ok) {
 						alert("Bad Email or Password")
 						return false;
-					} 
+					}
 
 					const data = await resp.json();
 					localStorage.setItem("token", data.access_token);
@@ -58,23 +58,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 					getActions().getProfile()
 					return true;
 
-				} 
-				catch(error) {
+				}
+				catch (error) {
 					console.error("there was a error");
 				}
-		
+
 			},
 
 			logout: () => {
 				localStorage.removeItem("token");
 				localStorage.removeItem("profile");
-			    setStore({ token: null, profile: null });
+				setStore({ token: null, profile: null });
 			},
-			
+
 			getProfile: async () => {
 				const store = getStore()
-				
-				try{ 
+
+				try {
 					const resp = await fetch(process.env.BACKEND_URL + "/api/protected", {
 						method: 'GET',
 						headers: {
@@ -82,10 +82,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"Authorization": "Bearer " + localStorage.getItem("token")
 						},
 					})
-					if(!resp.ok){
+					if (!resp.ok) {
 						alert("there has been some error")
 						return false;
-					} 
+					}
 
 					const data = await resp.json();
 					localStorage.setItem("profile", JSON.stringify(data));
@@ -93,10 +93,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ profile: data })
 
 				}
-				catch(error) {
+				catch (error) {
 					console.error("there was an error getting the profile");
 				}
-		
+
 			},
 			getAssociations: async (level, role, category) => {
 				const store = getStore()
@@ -108,7 +108,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					url.searchParams.append("role", role);
 					url.searchParams.append("category", category);
 
-			
+
 					// Fetch the associations from the backend
 					const resp = await fetch(url, {
 						method: 'GET',
@@ -117,13 +117,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"Authorization": `Bearer ${store.token}`
 						}
 					});
-			
+
 					const data = await resp.json();
-			
+
 					if (!resp.ok) {
 						throw new Error(data.msg);
 					}
-			
+
 					setStore({ userSkillsAssociations: data });
 					return true;
 				} catch (error) {
@@ -134,9 +134,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getTutorProfile: async (id) => {
 				const store = getStore()
 
-				try{
+				try {
 					//fetch the associations from the back end
-					const resp = await fetch(process.env.BACKEND_URL + `api/users/${id}`,{
+					const resp = await fetch(process.env.BACKEND_URL + `api/users/${id}`, {
 						method: 'GET',
 						headers: {
 							"Content-Type": "application/json",
@@ -145,15 +145,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					const data = await resp.json()
 
-					if(!resp.ok){
+					if (!resp.ok) {
 						throw new Error(data.msg)
 					}
 					console.log(data)
-					setStore({tutorProfile: data})
+					setStore({ tutorProfile: data })
 					return id
 				}
 
-				catch(error){
+				catch (error) {
 					console.log("Error from backend", error)
 					return false
 				}
@@ -161,9 +161,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getCategories: async () => {
 				const store = getStore()
 
-				try{
+				try {
 					//fetch the associations from the back end
-					const resp = await fetch(process.env.BACKEND_URL + `api/categories`,{
+					const resp = await fetch(process.env.BACKEND_URL + `api/categories`, {
 						method: 'GET',
 						headers: {
 							"Content-Type": "application/json",
@@ -172,102 +172,120 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					const data = await resp.json()
 
-					if(!resp.ok){
+					if (!resp.ok) {
 						throw new Error(data.msg)
 					}
 					console.log(data)
-					setStore({categories: data})
+					setStore({ categories: data })
 					return true
 				}
 
-				catch(error){
+				catch (error) {
 					console.log("Error from backend", error)
 					return false
 				}
 			},
 
 			getSkills: async () => {
-                const store = getStore()
-                try{
-                    //fetch the associations from the back end
-                    const resp = await fetch(`${process.env.BACKEND_URL}/api/skills`,{
-                        method: 'GET',
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Authorization": `Bearer ${store.token}`
+				const store = getStore()
+				try {
+					//fetch the associations from the back end
+					const resp = await fetch(`${process.env.BACKEND_URL}/api/skills`, {
+						method: 'GET',
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": `Bearer ${store.token}`
 
-                        },
-                    })
-                    const data = await resp.json()
-                    if(!resp.ok){
-                        throw new Error(data.msg)
-                    }
-                    console.log(data)
-                    setStore({ skills: data })
-                    return true
-                }
-                catch(error){
-                    console.log("Error from backend", error)
-                    return false
-                }
-            },
+						},
+					})
+					const data = await resp.json()
+					if (!resp.ok) {
+						throw new Error(data.msg)
+					}
+					console.log(data)
+					setStore({ skills: data })
+					return true
+				}
+				catch (error) {
+					console.log("Error from backend", error)
+					return false
+				}
+			},
 
 			editProfile: async (newUser, id) => {
 				const store = getStore()
-					try {
-						const res = await fetch(process.env.BACKEND_URL + `/api/profile`, {
-							method: 'PUT',
-							body: JSON.stringify(
-								newUser
-							),
-							headers: {
-								'Content-Type': 'application/json',
-								"Authorization": `Bearer ${localStorage.getItem("token")}`
-							},
-						})
-						if(res.ok) {
-							getActions().getProfile()
-							setStore({ profile: newUser })
-							localStorage.setItem("profile", JSON.stringify(newUser));
-							
-							
-						}
-					} catch (error) {
-						return false
-						
+				try {
+					const res = await fetch(process.env.BACKEND_URL + `/api/profile`, {
+						method: 'PUT',
+						body: JSON.stringify(
+							newUser
+						),
+						headers: {
+							'Content-Type': 'application/json',
+							"Authorization": `Bearer ${localStorage.getItem("token")}`
+						},
+					})
+					const data = await res.json();
+					if (res.ok) {
+						getActions().getProfile()
+						setStore({ profile: newUser })
+						localStorage.setItem("profile", JSON.stringify(newUser));
+						Swal.fire({
+							position: "center-center",
+							icon: "success",
+							title: data.mensaje,
+							background: "#263043",
+							color: "#FFFFFF",
+							showConfirmButton: false,
+							timer: 1500
+						});
+
 					}
+				} catch (error) {
+					return false
+
+				}
 
 			},
 			editAssociation: async (id, skill_id, role, level) => {
 				const store = getStore()
-					try {
-						const res = await fetch(process.env.BACKEND_URL + `/api/associations/${id}`, {
-							method: 'PUT',
-							body: JSON.stringify({
-								"skill_id": parseInt(skill_id),
-								"role": role,
-								"level": level
-							}
-								
-							),
-							headers: {
-								'Content-Type': 'application/json',
-								"Authorization": `Bearer ${localStorage.getItem("token")}`
-							},
-						})
-						if(res.ok) {
-							await getActions().getProfile()
-							
-							
+				try {
+					const res = await fetch(process.env.BACKEND_URL + `/api/associations/${id}`, {
+						method: 'PUT',
+						body: JSON.stringify({
+							"skill_id": parseInt(skill_id),
+							"role": role,
+							"level": level
 						}
-					} catch (error) {
-						return false
-						
+
+						),
+						headers: {
+							'Content-Type': 'application/json',
+							"Authorization": `Bearer ${localStorage.getItem("token")}`
+						},
+					})
+					const data = await res.json()
+					if (res.ok) {
+						await getActions().getProfile()
+						Swal.fire({
+							position: "center-center",
+							icon: "success",
+							title: data.mensaje,
+							background: "#263043",
+							color: "#FFFFFF",
+							showConfirmButton: false,
+							timer: 1500
+						});
+
 					}
+				} catch (error) {
+					return false
+
+				}
 
 			},
-			scheduleSession: async (sessionDetails) => {				
-				try{ 
+			scheduleSession: async (sessionDetails) => {
+				try {
 					const resp = await fetch(process.env.BACKEND_URL + "/api/sessions", {
 						method: 'POST',
 						headers: {
@@ -276,9 +294,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 						body: JSON.stringify(sessionDetails)
 					})
 					const data = await resp.json();
-					if(!resp.ok){
+					if (!resp.ok) {
 						throw new Error(data.msg)
-					} 
+					}
 
 					// setStore({ token: data.access_token })
 					// getActions().getProfile()
@@ -290,15 +308,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 						color: "#FFFFFF",
 						showConfirmButton: false,
 						timer: 1500
-					  });
+					});
 					return true
 
-				} 
-				catch(error) {
+				}
+				catch (error) {
 					alert(error)
 					return false
 				}
-		
+
 			},
 
 			getUserSessions: async (status) => {
@@ -311,7 +329,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// url.searchParams.append("role", role);
 					// url.searchParams.append("category", category);
 
-			
+
 					// Fetch the sessions from the backend
 					const resp = await fetch(url, {
 						method: 'GET',
@@ -320,9 +338,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"Authorization": `Bearer ${store.token}`
 						}
 					});
-			
+
 					const data = await resp.json();
-			
+
 					if (!resp.ok) {
 						throw new Error(data.msg);
 					}
@@ -370,24 +388,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ openSidebar: !store.openSidebar })
 			},
 
-			register: async (name,email,number,password) => {
+			register: async (name, email, number, password) => {
 
-				try{
-					let datos={
-						name:name,
-						emai:email,
-						number:number,
-						password:password
+				try {
+					let datos = {
+						name: name,
+						emai: email,
+						number: number,
+						password: password
 					};
-					const resp =await fetch(procces.env.BACKEND_URL+"/signup",{
-						method:"POST",
-						headers:{"Content-Type":"application/json",
+					const resp = await fetch(procces.env.BACKEND_URL + "/signup", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
 						},
-						body:JSON.stringify(datos),
+						body: JSON.stringify(datos),
 					});
 					const data = await resp.json();
 					setStore({ message: data.msg });
-				}catch(error){
+				} catch (error) {
 					console.log("Error en el registro del usuario:", error);
 					return false;
 				}

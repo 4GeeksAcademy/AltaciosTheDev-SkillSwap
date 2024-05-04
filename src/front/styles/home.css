@@ -37,6 +37,7 @@
 /* Colors */
 .gris {
     color: #9e93a4;
+    font-weight: bold;
 }
 .rosa {
     color: #cf1259;
@@ -51,9 +52,7 @@
 .white {
     color: white;
 }
-.amarillo {
-    color: #e4bc44;
-}
+
 .bg-gris {
     background-color: #9e93a4;
 }

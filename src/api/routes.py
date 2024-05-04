@@ -228,7 +228,7 @@ def update_user_status(id):
 
     # Return a response
     return jsonify({
-        'mensaje': 'Status actualizado con éxito',
+        'mensaje': 'Skill actualizada con éxito',
         'usuario': info_associations.serialize()})
 
 

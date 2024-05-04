@@ -6,17 +6,19 @@
 
 .profile-card-container{
     display: flex;
-
+    align-items: center;
 }
 
 .container-border-profile {
     border: 2px solid #c2bac7;   /* <-- en review */
-    padding: 30px 10px 30px 10px;
+    padding: 10px 15px;
     border-radius: 8px;
     background-color: #263046;
     margin-right: 10px;
     
 }
+
+
 .fa-user-pen {
     margin-right: 40px;
     font-size: 30px;
@@ -34,6 +36,8 @@ hr {
 }
 .height-profile {
     height: 100%;
+    overflow: auto;
+    color: white;
 }
 
 .modal-profile {
@@ -57,13 +61,32 @@ hr {
 
 } */
 
+/* .css-dmmspl-MuiFormGroup-root{
+    align-items: center;
+} */
+
+.profile-fullborder{
+    margin-left: auto;
+    margin-right: 0;
+    color: #cf1259;
+    margin-bottom: 10px;
+
+}
+
 @media (min-width: 500px) {
-    .status-contenedor {
+    .status-contenedor{
         display: flex ;
-        justify-content: space-between;
+        justify-content: space-around;
         gap: 30px;
-        align-items: center;
-        align-content: center;
+        align-items: start;
 
     }
+    .tutoring-cont, .learning-cont{
+        display: flex ;
+        justify-content: space-around;
+        gap: 30px;
+        width: 50%;
+
+    }
+    
 }

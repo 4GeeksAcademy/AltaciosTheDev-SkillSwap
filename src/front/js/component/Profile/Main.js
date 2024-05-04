@@ -98,10 +98,6 @@ function Main() {
       <div className="pt-4 px-3 d-flex flex-column gap-4  ">
 
         <div className='d-flex align-items-center'>
-          <h2 className='rosa '>Your Profile</h2>
-
-
-
           <Modal
             className='Modal'
             show={show}
@@ -262,9 +258,9 @@ function Main() {
           <div className="profile-card-container ">
             <img src={personLogo} className="tutor-img" />
             <div className="tutor-text-container ">
-              <p className="tutor-text"><strong className='me-2'>Name:</strong>{store.profile && store.profile.name}</p>
-              <p className="tutor-text"><strong className='me-2'>Email:</strong>{store.profile && store.profile.email}</p>
-              <p className="tutor-text"><strong className='amarillo'>Student</strong></p>
+              <p className="tutor-text "><strong className='me-2 gris'>Name:</strong>{store.profile && store.profile.name}</p>
+              <p className="tutor-text"><strong className='me-2 gris'>Email:</strong>{store.profile && store.profile.email}</p>
+              {/* <p className="tutor-text"><strong className='amarillo'>Student</strong></p> */}
             </div>
           </div>
         </div>
@@ -273,13 +269,13 @@ function Main() {
         <div className='container-border-profile'>
           <div className='d-flex justify-content-between'>
             <h4 className='rosa '>About me</h4>
-            <Button className='amarillo' variant="" onClick={handleShow}>Edit Profile</Button>
+            <Button className='fullborder profile-fullborder' variant="" onClick={handleShow}>Edit Profile</Button>
           </div>
           <hr />
 
           <div className='row ms-xs-3'>
             <div className='col-xs-6 col-md-2 mt-sm-3 ms-md-3 d-flex flex-column'>
-              <span className='gris'>country</span>
+              <span className='gris'>Country</span>
               <p className='white'>{store.profile && store.profile.country}</p>
             </div>
 
@@ -321,7 +317,7 @@ function Main() {
         <div className='container-border-profile'>
           <div className='d-flex justify-content-between'>
             <h4 className='rosa '>Status</h4>
-            <Button className='amarillo' variant="" onClick={handleSkillShow}>Edit Skill</Button>
+            <Button className='fullborder profile-fullborder' variant="" onClick={handleSkillShow}>Edit Skill</Button>
           </div>
           <div className="learning-levels">
             <hr />
@@ -329,30 +325,23 @@ function Main() {
           </div>
 
           <div className='row ms-xs-3'>
-            <div className='col-xs-6 col-md-5 mt-3 m-md-3 ms-md-3 d-flex flex-column me-5'>
+            <div className='col-xs-6 col-md-12 mt-3 m-md-3 ms-md-3 d-flex flex-column me-5'>
 
               <div className='status-contenedor'>
-                <div>
-                  <h6 className='text-danger'>Rol</h6>
-                  {store.profile.skills && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) => <p key={tutor.id}>{tutor.role.charAt(0).toUpperCase() + tutor.role.slice(1)}</p>)}
+                <div className='tutoring-cont'>
+                  <div>
+                    <h6 className='text-danger'>Role</h6>
+                    {store.profile.skills && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) => <p key={tutor.id}>{tutor.role.charAt(0).toUpperCase() + tutor.role.slice(1)}</p>)}
+                  </div>
+                  <div>
+                    <h6 className='text-danger'>Skill</h6>
+                    {store.profile.skills && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) => <p key={tutor.id}>{tutor.skill.charAt(0).toUpperCase() + tutor.skill.slice(1)}</p>)}
+                  </div>
+                  <div>
+                    <h6 className='text-danger '>Level</h6>
+                    {store.profile.skills && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) => <p key={tutor.id}>{tutor.level.charAt(0).toUpperCase() + tutor.level.slice(1)}</p>)}
 
-                  {store.profile.skills && store.profile.skills.filter(role => role.role == "Learner").map((tutor) => <p key={tutor.id}>{tutor.role.charAt(0).toUpperCase() + tutor.role.slice(1)}</p>)}
-
-                  {/* {learnerSkills && learnerSkills.length > 0 && learnerSkills.map((learner) => <p key={learner.id}>{learner.role.charAt(0).toUpperCase() + learner.role.slice(1)}</p>)}
-                   */}
-                </div>
-                <div>
-                  <h6 className='text-danger'>Skill</h6>
-                  {store.profile.skills && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) => <p key={tutor.id}>{tutor.skill.charAt(0).toUpperCase() + tutor.skill.slice(1)}</p>)}
-
-                  {store.profile.skills && store.profile.skills.filter(role => role.role == "Learner").map((tutor) => <p key={tutor.id}>{tutor.skill.charAt(0).toUpperCase() + tutor.skill.slice(1)}</p>)}
-                </div>
-                <div>
-                  <h6 className='text-danger '>Level</h6>
-                  {store.profile.skills && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) => <p key={tutor.id}>{tutor.level.charAt(0).toUpperCase() + tutor.level.slice(1)}</p>)}
-
-                  {store.profile.skills && store.profile.skills.filter(role => role.role == "Learner").map((tutor) => <p key={tutor.id}>{tutor.level.charAt(0).toUpperCase() + tutor.level.slice(1)}</p>)}
-                  {/* {learnerSkills && learnerSkills.length > 0 && learnerSkills.map((learner) => {
+                    {/* {learnerSkills && learnerSkills.length > 0 && learnerSkills.map((learner) => {
                     return (
                       <p key={learner.id}>
 
@@ -363,30 +352,73 @@ function Main() {
                     )
                   })} */}
 
+                  </div>
+
+                  <div className='d-flex flex-column gap-2'>
+
+                    <FormControl className="myformcontrol">
+                      <FormLabel id="demo-radio-buttons-group-label">Select Skill</FormLabel>
+
+                      <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue=""
+                        name="radio-buttons-group"
+                      >
+                        {store.profile.skills && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) =>
+                          <FormControlLabel key={tutor.id} onChange={handleChange} value={tutor.id} control={<Radio />} label="" />
+                        )}
+                      </RadioGroup>
+                    </FormControl>
+                  </div>
+                </div>
+                <div className='learning-cont'>
+                  <div>
+                    <h6 className='text-danger'>Role</h6>
+                    {store.profile.skills && store.profile.skills.filter(role => role.role == "Learner").map((tutor) => <p key={tutor.id}>{tutor.role.charAt(0).toUpperCase() + tutor.role.slice(1)}</p>)}
+
+                    {/* {learnerSkills && learnerSkills.length > 0 && learnerSkills.map((learner) => <p key={learner.id}>{learner.role.charAt(0).toUpperCase() + learner.role.slice(1)}</p>)}
+                   */}
+                  </div>
+                  <div>
+                    <h6 className='text-danger'>Skill</h6>
+                    {store.profile.skills && store.profile.skills.filter(role => role.role == "Learner").map((tutor) => <p key={tutor.id}>{tutor.skill.charAt(0).toUpperCase() + tutor.skill.slice(1)}</p>)}
+                  </div>
+                  <div>
+                    <h6 className='text-danger '>Level</h6>
+                    {store.profile.skills && store.profile.skills.filter(role => role.role == "Learner").map((tutor) => <p key={tutor.id}>{tutor.level.charAt(0).toUpperCase() + tutor.level.slice(1)}</p>)}
+                    {/* {learnerSkills && learnerSkills.length > 0 && learnerSkills.map((learner) => {
+                    return (
+                      <p key={learner.id}>
+
+                        <span >{learner.level.charAt(0).toUpperCase() + learner.level.slice(1)}</span>
+                        <span className='ms-2 text-danger'></span>
+
+                      </p>
+                    )
+                  })} */}
+
+                  </div>
+
+                  <div className='d-flex flex-column gap-2'>
+
+                    <FormControl>
+                      <FormLabel id="demo-radio-buttons-group-label">Select Skill</FormLabel>
+
+                      <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue=""
+                        name="radio-buttons-group"
+                      >
+                        {store.profile.skills && store.profile.skills.filter(role => role.role == "Learner").map((learner) =>
+                          <FormControlLabel key={learner.id} onChange={handleChange} value={learner.id} control={<Radio />} label="" />
+                        )}
+
+
+                      </RadioGroup>
+                    </FormControl>
+                  </div>
                 </div>
 
-                <div className='d-flex flex-column gap-2'>
-
-                  <FormControl>
-                    <FormLabel id="demo-radio-buttons-group-label">Edit</FormLabel>
-
-                    <RadioGroup
-                      aria-labelledby="demo-radio-buttons-group-label"
-                      defaultValue=""
-                      name="radio-buttons-group"
-                    >
-                      {store.profile.skills && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) =>
-                        <FormControlLabel key={tutor.id} onChange={handleChange} value={tutor.id} control={<Radio />} label="" />
-                      )}
-
-                      {store.profile.skills && store.profile.skills.filter(role => role.role == "Learner").map((learner) =>
-                        <FormControlLabel key={learner.id} onChange={handleChange} value={learner.id} control={<Radio />} label="" />
-                      )}
-
-
-                    </RadioGroup>
-                  </FormControl>
-                </div>
 
 
 
