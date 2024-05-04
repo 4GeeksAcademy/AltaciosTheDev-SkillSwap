@@ -53,18 +53,9 @@ function Main() {
   const handleUpdateSkill = async () => {
     await actions.editAssociation(associationToEdit, skill, role, level)
     handleSkillClose()
-    
+
 
   }
-
-
-  const tutorSkills = store.profile.skills && store.profile.skills.length > 0 && store.profile.skills.filter((skill) => {
-    return skill.role == "tutor"
-  })
-  const learnerSkills = store.profile.skills && store.profile.skills.length > 0 && store.profile.skills.filter((skill) => {
-    return skill.role == "learner"
-  })
-  
   // console.log(learnerSkills)
 
 
@@ -90,9 +81,9 @@ function Main() {
 
   //  let skillElements = ""
 
-   useEffect(() => {
+  useEffect(() => {
     actions.getSkills()
-    
+    actions.getProfile()
   }, [])
 
   //Check if store.skill is available
@@ -209,7 +200,7 @@ function Main() {
                         <em>None</em>
                       </MenuItem>
                       {store.skills && store.skills.map(skill => (
-                       <MenuItem key={skill.id} value={skill.id}>{skill.name}</MenuItem>
+                        <MenuItem key={skill.id} value={skill.id}>{skill.name}</MenuItem>
                       ))}
                     </Select>
                   </FormControl>
@@ -225,7 +216,7 @@ function Main() {
                       onChange={(event) => setLevel(event.target.value)}
                     >
                       <MenuItem value="">
-                        
+
                       </MenuItem>
                       <MenuItem aria-required value="Beginner">Beginner</MenuItem>
                       <MenuItem value="Intermediate">Intermediate</MenuItem>
@@ -332,10 +323,10 @@ function Main() {
             <h4 className='rosa '>Status</h4>
             <Button className='amarillo' variant="" onClick={handleSkillShow}>Edit Skill</Button>
           </div>
-            <div className="learning-levels">
-              <hr />
+          <div className="learning-levels">
+            <hr />
 
-            </div>
+          </div>
 
           <div className='row ms-xs-3'>
             <div className='col-xs-6 col-md-5 mt-3 m-md-3 ms-md-3 d-flex flex-column me-5'>
@@ -343,24 +334,24 @@ function Main() {
               <div className='status-contenedor'>
                 <div>
                   <h6 className='text-danger'>Rol</h6>
-                  {store.profile && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) => <p key={tutor.id}>{tutor.role.charAt(0).toUpperCase() + tutor.role.slice(1)}</p>)}
+                  {store.profile.skills && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) => <p key={tutor.id}>{tutor.role.charAt(0).toUpperCase() + tutor.role.slice(1)}</p>)}
 
-                  {store.profile && store.profile.skills.filter(role => role.role == "Learner").map((tutor) => <p key={tutor.id}>{tutor.role.charAt(0).toUpperCase() + tutor.role.slice(1)}</p>)}
+                  {store.profile.skills && store.profile.skills.filter(role => role.role == "Learner").map((tutor) => <p key={tutor.id}>{tutor.role.charAt(0).toUpperCase() + tutor.role.slice(1)}</p>)}
 
                   {/* {learnerSkills && learnerSkills.length > 0 && learnerSkills.map((learner) => <p key={learner.id}>{learner.role.charAt(0).toUpperCase() + learner.role.slice(1)}</p>)}
                    */}
                 </div>
                 <div>
                   <h6 className='text-danger'>Skill</h6>
-                  {store.profile && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) => <p key={tutor.id}>{tutor.skill.charAt(0).toUpperCase() + tutor.skill.slice(1)}</p>)}
+                  {store.profile.skills && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) => <p key={tutor.id}>{tutor.skill.charAt(0).toUpperCase() + tutor.skill.slice(1)}</p>)}
 
-                  {store.profile && store.profile.skills.filter(role => role.role == "Learner").map((tutor) => <p key={tutor.id}>{tutor.skill.charAt(0).toUpperCase() + tutor.skill.slice(1)}</p>)}
+                  {store.profile.skills && store.profile.skills.filter(role => role.role == "Learner").map((tutor) => <p key={tutor.id}>{tutor.skill.charAt(0).toUpperCase() + tutor.skill.slice(1)}</p>)}
                 </div>
                 <div>
                   <h6 className='text-danger '>Level</h6>
-                  {store.profile && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) => <p key={tutor.id}>{tutor.level.charAt(0).toUpperCase() + tutor.level.slice(1)}</p>)}
+                  {store.profile.skills && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) => <p key={tutor.id}>{tutor.level.charAt(0).toUpperCase() + tutor.level.slice(1)}</p>)}
 
-                  {store.profile && store.profile.skills.filter(role => role.role == "Learner").map((tutor) => <p key={tutor.id}>{tutor.level.charAt(0).toUpperCase() + tutor.level.slice(1)}</p>)}
+                  {store.profile.skills && store.profile.skills.filter(role => role.role == "Learner").map((tutor) => <p key={tutor.id}>{tutor.level.charAt(0).toUpperCase() + tutor.level.slice(1)}</p>)}
                   {/* {learnerSkills && learnerSkills.length > 0 && learnerSkills.map((learner) => {
                     return (
                       <p key={learner.id}>
@@ -371,31 +362,31 @@ function Main() {
                       </p>
                     )
                   })} */}
-                  
+
                 </div>
 
                 <div className='d-flex flex-column gap-2'>
-                    
-                    <FormControl>
-                      <FormLabel id="demo-radio-buttons-group-label">Edit</FormLabel>
 
-                      <RadioGroup
-                        aria-labelledby="demo-radio-buttons-group-label"
-                        defaultValue=""
-                        name="radio-buttons-group"
-                      >
-                        {store.profile && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) =>
-                      <FormControlLabel key={tutor.id} onChange={handleChange} value={tutor.id} control={<Radio />} label="" />
-                    )}
+                  <FormControl>
+                    <FormLabel id="demo-radio-buttons-group-label">Edit</FormLabel>
 
-                        {store.profile && store.profile.skills.filter(role => role.role == "Learner").map((learner) =>
-                      <FormControlLabel key={learner.id} onChange={handleChange} value={learner.id} control={<Radio />} label="" />
-                    )}
-                        
-                        
-                      </RadioGroup>
-                    </FormControl>
-                  </div>
+                    <RadioGroup
+                      aria-labelledby="demo-radio-buttons-group-label"
+                      defaultValue=""
+                      name="radio-buttons-group"
+                    >
+                      {store.profile.skills && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) =>
+                        <FormControlLabel key={tutor.id} onChange={handleChange} value={tutor.id} control={<Radio />} label="" />
+                      )}
+
+                      {store.profile.skills && store.profile.skills.filter(role => role.role == "Learner").map((learner) =>
+                        <FormControlLabel key={learner.id} onChange={handleChange} value={learner.id} control={<Radio />} label="" />
+                      )}
+
+
+                    </RadioGroup>
+                  </FormControl>
+                </div>
 
 
 

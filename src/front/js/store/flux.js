@@ -226,6 +226,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							},
 						})
 						if(res.ok) {
+							getActions().getProfile()
 							setStore({ profile: newUser })
 							localStorage.setItem("profile", JSON.stringify(newUser));
 							
