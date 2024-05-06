@@ -23,6 +23,8 @@ import {
 } from "recharts";
 
 import { TutorCard } from "./TutorCard";
+import { SkillCard } from "./SkillCard";
+
 import AchievementCard from "./AchievementCard";
 import PendingCard from "./PendingCard";
 import NewsCard from "./NewsCard";
@@ -100,7 +102,7 @@ export function Main() {
 
   if (randomCards.length > 0) {
     randomCardElements = randomCards.map((association) => (
-      <TutorCard
+      <SkillCard
         key={association.user_skill_association_id}
         user_name={association.user_name}
         skill_name={association.skill_name}
