@@ -319,7 +319,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
-			getUserSessions: async (status) => {
+			getUserSessions: async (status="") => {
 				const store = getStore()
 
 				try {

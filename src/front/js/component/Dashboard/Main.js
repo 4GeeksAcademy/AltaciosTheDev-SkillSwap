@@ -84,6 +84,7 @@ export function Main() {
 
   useEffect(() => {
     actions.getAssociations(level, role, category)
+    actions.getUserSessions() //will always load all sessions in dashboard so pending can have them.
   }, [])
 
   if (store.userSkillsAssociations && store.userSkillsAssociations.length > 0) {
