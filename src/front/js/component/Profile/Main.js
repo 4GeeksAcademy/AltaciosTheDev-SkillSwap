@@ -59,7 +59,7 @@ function Main() {
   }
   // console.log(learnerSkills)
 
-
+  
 
   useEffect(() => {
     setNewUser({
@@ -97,7 +97,7 @@ function Main() {
   return <>
     <div className='height-profile container'>
       <div className="pt-4 px-3 d-flex flex-column gap-4  ">
-
+  
         <div className='d-flex align-items-center'>
           <Modal
             className='Modal'
@@ -270,7 +270,7 @@ function Main() {
         <div className='container-border-profile'>
           <div className='d-flex justify-content-between'>
             <h4 className='rosa '>About me</h4>
-            <Button className='fullborder profile-fullborder' variant="" onClick={handleShow}>Edit Profile</Button>
+            <Button className=' edit-btn ' variant="" onClick={handleShow}>Edit Profile</Button>
           </div>
           <hr />
 
@@ -318,7 +318,7 @@ function Main() {
         <div className='container-border-profile'>
           <div className='d-flex justify-content-between'>
             <h4 className='rosa '>Status</h4>
-            <Button className='fullborder profile-fullborder' variant="" onClick={handleSkillShow}>Edit Skill</Button>
+            <Button className='edit-btn' variant="" onClick={handleSkillShow}>Edit Skill</Button>
           </div>
           <div className="learning-levels">
             <hr />
