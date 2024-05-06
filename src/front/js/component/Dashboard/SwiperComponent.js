@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useEffect, useContext, useState } from 'react'
+import { Context } from "../../store/appContext";
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
@@ -13,6 +15,34 @@ import PendingCard from "./PendingCard";
 
 
 function SwiperComponent() {
+    const { store, actions } = useContext(Context)
+    let pendingSessionsElements = null
+    if (store.userSessions) {
+        let pendingSessions = store.userSessions.filter(session => {
+            return session.status == "Pending"
+        })
+
+        if (pendingSessions) {
+            pendingSessionsElements = pendingSessions.map(session => {
+                return (
+                    <SwiperSlide>
+                        <PendingCard
+                            key={session.id}
+                            learner_name={session.learner_name}
+                            skill_name={session.skill_name}
+                            date={session.date}
+                            time={session.time}
+                            status={session.status}
+                            id={session.id}
+                        />
+                    </SwiperSlide>
+                )
+            })
+            console.log(pendingSessions)
+
+        }
+    }
+
     return (
         <Swiper
             style={{ maxWidth: "400px", height: "100%" }} // Set width and height to 100% to fill the grid cell
@@ -34,10 +64,14 @@ function SwiperComponent() {
                 },
             }}
         >
-            <SwiperSlide><PendingCard /></SwiperSlide>
-            <SwiperSlide><PendingCard /></SwiperSlide>
-            <SwiperSlide><PendingCard /></SwiperSlide>
-            <SwiperSlide><PendingCard /></SwiperSlide>
+
+            {pendingSessionsElements && pendingSessionsElements.length > 0 ? (
+                pendingSessionsElements
+            ) : (
+                <SwiperSlide>
+                    <h5>Loading your pending sessions...</h5>
+                </SwiperSlide>
+            )}
         </Swiper>
     )
 }
