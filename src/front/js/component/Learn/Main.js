@@ -1,5 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { TutorCard } from "../Dashboard/TutorCard";
+import { SkillCard } from "../Dashboard/SkillCard";
+
 import { Context } from "../../store/appContext";
 
 import Box from '@mui/material/Box';
@@ -29,7 +31,7 @@ function Main() {
   // Check if store.userSkillsAssociations is available
   if (store.userSkillsAssociations) {
     userSkillElements = store.userSkillsAssociations.map((association) => (
-      <TutorCard
+      <SkillCard
         key={association.user_skill_association_id}
         user_name={association.user_name}
         skill_name={association.skill_name}

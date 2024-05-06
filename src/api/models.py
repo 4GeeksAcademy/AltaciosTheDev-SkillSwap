@@ -174,5 +174,9 @@ class Favorite(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "favorite_user_id": self.favorite_user_id,
-            "favorite_user_name": self.favorite_user.name if self.favorite_user else None
+            "favorite_user_name": self.favorite_user.name if self.favorite_user else None,
+            "favorite_user_country": self.favorite_user.country if self.favorite_user else None,
+            "favorite_user_city": self.favorite_user.city if self.favorite_user else None,
+            "favorite_user_gender": self.favorite_user.gender if self.favorite_user else None
+
         }
