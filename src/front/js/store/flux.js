@@ -231,7 +231,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						setStore({ profile: newUser })
 						localStorage.setItem("profile", JSON.stringify(newUser));
 						Swal.fire({
-							position: "center-center",
+							position: "center",
 							icon: "success",
 							title: data.mensaje,
 							background: "#263043",
@@ -268,7 +268,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (res.ok) {
 						await getActions().getProfile()
 						Swal.fire({
-							position: "center-center",
+							position: "center",
 							icon: "success",
 							title: data.mensaje,
 							background: "#263043",
@@ -301,7 +301,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// setStore({ token: data.access_token })
 					// getActions().getProfile()
 					Swal.fire({
-						position: "top-end",
+						position: "center",
 						icon: "success",
 						title: data.msg,
 						background: "#263043",
@@ -350,6 +350,45 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error from backend", error);
 					return false;
 				}
+			},
+			editSession: async (status, id) => {
+				const store = getStore()
+				try {
+					const res = await fetch(process.env.BACKEND_URL + `/api/sessions/${id}`, {
+						method: 'PUT',
+						body: JSON.stringify({
+							"status": status
+						}
+
+						),
+						headers: {
+							'Content-Type': 'application/json',
+							"Authorization": `Bearer ${store.token}`
+						},
+					})
+					const data = await res.json()
+					if (!res.ok) {
+						throw new Error(data.msg);
+					}
+
+					Swal.fire({
+						position: "center",
+						icon: "success",
+						title: data.msg,
+						background: "#263043",
+						color: "#FFFFFF",
+						showConfirmButton: false,
+						timer: 1500
+					});
+					getActions().getUserSessions()
+					return true
+
+				} catch (error) {
+					console.error(error)
+					return false
+
+				}
+
 			},
 
 			// Use getActions to call a function within a fuction

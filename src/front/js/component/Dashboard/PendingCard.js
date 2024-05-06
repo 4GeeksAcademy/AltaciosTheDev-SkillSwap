@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect, useContext, useState } from 'react'
+import { Context } from "../../store/appContext";
 
-function PendingCard({learner_name, skill_name, date, time, status}) {
+function PendingCard({learner_name, skill_name, date, time, status, id}) {
+    const { store, actions } = useContext(Context)
+
     return (
         <div className="pending-card">
             <div>
@@ -15,8 +18,8 @@ function PendingCard({learner_name, skill_name, date, time, status}) {
             </div>
             
             <div className="pending-card-inner">
-                <button type="button" className="btn btn-danger pending-btn">Reject</button>
-                <button type="button" className="btn btn-success pending-btn">Accept</button>
+                <button type="button" className="btn btn-danger pending-btn" onClick={() => actions.editSession("Rejected", id)}>Reject</button>
+                <button type="button" className="btn btn-success pending-btn" onClick={() => actions.editSession("Accepted", id)}>Accept</button>
             </div>
         </div>
     )

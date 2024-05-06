@@ -373,6 +373,37 @@ def get_user_sessions():
     return jsonify({"msg": "User sessions loaded successfully", "sessions": [session.serialize() for session in logged_user_sessions]}),200
 
 
+@api.route("/sessions/<int:id>", methods=["PUT"])
+@jwt_required()
+def update_user_session(id):
+    # Fetch the user from the database
+    email = get_jwt_identity()
+    status = request.json.get("status")
+
+    user = User.query.filter_by(email=email).first()
+
+    if user is None:
+        return jsonify({"msg": "User not found"}), 404
+
+    user_session = Session.query.filter_by(id = id).first()
+
+    # Check if the user exists
+    if user_session is None:
+        return jsonify({"msg": "Session not found"}), 404
+
+    user_session.status = status 
+
+    # Commit the changes to the database
+    db.session.commit()
+
+    if status == "Rejected":
+        # Return a response
+        return jsonify({'msg': 'Session was rejected successfully'})
+        
+    elif status == "Accepted":
+        # Return a response
+        return jsonify({'msg': 'Session was accepted successfully'})
+
 @api.route("/populate", methods=['POST'])
 def generate_database():
 

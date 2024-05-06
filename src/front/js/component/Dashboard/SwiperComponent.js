@@ -33,10 +33,13 @@ function SwiperComponent() {
                             date={session.date}
                             time={session.time}
                             status={session.status}
+                            id={session.id}
                         />
                     </SwiperSlide>
                 )
             })
+            console.log(pendingSessions)
+
         }
     }
 
