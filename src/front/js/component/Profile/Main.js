@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Context } from "../../store/appContext";
 import personLogo from "../../../img/personLogo.png"
+import femaleLogo from "../../../img/femaleLogo.png"
 import { BiSolidTired } from 'react-icons/bi';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -254,9 +255,9 @@ function Main() {
 
         </div>
 
-        <div className=' container-border-profile'>
-          <div className="profile-card-container ">
-            <img src={personLogo} className="tutor-img" />
+        <div className=' container-border-profile'> 
+          <div className="profile-card-container "> 
+            <img src={store.profile && store.profile.gender == "Male" ? personLogo : femaleLogo} className="tutor-img" />
             <div className="tutor-text-container ">
               <p className="tutor-text "><strong className='me-2 gris'>Name:</strong>{store.profile && store.profile.name}</p>
               <p className="tutor-text"><strong className='me-2 gris'>Email:</strong>{store.profile && store.profile.email}</p>
