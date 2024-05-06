@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom"
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import "../../styles/home.css";
@@ -30,7 +31,9 @@ export const Home = () => {
             <div className="txt-right mx-5 me-5 mt-5">
               <h4 className="text-hero"><strong> <span className="rosa ">/</span> Learn, Teach, Connect, One Skill at a Time</strong></h4>
               <p className="p-hero">Exchange Skills and Knowledge with a Global Community of Learners and Mentors</p>
-              <button className="boton-hero">Join Now!</button>
+              <Link to="/login">
+               <button className="boton-hero">Join Now!</button>
+              </Link>
             </div>
           </div>
         </div>
@@ -95,8 +98,8 @@ export const Home = () => {
     </div>
       <div className="d-flex justify-content-end bg-azul-oscuro pb-5 position-relative"></div>
 
-      <div className="d-none d-md-block vh-100 bg-gris position-relative rounded-2 d-flex">
-        <div className="bg-verde caja-flotante position-absolute start-50 translate-middle d-flex gap-3 shadow">
+      <div className="d-none d-md-block vh-100 bg-azul-claro position-relative  d-flex">
+        <div className="bg-verde caja-flotante position-absolute start-50 rounded-2 translate-middle d-flex gap-3 shadow">
           <div className="gris">
             <h4 className="mb-5">We can help you reach your potential, <br/> <span className="rosa">even if you...</span> </h4>
             <p className="my-4 p-info">. feel <strong className="rosa">OVERWHELMED</strong> with learning something new. </p>
@@ -111,7 +114,7 @@ export const Home = () => {
             <p className="my-5 p-info ">"If so, <strong className="rosa">Skillswap</strong> provides the community you need and empowers 
               you to make a difference within it."</p>
               <div className="d-sm-none d-lg-block d-flex justify-content-end">
-              <button className="boton mt-3">Trust us and JOIN!</button>
+              <Link to="/login"><button className="boton mt-3">Trust us and JOIN!</button></Link>
               </div>
             
           </div>
@@ -176,11 +179,14 @@ export const Home = () => {
       </div>
       <div className="bg-azul-oscuro"></div>
 
-      <div className="bg-gris ">
+      <div className="bg-azul-claro ">
 
         <div className="d-flex justify-content-between p-5">
           <h1>Stories from real <span className="pink">people</span></h1>
-          <button className="boton rounded-2">View All</button>
+          <Link to="/testimonials">
+            <button className="boton rounded-2">View All</button>
+          </Link>
+          
         </div>
 
         <div className="d-flex justify-content-center gap-4 pb-5 mx-3">

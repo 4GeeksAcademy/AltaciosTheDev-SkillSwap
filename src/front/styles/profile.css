@@ -90,3 +90,19 @@ hr {
     }
     
 }
+
+.edit-btn{
+    background-color: transparent;
+    border: 2px solid #cf1259;
+    padding: 8px 10px;
+    border-radius: 16px;
+    transition: all .3s ease-in-out;
+    color: white;
+    font-size: 15px;
+    margin-bottom: 10px
+}
+.edit-btn:hover {
+    background-color: #cf1259;
+    transition: all .3s ease-in;
+    color: white;
+}

@@ -1,9 +1,10 @@
 import React from 'react'
 import "../../styles/pricing.css";
+import { Link } from "react-router-dom";
 
 const pricingCard = () => {
   return <>
-  <div className='bg-gris'>
+  <div className='bg-pricing'>
     
   
     <h1 className='text-center pt-3 pb-4'>The SkillSwap Plans</h1>
@@ -22,14 +23,14 @@ const pricingCard = () => {
             <span className='black'> Limited to 3 1 on 1 sessions per each 1 on 1 session that the user teached</span>
           </i>
            <i class="fa-regular fa-circle-xmark ">
-            <span className='black'> minimum 1 teaching in 1 month </span>
+            <span className='black'> Minimum 1 teaching in 1 month </span>
            </i>
            <i class="fa-regular fa-circle-xmark"></i>
            </div>
 
-            <div className='d-flex justify-content-center price-btn-margin'>
+            <Link to="/login" className='d-flex justify-content-center price-btn-margin'>
               <button className='boton price-btn'>Create Free Account</button>
-            </div>
+            </Link>
 
           </div>
 
@@ -46,7 +47,7 @@ const pricingCard = () => {
             
           <div className='body-card p-4'>
            <div className='d-flex flex-column gap-4'>
-
+              
               <i className="fa-regular fa-circle-check ">
                 <span className='black'>  All features of the free plan </span>
               </i>
@@ -54,14 +55,16 @@ const pricingCard = () => {
               <i className="fa-regular fa-circle-check ">
                 <span className='black' > No requirement to teach sessions to receive learning sessions </span>
               </i>
-              <i className="fa-regular fa-circle-check "></i>
-              <i className="fa-regular fa-circle-check "></i>
+              <i className="fa-regular fa-circle-check ">
+                <span className='black'> Access to 3 mentoring sessions per month</span>
+              </i>
+              {/* <i className="fa-regular fa-circle-check "></i> */}
               
             </div>
 
-            <div className='d-flex justify-content-center price-btn-margin'>
+            <Link to="/login" className='d-flex justify-content-center price-btn-margin'>
               <button className='boton price-btn mt-5'>$9.99/Monthly</button>
-            </div>
+            </Link>
 
          </div>
       </div>
@@ -83,13 +86,15 @@ const pricingCard = () => {
             <i className="fa-regular fa-circle-check ">
               <span className='black' >  Keep access forever with only 1 payment at a discounted price. </span>
             </i>
-            <i className="fa-regular fa-circle-check "></i>
+            <i className="fa-regular fa-circle-check ">
+              <span className='black'>  Unlimited mentoring</span>
+            </i>
             
            </div>
 
-            <div className='d-flex justify-content-center price-btn-margin'>
+            <Link to="/login" className='d-flex justify-content-center price-btn-margin'>
               <button className='boton price-btn mt-4'>$199/One Time Only</button>
-            </div>
+            </Link>
           </div>
 
           
