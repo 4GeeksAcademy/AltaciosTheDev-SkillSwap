@@ -38,8 +38,9 @@ class User(db.Model):
             "city": self.city,
             "gender": self.gender,
             "bio":self.bio if self.bio else None,
-            "skills": [skill.serialize() for skill in self.skills] if self.skills else None
-            # do not serialize the password, its a security breach
+            "skills": [skill.serialize() for skill in self.skills] if self.skills else None,
+            "favorites": [favorite.serialize() for favorite in self.favorites] if self.favorites else None
+
         }
     
 class Category(db.Model):
@@ -154,4 +155,24 @@ class Session(db.Model):
             "skill_name": self.skill.name,
         }
 
+class Favorite(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user = db.relationship("User", foreign_keys=[user_id], backref="favorites")  # Added user relationship with backref
+    favorite_user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    favorite_user = db.relationship("User", foreign_keys=[favorite_user_id], backref="favorited_by")
 
+    def __init__(self, user_id, favorite_user_id):
+        self.user_id = user_id
+        self.favorite_user_id = favorite_user_id
+
+    def __repr__(self):
+        return f'<Favorite user_id:{self.user_id} favorite_user_id:{self.favorite_user_id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "favorite_user_id": self.favorite_user_id,
+            "favorite_user_name": self.favorite_user.name if self.favorite_user else None
+        }

@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint, current_app
-from api.models import db, User, Category, Skill, User_Skill_Association, Session
+from api.models import db, User, Category, Skill, User_Skill_Association, Session, Favorite
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token
@@ -97,7 +97,7 @@ def get_users():
 
 #Route for receiving specific user info 
 @api.route("/users/<int:id>", methods=["GET"])
-@jwt_required()
+# @jwt_required()
 def get_user(id):
 
     user = User.query.filter_by(id=id).one_or_none()
@@ -448,7 +448,7 @@ def generate_database():
     # Commit the changes
     db.session.commit()
         
-# Get all users
+    # Get all users
     users = User.query.all()
     
     # Get all skills
@@ -496,4 +496,28 @@ def generate_database():
 
     # Commit the changes
     db.session.commit()
+
+    # Get all users
+    users = User.query.all()
+
+    # Populate favorites for each user
+    for user in users:
+        favorite_users = []  # List to store selected favorite users
+        available_users = [u for u in users if u != user and u not in user.favorites]  # Filter available users
+
+        # Ensure we don't select more than 3 favorites or run out of available users
+        while len(favorite_users) < 3 and available_users:
+            fav_user = sample(available_users, 1)[0]  # Select a random user from available users
+            favorite_users.append(fav_user)
+            available_users.remove(fav_user)  # Remove selected user from available users
+
+        # Add selected favorite users to the favorites table
+        for fav_user in favorite_users:
+            favorite = Favorite(user_id=user.id, favorite_user_id=fav_user.id)
+            db.session.add(favorite)
+
+    # Commit the changes
+    db.session.commit()
+
+
     return jsonify({"msg": "Created"}), 200
