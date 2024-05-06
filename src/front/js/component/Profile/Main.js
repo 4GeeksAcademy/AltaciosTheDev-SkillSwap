@@ -94,7 +94,7 @@ function Main() {
   // }
 
   return <>
-    <div className='height-profile '>
+    <div className='height-profile container'>
       <div className="pt-4 px-3 d-flex flex-column gap-4  ">
 
         <div className='d-flex align-items-center'>
