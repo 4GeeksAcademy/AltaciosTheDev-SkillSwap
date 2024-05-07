@@ -26,9 +26,10 @@ import { TutorCard } from "./TutorCard";
 import { SkillCard } from "./SkillCard";
 
 import AchievementCard from "./AchievementCard";
-import PendingCard from "./PendingCard";
+import UpcommingCard from "./UpcommingCard";
 import NewsCard from "./NewsCard";
 import SwiperComponent from "./SwiperComponent";
+import SwiperUpcomming from "./SwiperUpcomming";
 
 
 export function Main() {
@@ -200,6 +201,10 @@ export function Main() {
       </div>
       <div className="right-side">
         <NewsCard />
+        <div className="pending">
+          <h4>Upcomming</h4>
+          <SwiperUpcomming/>
+        </div>
         <div className="pending">
           <h4>Pending</h4>
           <SwiperComponent/>

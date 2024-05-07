@@ -158,7 +158,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false
 				}
 			},
-			getCategories: async () => {
+			getCategories: 	async () => {
 				const store = getStore()
 
 				try {

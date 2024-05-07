@@ -337,7 +337,7 @@
 .right-side{
     grid-area: right-side;
     display:grid;
-    grid-template-rows: auto auto;
+    grid-template-rows: repeat(3, auto);
     align-content: space-around;
 }
 
@@ -384,13 +384,14 @@
 /* PENDING SECTION END */
 
 /* NEWS START */
-.news{
+/* .news{
     margin-bottom:20px;
-}
+} */
 
 .news-image{
     max-width: 100%;
-    max-height: 250px;
+    max-height: 160px;
+    object-fit: cover;
 }
 
 /* NEWS END */
@@ -400,7 +401,10 @@
 /* MAIN*/
 
 /* @media screen and (max-width: 1400px){ */
-
+.upcomming{
+    display: flex;
+    justify-content: space-between;
+}
 
 /* Medium <= 992px */
 @media screen and (max-width: 1200px){

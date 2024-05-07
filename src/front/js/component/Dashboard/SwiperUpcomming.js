@@ -12,17 +12,18 @@ import { EffectCreative, Pagination } from 'swiper/modules';
 import 'swiper/css/effect-creative';
 
 import PendingCard from "./PendingCard";
+import UpcommingCard from "./UpcommingCard";
 
 
-function SwiperComponent() {
+function SwiperUpcomming() {
     const { store, actions } = useContext(Context)
-    let pendingSessionsElements = null
+    let upcommingSessionsElements = null
     if (store.userSessions) {
-        let pendingSessions = store.userSessions.filter(session => {
-            return session.status == "Pending"
+        let upcommingSessions = store.userSessions.filter(session => {
+            return session.status == "Accepted"
         })
 
-        pendingSessions.sort((a, b) => {
+        upcommingSessions.sort((a, b) => {
             const dateA = new Date(a.date);
             const dateB = new Date(b.date);
 
@@ -41,11 +42,11 @@ function SwiperComponent() {
             return differenceA - differenceB;
         })
 
-        if (pendingSessions) {
-            pendingSessionsElements = pendingSessions.map(session => {
+        if (upcommingSessions) {
+            upcommingSessionsElements = upcommingSessions.map(session => {
                 return (
                     <SwiperSlide>
-                        <PendingCard
+                        <UpcommingCard
                             key={session.id}
                             learner_name={session.learner_name}
                             skill_name={session.skill_name}
@@ -57,7 +58,7 @@ function SwiperComponent() {
                     </SwiperSlide>
                 )
             })
-            console.log(pendingSessions)
+            console.log(upcommingSessions)
 
         }
     }
@@ -84,15 +85,15 @@ function SwiperComponent() {
             }}
         >
 
-            {pendingSessionsElements && pendingSessionsElements.length > 0 ? (
-                pendingSessionsElements
+            {upcommingSessionsElements && upcommingSessionsElements.length > 0 ? (
+                upcommingSessionsElements
             ) : (
                 <SwiperSlide>
-                    <h5>Loading your pending sessions...</h5>
+                    <h5>Loading your upcomming sessions...</h5>
                 </SwiperSlide>
             )}
         </Swiper>
     )
 }
 
-export default SwiperComponent
+export default SwiperUpcomming

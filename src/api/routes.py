@@ -547,6 +547,7 @@ def generate_database():
             favorite = Favorite(user_id=user.id, favorite_user_id=fav_user.id)
             db.session.add(favorite)
 
+
     # Commit the changes
     db.session.commit()
 
