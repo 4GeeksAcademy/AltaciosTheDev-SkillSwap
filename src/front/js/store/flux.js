@@ -26,7 +26,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			tutorProfile: null,
 			skills: null,
 			categories: null,
-			userSessions: null
+			userSessions: null,
+			achievements: null
 
 
 
@@ -56,6 +57,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					localStorage.setItem("token", data.access_token);
 					setStore({ token: data.access_token })
 					getActions().getProfile()
+					getActions().getAchievements()
 					return true;
 
 				}
@@ -381,12 +383,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 						timer: 1500
 					});
 					getActions().getUserSessions()
+					getActions().getAchievements()
 					return true
 
 				} catch (error) {
 					console.error(error)
 					return false
 
+				}
+
+			},
+			getAchievements: async () => {
+				const store = getStore()
+				try {
+					const res = await fetch(process.env.BACKEND_URL + "/api/achievements", {
+						method: 'GET',
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": `Bearer ${store.token}`
+						},
+					})
+					const data = await res.json();
+					if (!res.ok) {
+						throw new Error(data.msg);
+					}
+					console.log(data.details)
+					setStore({ achievements: data.details })
+
+				}
+				catch (error) {
+					console.error(error);
 				}
 
 			},

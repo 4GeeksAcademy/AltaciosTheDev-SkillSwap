@@ -86,6 +86,7 @@ export function Main() {
   useEffect(() => {
     actions.getAssociations(level, role, category)
     actions.getUserSessions() //will always load all sessions in dashboard so pending can have them.
+    actions.getAchievements() // will always load all achievements 
   }, [])
 
   if (store.userSkillsAssociations && store.userSkillsAssociations.length > 0) {
@@ -127,7 +128,7 @@ export function Main() {
               randomCardElements :
               <h5>Loading skills recommended for you...</h5>
             }
-            
+
           </div>
         </div>
         <div className="statistics">
@@ -193,9 +194,22 @@ export function Main() {
         <div className="achievements">
           <h4>Achievements</h4>
           <div className="achievement-cards">
-            <AchievementCard title="Taught" icon={<BsPersonWorkspace className="card_icon achievement-icon" />} />
-            <AchievementCard title="Learned" icon={<BsMortarboardFill className="card_icon achievement-icon" />} />
-            <AchievementCard title="Connected" icon={<BsFillPeopleFill className="card_icon achievement-icon" />} />
+            <AchievementCard
+              title="Sessions Tutored"
+              count={store.achievements ? store.achievements.sessions_taught : "Loading..."}
+              icon={<BsPersonWorkspace className="card_icon achievement-icon" />}
+            />
+            <AchievementCard
+              title="Sessions Learned"
+              count={store.achievements ? store.achievements.sessions_learned : "Loading..."}
+              icon={<BsMortarboardFill className="card_icon achievement-icon" />}
+            />
+            <AchievementCard
+              title="Users Connected"
+              count={store.achievements ? store.achievements.users_connected : "Loading..."}
+              icon={<BsFillPeopleFill className="card_icon achievement-icon" />}
+            />
+            
           </div>
         </div>
       </div>
@@ -203,11 +217,11 @@ export function Main() {
         <NewsCard />
         <div className="pending">
           <h4>Upcomming</h4>
-          <SwiperUpcomming/>
+          <SwiperUpcomming />
         </div>
         <div className="pending">
           <h4>Pending</h4>
-          <SwiperComponent/>
+          <SwiperComponent />
         </div>
       </div>
     </main>

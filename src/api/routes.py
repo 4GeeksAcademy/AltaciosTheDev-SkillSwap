@@ -404,6 +404,38 @@ def update_user_session(id):
         # Return a response
         return jsonify({'msg': 'Session was accepted successfully'})
 
+@api.route("/achievements", methods=["GET"])
+@jwt_required()
+def get_achievements():
+    # Fetch the user from the database
+    email = get_jwt_identity()
+    user = User.query.filter_by(email=email).first()
+
+    if user is None:
+        return jsonify({"msg": "User not found"}), 404
+
+    # Query for counting sessions learned by Enzo Altamirano
+    sessions_learned_count = Session.query.filter(Session.status == 'Accepted', Session.learner_id == user.id).count()
+
+    # Query for counting sessions taught by Enzo Altamirano
+    sessions_taught_count = Session.query.filter(Session.status == 'Accepted', Session.tutor_id== user.id).count()
+
+    connections = db.session.query(
+        db.func.distinct(db.case([(Session.tutor_id == user.id, Session.learner_id)], else_=Session.tutor_id))
+    ).filter(
+        ((Session.tutor_id == user.id) & (Session.learner_id != user.id) & (Session.status == "Accepted")) |
+        ((Session.learner_id == user.id) & (Session.tutor_id != user.id) & (Session.status == "Accepted"))
+    ).subquery()
+
+    unique_connections_count = db.session.query(db.func.count()).select_from(connections).scalar()
+
+    return jsonify({'msg': 'Achievements retrieved successfully',
+        'details': {'sessions_learned': sessions_learned_count,
+                    'sessions_taught': sessions_taught_count,
+                    'users_connected': unique_connections_count}                
+        })
+
+
 @api.route("/populate", methods=['POST'])
 def generate_database():
 
