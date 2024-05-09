@@ -27,9 +27,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			skills: null,
 			categories: null,
 			userSessions: null,
-			achievements: null
-
-
+			achievements: null,
+			statistics: null
 
 		},
 		actions: {
@@ -58,6 +57,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ token: data.access_token })
 					getActions().getProfile()
 					getActions().getAchievements()
+					getActions().getStatistics()
+
 					return true;
 
 				}
@@ -382,8 +383,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						showConfirmButton: false,
 						timer: 1500
 					});
-					getActions().getUserSessions()
-					getActions().getAchievements()
+					// These functions are marked as async now
+					await getActions().getUserSessions();
+					await getActions().getAchievements();
+					await getActions().getStatistics();
 					return true
 
 				} catch (error) {
@@ -409,6 +412,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 					console.log(data.details)
 					setStore({ achievements: data.details })
+
+				}
+				catch (error) {
+					console.error(error);
+				}
+
+			},
+			getStatistics: async () => {
+				const store = getStore()
+				try {
+					const res = await fetch(process.env.BACKEND_URL + "/api/statistics", {
+						method: 'GET',
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": `Bearer ${store.token}`
+						},
+					})
+					const data = await res.json(); 
+					if (!res.ok) {  
+						throw new Error(data.msg); 
+					}
+					console.log(data.details)
+					setStore({ statistics: data.details }) 
 
 				}
 				catch (error) {
