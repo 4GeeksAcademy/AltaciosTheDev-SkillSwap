@@ -751,3 +751,55 @@ def generate_database():
 
 
     return jsonify({"msg": "Created"}), 200
+
+
+#Add a Favorite
+@api.route("/favorites", methods=["POST"])
+@jwt_required()
+def addFavorite():
+    favorite_user_id = request.json.get("favorite_user_id", None)
+    
+    user_email = get_jwt_identity()
+
+    user = User.query.filter_by(email=user_email).first()
+    if user is None:
+        return jsonify({"msg": "user not Found"}), 404
+
+    new_favorite = Favorite(user_id=user.id, favorite_user_id=favorite_user_id)
+
+
+
+    exist = Favorite.query.filter_by(user_id=user.id, favorite_user_id=favorite_user_id).first()
+    if exist is not None:
+        return jsonify({"msg": "The user is already in your favorites"}), 403
+    
+
+
+    db.session.add(new_favorite)
+    db.session.commit()
+
+    return jsonify({"msg":"user favorite added successful"})
+
+#Delete a favorite
+@api.route("/favorites/<int:id>", methods=["DELETE"])
+@jwt_required()
+def deleteFavorite(id):
+    
+    user_email = get_jwt_identity()
+
+    user = User.query.filter_by(email=user_email).first()
+    if user is None:
+        return jsonify({"msg": "user not Found"}), 404
+
+    favorite = Favorite.query.filter_by(id=id).first()
+    if favorite is None:
+        return jsonify({"msg": "favorite not Found"}), 404
+
+
+
+
+    
+    db.session.delete(favorite)
+    db.session.commit()
+
+    return jsonify({"msg":"user favorite deleted successful"})

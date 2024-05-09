@@ -443,6 +443,107 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			},
 
+			addFavorite: async (id) => {
+				const store = getStore()
+					const actions = getActions()
+					const currentFavorite = store.profile.favorites && store.profile.favorites.find(item => item.favorite_user_id == id)
+					if (currentFavorite) {
+
+						actions.deleteFavorite(currentFavorite.id)
+						actions.getProfile()
+
+						return null
+					}
+					const res = await fetch(process.env.BACKEND_URL + `/api/favorites`, {
+						method: 'POST',
+						body: JSON.stringify({
+							"favorite_user_id": parseInt(id),
+						}
+
+						),
+						headers: {
+							'Content-Type': 'application/json',
+							"Authorization": `Bearer ${store.token}`
+						},
+					})
+					const data = await res.json()
+					console.log(res.status)
+					if (res.status == 404 || res.status == 403) {
+						Swal.fire({
+							position: "center",
+							icon: "error",
+							title: data.msg,
+							background: "#263043",
+							color: "#FFFFFF",
+							showConfirmButton: false,
+							timer: 1500
+						});
+						return false
+					}
+					// if(res.status == 401) {
+					// 	getActions().logout()
+					// }
+
+					Swal.fire({
+						position: "center",
+						icon: "success",
+						title: data.msg,
+						background: "#263043",
+						color: "#FFFFFF",
+						showConfirmButton: false,
+						timer: 1500
+					});
+					// actions.getUserSessions()
+					actions.getProfile()
+					return true
+
+
+			},
+
+			deleteFavorite: async (id) => {
+				const store = getStore()
+				try {
+					const res = await fetch(process.env.BACKEND_URL + `/api/favorites/${id}`, {
+						method: 'DELETE',
+						headers: {
+							'Content-Type': 'application/json',
+							"Authorization": `Bearer ${store.token}`
+						},
+					})
+					const data = await res.json()
+					if (!res.ok) {
+						// if(res.status == 401) getActions().logout()
+						
+						throw new Error(data.msg);
+					}
+
+					Swal.fire({
+						position: "center",
+						icon: "success",
+						title: data.msg,
+						background: "#263043",
+						color: "#FFFFFF",
+						showConfirmButton: false,
+						timer: 1500
+					});
+					getActions().getProfile()
+					return true
+
+				} catch (error) {
+					console.error(error)
+					return false
+
+				}
+
+			},
+
+
+
+
+
+
+
+
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");

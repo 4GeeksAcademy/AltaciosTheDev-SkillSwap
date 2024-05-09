@@ -40,6 +40,9 @@ function Main() {
         user_gender={association.user_gender}
         category_name={association.category_name}
         getTutorProfile={() => actions.getTutorProfile(association.user_id)}
+        addFavorite={() => actions.addFavorite(association.user_id)}
+        id={association.user_id}
+
       />
     ));
   }

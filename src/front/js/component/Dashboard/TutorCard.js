@@ -3,9 +3,10 @@ import personLogo from "../../../img/personLogo.png"
 import femaleLogo from "../../../img/femaleLogo.png"
 import { BsStar } from "react-icons/bs";
 import { BsStarFill } from "react-icons/bs";
+import { MdDeleteOutline } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 
-export const TutorCard = ({ user_name, user_country, user_city, user_gender, getTutorProfile}) => {
+export const TutorCard = ({ user_name, user_country, user_city, user_gender, getTutorProfile, deleteFavorite}) => {
     const navigate = useNavigate()
    // Define goToTutorProfile as async function
    const goToTutorProfile = async () => {
@@ -27,7 +28,8 @@ export const TutorCard = ({ user_name, user_country, user_city, user_gender, get
         <div className="dashboard-card">
             <div className="tutor-card-header">
                 <h5 className="tutor-card-title">{user_name}</h5>
-                <BsStarFill className="tutor-card-icon icon-favorite" />
+                <MdDeleteOutline onClick={deleteFavorite} className="tutor-card-icon delete-icon text-danger" />
+                
             </div>
             <div className="dashboard-card-inner">
                 <img src={user_gender == "Male" ? personLogo : femaleLogo} className="tutor-img" />

@@ -3,3 +3,15 @@
     justify-content: center;
     align-items: center;
 }
+.icon-favorite, .delete-icon {
+    transform: scale(1);
+    transition: transform .5s;
+    
+    
+}
+.icon-favorite:hover, .delete-icon:hover {
+    cursor:pointer;
+    transform: scale(1.2);
+    
+    
+}
