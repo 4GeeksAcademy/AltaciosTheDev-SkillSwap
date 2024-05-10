@@ -8,7 +8,7 @@ import "../../styles/loginst.css";
 
 
 
-export const Register3=(nextPage,prevPage)=>{
+export const Register3=({nextPage,prevPage})=>{
     return(
         <div className="text-center">
             <div>

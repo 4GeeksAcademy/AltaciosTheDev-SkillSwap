@@ -457,15 +457,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try{
 					let datos={
-						emai:email,
+						email:email,
 						name:name,
 						password:password,
 						number:number,
 						gender:gender,
-						coutry:country,
+						country:country,
 						city:city
 					};
-					const resp =await fetch(procces.env.BACKEND_URL+"/api/signup",{
+					const resp =await fetch(process.env.BACKEND_URL + "/api/signup",{
 						method:"POST",
 						headers:{"Content-Type":"application/json",
 						},
@@ -484,6 +484,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						showConfirmButton: false,
 						timer: 1500
 					});
+					return true
+
 				}catch(error){
 					Swal.fire({
 						position: "center",
@@ -494,6 +496,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						showConfirmButton: false,
 						timer: 1500
 					});
+					console.error(error)
 					return false;
 				}
 
