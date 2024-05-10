@@ -13,7 +13,6 @@ export const Register2 = ({nextPage,prevPage,gender,setGender,country,setCountry
     const { actions } = useContext(Context);
 
 
-    
 
 
 
@@ -28,7 +27,7 @@ export const Register2 = ({nextPage,prevPage,gender,setGender,country,setCountry
                             <div>
 
                                 <a>Select your gender </a>
-                                <select className="loginput" name="gender" id="gender">
+                                <select className="loginput" name="gender" id="gender"  value={gender} onChange={(e)=>setGender(e.target.value)}>
                                     <option value=" ">Gender</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
@@ -37,7 +36,7 @@ export const Register2 = ({nextPage,prevPage,gender,setGender,country,setCountry
                             </div>
                             <div>
                                 <a>Select your contry </a>
-                                <select className="loginput text-center" name="contry" id="country">
+                                <select className="loginput text-center" name="contry" id="country" value={country} onChange={(e)=>setCountry(e.target.value)}>
                                     <option value=" ">Contry</option>
                                     <option value="Venezula">Venezuela</option>
                                     <option value="Honduras">Honduras</option>
@@ -53,7 +52,7 @@ export const Register2 = ({nextPage,prevPage,gender,setGender,country,setCountry
                                     type="text"
                                     placeholder="City"
                                 //value={City}
-                                //onChange={(e) => { setUsername(e.target.value); handleInputChange(); }}
+                                //onChange={(e) => { setUsername(e.target.value)}
                                 //required
                                 /></a>
                             </div>
