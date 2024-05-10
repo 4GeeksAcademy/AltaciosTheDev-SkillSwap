@@ -215,7 +215,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			editProfile: async (newUser, id) => {
+			editProfile: async (newUser) => {
 				const store = getStore()
 				try {
 					const res = await fetch(process.env.BACKEND_URL + `/api/profile`, {
@@ -440,6 +440,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 				catch (error) {
 					console.error(error);
 				}
+
+			},
+			sendImage: async (file) => {
+				const store = getStore()
+				const formData = new FormData();
+				formData.append('image', file);
+				try {
+					const resp = await fetch(process.env.BACKEND_URL + "/api/image", {
+					  method: 'POST',
+					  body: formData,
+					});
+					const data = await resp.json()
+					console.log(data.url)
+					// setHotelData({ ...hotelData, imageURL: data.url })
+					// actions.editProfile({ ...store.profile, image: data.url })
+					// onChange={(e) => setNewUser({ ...newUser, number: e.target.value })} function para cambiar estado de variable input
+					console.log({ ...store.profile, image: data.url })
+					return data.url
+
+				  } catch (error) {
+					console.error(error)
+				  }
 
 			},
 

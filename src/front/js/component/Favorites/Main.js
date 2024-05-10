@@ -15,6 +15,7 @@ function Main() {
         user_country={favorite.favorite_user_country}
         user_city={favorite.favorite_user_city}
         user_gender={favorite.favorite_user_gender}
+        user_image = {favorite.favorite_user_image}
         getTutorProfile={() => actions.getTutorProfile(favorite.favorite_user_id)}
       />
     ));

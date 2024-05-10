@@ -20,15 +20,14 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 function Main() {
+
   const { store, actions } = useContext(Context);
 
   const [newUser, setNewUser] = useState("")
-
   const [associationToEdit, setAssociationToEdit] = React.useState(null);
 
   const [level, setLevel] = useState('');
   const [role, setRole] = useState('');
-
   const [skill, setSkill] = useState('');
 
   const [show, setShow] = useState(false);
@@ -39,7 +38,18 @@ function Main() {
   const handleSkillClose = () => setSkillModal(false);
   const handleSkillShow = () => setSkillModal(true);
 
+  const [file, setFile] = useState(null)
+  const [imageModal, setImageModal] = useState(false);
+  const handleImageClose = () => setImageModal(false);
+  const handleImageShow = () => setImageModal(true);
 
+  const handleUpdateImage = async (file) => {
+    const imageURL = await actions.sendImage(file)
+    const updatedUser = { ...newUser, image: imageURL };
+    setNewUser(updatedUser);
+    await actions.editProfile(updatedUser);
+    handleImageClose()
+  }
 
   const handleChange = (event) => {
     setAssociationToEdit(event.target.value);
@@ -55,11 +65,10 @@ function Main() {
     await actions.editAssociation(associationToEdit, skill, role, level)
     handleSkillClose()
 
-
   }
   // console.log(learnerSkills)
 
-  
+
 
   useEffect(() => {
     setNewUser({
@@ -69,7 +78,8 @@ function Main() {
       "country": store.profile.country,
       "city": store.profile.city,
       "gender": store.profile.gender,
-      "bio": store.profile.bio
+      "bio": store.profile.bio,
+      "image": store.profile.image
 
     })
 
@@ -97,8 +107,9 @@ function Main() {
   return <>
     <div className='height-profile container'>
       <div className="pt-4 px-3 d-flex flex-column gap-4  ">
-  
+
         <div className='d-flex align-items-center'>
+          {/* Modal edit profile  */}
           <Modal
             className='Modal'
             show={show}
@@ -110,7 +121,6 @@ function Main() {
               <Modal.Title className='rosa' >Edit Your Profile</Modal.Title>
             </Modal.Header>
             <Modal.Body className='modal-profile '>
-
               <Box
                 component="form"
                 sx={{
@@ -149,20 +159,14 @@ function Main() {
                   value={newUser.number}
                   onChange={(e) => setNewUser({ ...newUser, number: e.target.value })}
                 />
-
               </Box>
-
-
-
             </Modal.Body>
             <Modal.Footer className='modal-profile'>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-              <Button onClick={() => updateProfile()} variant="primary">Save Edit</Button>
+              <Button variant="secondary" onClick={handleClose}> Close</Button>
+              <Button onClick={() => updateProfile()} variant="primary">Upload Photo</Button>
             </Modal.Footer>
           </Modal>
-          {/* final Modal de edit profile */}
+          {/* final Modal de edit skill */}
           <Modal
             className='Modal'
             show={skillModal}
@@ -171,7 +175,7 @@ function Main() {
             keyboard={false}
           >
             <Modal.Header className='modal-profile' closeButton>
-              <Modal.Title className='rosa' >Edit Your Profile</Modal.Title>
+              <Modal.Title className='rosa' >Edit Your Skill</Modal.Title>
             </Modal.Header>
             <Modal.Body className='modal-profile '>
 
@@ -213,7 +217,6 @@ function Main() {
                       onChange={(event) => setLevel(event.target.value)}
                     >
                       <MenuItem value="">
-
                       </MenuItem>
                       <MenuItem aria-required value="Beginner">Beginner</MenuItem>
                       <MenuItem value="Intermediate">Intermediate</MenuItem>
@@ -239,30 +242,53 @@ function Main() {
                     </Select>
                   </FormControl>
                 </Box>
-
               </Box>
-
             </Modal.Body>
             <Modal.Footer className='modal-profile'>
-              <Button variant="secondary" onClick={handleSkillClose}>
-                Close
-              </Button>
+              <Button variant="secondary" onClick={handleSkillClose}>Close</Button>
               <Button onClick={() => handleUpdateSkill()} variant="primary">Save Edit</Button>
             </Modal.Footer>
           </Modal>
 
+          {/* modal de edit image */}
+          <Modal
+            className='Modal'
+            show={imageModal}
+            onHide={handleImageClose}
+            backdrop="static"
+            keyboard={false}
+          >
+            <Modal.Header className='modal-profile' closeButton>
+              <Modal.Title className='rosa' >Edit Your Profile Photo</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className='modal-profile '>
+
+              <input type="file" onChange={e => setFile(e.target.files[0])} />
+
+              {file &&
+                <img src={URL.createObjectURL(file)} alt="img-preview" style={{ maxWidth: '30rem' }} />
+              }
+            </Modal.Body>
+            <Modal.Footer className='modal-profile'>
+              <Button variant="secondary" onClick={handleImageClose}>
+                Close
+              </Button>
+              <Button onClick={() => handleUpdateImage(file)} variant="primary">Save Edit</Button>
+            </Modal.Footer>
+          </Modal>
 
 
         </div>
 
-        <div className=' container-border-profile'> 
-          <div className="profile-card-container "> 
-            <img src={store.profile && store.profile.gender == "Male" ? personLogo : femaleLogo} className="tutor-img" />
+        <div className=' container-border-profile'>
+          <div className="profile-card-container ">
+            <img src={store.profile.image ? store.profile.image : store.profile.gender == "Male" ? personLogo : femaleLogo} className="tutor-img" />
             <div className="tutor-text-container ">
               <p className="tutor-text "><strong className='me-2 gris'>Name:</strong>{store.profile && store.profile.name}</p>
               <p className="tutor-text"><strong className='me-2 gris'>Email:</strong>{store.profile && store.profile.email}</p>
-              {/* <p className="tutor-text"><strong className='amarillo'>Student</strong></p> */}
             </div>
+            <Button className='edit-btn ms-auto' variant="" onClick={handleImageShow}>Edit Photo</Button>
+
           </div>
         </div>
 
@@ -453,15 +479,6 @@ function Main() {
         </div>
       </div>
     </div>
-
-
-
-
-
-
-
-
-
   </>
 }
 

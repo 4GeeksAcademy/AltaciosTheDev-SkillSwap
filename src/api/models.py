@@ -13,6 +13,7 @@ class User(db.Model):
     country = db.Column(db.String(120), nullable=False)
     city = db.Column(db.String(120), nullable=False)
     bio = db.Column(db.Text, nullable=True)
+    image = db.Column(db.String(500), nullable=True)
 
     def __repr__(self):
         return f'<User {self.email}>'    
@@ -27,6 +28,7 @@ class User(db.Model):
         self.city = city
         self.bio = bio
 
+
     def serialize(self):
         
         return {
@@ -38,6 +40,7 @@ class User(db.Model):
             "city": self.city,
             "gender": self.gender,
             "bio":self.bio if self.bio else None,
+            "image": self.image if self.image else None,
             "skills": [skill.serialize() for skill in self.skills] if self.skills else None,
             "favorites": [favorite.serialize() for favorite in self.favorites] if self.favorites else None
 
@@ -177,6 +180,7 @@ class Favorite(db.Model):
             "favorite_user_name": self.favorite_user.name if self.favorite_user else None,
             "favorite_user_country": self.favorite_user.country if self.favorite_user else None,
             "favorite_user_city": self.favorite_user.city if self.favorite_user else None,
-            "favorite_user_gender": self.favorite_user.gender if self.favorite_user else None
+            "favorite_user_gender": self.favorite_user.gender if self.favorite_user else None,
+            "favorite_user_image": self.favorite_user.image if self.favorite_user else None
 
         }
