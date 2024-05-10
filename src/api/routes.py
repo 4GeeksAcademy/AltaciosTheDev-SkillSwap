@@ -89,8 +89,7 @@ def login():
     # if email != user.email or decrypted_password is False:
     #     return jsonify({"msg": "Bad email or password"}), 401
 
-    access_token = create_access_token(identity=email)
-    create_access_token(identity = user.email, expires_delta=timedelta(hours=3))
+    access_token = create_access_token(identity = user.email, expires_delta=timedelta(hours=3))
     return jsonify(user=user.serialize(), access_token=access_token)
 
 
