@@ -244,6 +244,7 @@
 
 .icon-favorite{
     color: #fcba04;
+    font-size: 20px;
 }
 
 /* row align center and separate when you need a specific row with elements separated */
@@ -282,6 +283,10 @@
     object-position: top; /* Position the face in the center */
 }
 
+.skill-img{
+    width: 80px; /* Fixed width */
+
+}
 
 .tutor-card-title{
     text-align: start;

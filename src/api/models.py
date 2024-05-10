@@ -49,6 +49,7 @@ class User(db.Model):
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120),  unique=True, nullable=False)
+    image = db.Column(db.String(500), nullable=True)
 
     def __init__(self, name):
         self.name = name
@@ -60,6 +61,7 @@ class Category(db.Model):
         return {
             "id": self.id,  
             "name": self.name,
+            "image": self.image if self.image else None,
             # "skills": [skill.serialize() for skill in self.skills] if self.skills else None
         }
     

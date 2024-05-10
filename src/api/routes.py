@@ -186,6 +186,22 @@ def get_categories():
 
     categories = Category.query.all()
     return jsonify([category.serialize() for category in categories]),200
+
+#Route for receiving CATEGORIES
+@api.route("/categories/<int:id>", methods=["PUT"])
+def upload_image_to_category(id):
+
+    image_url = request.json.get("image_url", None)                  
+
+    category = Category.query.filter_by(id=id).first()               
+
+    if category is None:
+        return jsonify({"msg": "Category not found"}), 404
+
+    category.image = image_url
+    db.session.commit()
+    
+    return jsonify({"msg": "category modified successfully"}),200
     
 #Route for receiving SKILLS
 @api.route("/skills", methods=["GET"])
@@ -282,6 +298,7 @@ def get_skills_joined_table():
         Skill.name.label('skill_name'),
         Category.id.label('category_id'),
         Category.name.label('category_name'),
+        Category.image.label('category_image'),
         User.name.label('user_name'),  # Include the user name in the query
         User.gender.label('user_gender')  # Include the user gender in the query
     ).join(
@@ -323,7 +340,9 @@ def get_skills_joined_table():
             "user_gender": row.user_gender,
             "skill_id": row.skill_id,
             "skill_name": row.skill_name,
-            "category_name": row.category_name
+            "category_name": row.category_name,
+            "category_image": row.category_image,
+
         })
 
     return jsonify(serialized_data), 200

@@ -40,7 +40,7 @@ export const TutorCard = ({ user_name, user_country, user_city, user_gender, get
                     <p className="tutor-text"><strong>Gender:</strong> {user_gender}</p>
                 </div>
             </div>
-            <button type="button" className="btn btn-primary tutor-btn" onClick={goToTutorProfile}>Contact</button>
+            <button type="button" className="learn-more-btn tutor-btn" onClick={goToTutorProfile}>Contact</button>
         </div>
     )
 }

@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { Context } from "../../store/appContext";
 
-export const SkillCard = ({ user_name, skill_name, role, level, user_gender,category_name, getTutorProfile, addFavorite, id }) => {
+export const SkillCard = ({ user_name, skill_name, role, level, user_gender,category_name,category_image, getTutorProfile, addFavorite, id }) => {
     const navigate = useNavigate()
    // Define goToTutorProfile as async function
    const goToTutorProfile = async () => {
@@ -38,19 +38,19 @@ export const SkillCard = ({ user_name, skill_name, role, level, user_gender,cate
             <div className="tutor-card-header">
                 <h5 className="tutor-card-title">{skill_name}</h5>
                  {currentFavorite && <BsStarFill onClick={addFavorite}  className="tutor-card-icon icon-favorite" />}
-                 {!currentFavorite && <CiStar onClick={addFavorite} className="tutor-card-icon icon-favorite"/>}
+                 {!currentFavorite && <BsStar onClick={addFavorite} className="tutor-card-icon icon-favorite"/>}
                 
             </div>
             <div className="dashboard-card-inner">
-                <img src={user_gender == "Male" ? personLogo : femaleLogo} className="tutor-img" />
+                <img src={category_image} className="skill-img" />
                 <div className="tutor-text-container">
                     <p className="tutor-text"><strong>Category:</strong> {category_name}</p>
                     <p className="tutor-text"><strong>Level:</strong> {level}</p>
                     <p className="tutor-text"><strong>Role:</strong> {role}</p>
-                    <p className="tutor-text"><strong>User:</strong> {user_name}</p>
+                    <p className="tutor-text"><strong>User:</strong> {user_name} </p>
                 </div>
             </div>
-            <button type="button" className="btn btn-primary tutor-btn" onClick={goToTutorProfile}>Contact</button>
+            <button type="button" className="tutor-btn learn-more-btn" onClick={goToTutorProfile}>Contact</button>
         </div>
     )
 }
