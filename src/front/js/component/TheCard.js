@@ -17,7 +17,7 @@ function TheCard( {skill, text, img} ) {
 
 
           <div className="d-flex justify-content-between align-items-center">
-            <Link to="/" className="btn boton">Start <span>{">"}</span> </Link>
+            <Link to="/login" className="btn boton">Start <span>{">"}</span> </Link>
           <span className="amarillo">
             <i className="fa-solid fa-star zoom"></i>
             <i className="fa-solid fa-star zoom"></i>

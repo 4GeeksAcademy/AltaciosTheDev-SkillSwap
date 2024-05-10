@@ -28,11 +28,11 @@ export const Navbar = () => {
 				</button>
 				<div className="collapse navbar-collapse " id="navbarSupportedContent">
 					<ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-						<li className="nav-item">
+						{/* <li className="nav-item">
 							<Link to="/dashboard" className="decoration">	
 								<span className="nav-link" aria-current="page">Dashboard</span>
 							</Link>
-						</li>
+						</li> */}
 						<li className="nav-item">
 							<Link to="/howitworks" className="decoration">
 								<span className="nav-link">How it works</span>

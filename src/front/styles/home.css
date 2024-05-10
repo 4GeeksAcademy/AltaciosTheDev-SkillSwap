@@ -117,6 +117,10 @@
 .bg-amarillo {
     background-color: #e4bc44;
 }
+.fa-star {
+    color: #e4bc44;
+    
+}
 
 .bg-verde {
     background-color: #263046;
@@ -214,7 +218,7 @@
 
  /* Footer */
 .vertical-line {
-    border-left: 4px solid rgb(99, 99, 99);
+    border-left: 4px solid #1d2634;
     height: auto;
 }
 .horizontal-line {
@@ -279,6 +283,9 @@
     transition: all .4s ease-out;
 }
 
+.borde-top {
+    border-block-start: 1.8px solid #1d2634; 
+}
 
 
 
