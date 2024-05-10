@@ -25,24 +25,25 @@ CORS(api)
 #create a User 👤
 @api.route("/signup", methods=["POST"])
 def signup():
-    email = request.json.get("email", None)
-    name=request.json.get("name", None)
-    password = request.json.get("password", None)
-    number=request.json.get("number",None)
-    
+   email = request.json.get("email", None)
+   name=request.json.get("name", None)
+   password = request.json.get("password", None)
+   number=request.json.get("number",None)
+   gender=request.json.get("gender",None)
+   country=request.json.get("country",None)
+   city=request.json.get("city",None)
+   bio=request.json.get("bio",None)
 
-
-    user = User.query.filter_by(email=email).first()
-    if user:
+   user = User.query.filter_by(email=email).first()
+   if user:
         return jsonify({"msg": "User are registered"}), 403
 
-    password_hash = current_app.bcrypt.generate_password_hash(password).decode("utf-8")
-
-    new_user = User(email=email, password=password_hash,number=number, is_active=True)
-    db.session.add(new_user)
-    db.session.commit()
-
-    return jsonify(msg="user created successful")
+   password_hash = current_app.bcrypt.generate_password_hash(password).decode("utf-8")
+   new_user = User(email=email, name=name,password=password_hash,number=number, gender=gender,country=country,city=city,bio=bio)
+   db.session.add(new_user)
+   db.session.commit()
+   access_token=create_access_token(identity = new_user.email, expires_delta=timedelta(hours=3))
+   return jsonify({"msg":"user created successful", "token": access_token})
 
 #login a user 🦍
 @api.route("/login", methods=["POST"])
@@ -60,8 +61,7 @@ def login():
     # if email != user.email or decrypted_password is False:
     #     return jsonify({"msg": "Bad email or password"}), 401
 
-    access_token = create_access_token(identity=email)
-    create_access_token(identity = user.email, expires_delta=timedelta(hours=3))
+    access_token=create_access_token(identity = user.email, expires_delta=timedelta(hours=3))
     return jsonify(user=user.serialize(), access_token=access_token)
 
 

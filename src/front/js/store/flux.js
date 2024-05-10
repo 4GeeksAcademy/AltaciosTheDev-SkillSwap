@@ -453,26 +453,47 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ openSidebar: !store.openSidebar })
 			},
 
-			register: async (name, email, number, password) => {
+			register: async (name,email,number,password,gender,country,city) => {
 
-				try {
-					let datos = {
-						name: name,
-						emai: email,
-						number: number,
-						password: password
+				try{
+					let datos={
+						emai:email,
+						name:name,
+						password:password,
+						number:number,
+						gender:gender,
+						coutry:country,
+						city:city
 					};
-					const resp = await fetch(procces.env.BACKEND_URL + "/signup", {
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json",
+					const resp =await fetch(procces.env.BACKEND_URL+"/api/signup",{
+						method:"POST",
+						headers:{"Content-Type":"application/json",
 						},
-						body: JSON.stringify(datos),
+						body:JSON.stringify(datos),
 					});
 					const data = await resp.json();
-					setStore({ message: data.msg });
-				} catch (error) {
-					console.log("Error en el registro del usuario:", error);
+					if (!resp.ok) {
+						throw new Error(data.msg);
+					}
+					Swal.fire({
+						position: "center",
+						icon: "success",
+						title: data.msg,
+						background: "#263043",
+						color: "#FFFFFF",
+						showConfirmButton: false,
+						timer: 1500
+					});
+				}catch(error){
+					Swal.fire({
+						position: "center",
+						icon: "error",
+						title: error,
+						background: "#263043",
+						color: "#FFFFFF",
+						showConfirmButton: false,
+						timer: 1500
+					});
 					return false;
 				}
 

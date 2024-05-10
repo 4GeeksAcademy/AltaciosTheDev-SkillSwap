@@ -61,3 +61,12 @@
 .links{
     color: blue;
 }
+
+.letraregister{
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+}
+.backgroudnregister2{
+    height: 800px;
+    text-align: center;
+}   
