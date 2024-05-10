@@ -48,8 +48,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const resp = await fetch(process.env.BACKEND_URL + "/api/login", opts)
 					if (!resp.ok) {
-						alert("Bad Email or Password")
-						return false;
+						Swal.fire({
+							position: "center",
+							icon: "error",
+							title: data.msg,
+							background: "#263043",
+							color: "#FFFFFF",
+							showConfirmButton: false,
+							timer: 1500
+						});
+						return false
 					}
 
 					const data = await resp.json();
