@@ -45,7 +45,8 @@ export const Register3 = (nextPage, prevPage) => {
                     className="loginput text-center"
                     type="text"
                     placeholder="Tutor"
-                    value="Tutor"
+                    value={role}
+                    disabled
                 />
                 
                 <a>Level</a>
@@ -70,8 +71,10 @@ export const Register3 = (nextPage, prevPage) => {
                     label="Category"
                     onChange={(e) => setCategory(e.target.value)}
                 >
+                    <option>{categoriesElement}</option>
                 </select>
             </div>
+
             <button type="button" className="nextbutton" onClick={prevPage}>Previous</button>
             <button type="button" className="nextbutton" onClick={nextPage}>Next</button>
         </div>
