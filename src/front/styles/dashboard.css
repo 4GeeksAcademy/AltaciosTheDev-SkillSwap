@@ -89,7 +89,11 @@
 }
 
 .user-badge-image{
-    max-width: 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover; /* Maintain aspect ratio */
+    object-position: top; /* Position the face in the center */
 }
 
 /* at first, menu icon is none */
@@ -271,13 +275,13 @@
 
 /* needs a limit */
 .tutor-img{
-    width: auto; /* Allow the image to adjust its width based on content */
-    min-width: 40px; /* Minimum width */
-    max-width: 100px; /* Maximum width */
-    height: auto; /* Maintain aspect ratio */
-    flex-shrink:1000;
-
+    width: 100px; /* Fixed width */
+    height: 100px; /* Fixed height */
+    border-radius: 50%; /* Make it circular */
+    object-fit: cover; /* Maintain aspect ratio */
+    object-position: top; /* Position the face in the center */
 }
+
 
 .tutor-card-title{
     text-align: start;

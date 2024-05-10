@@ -14,13 +14,42 @@ from datetime import datetime, timedelta
 from sqlalchemy import or_, and_
 import requests
 
+import firebase_admin
+from firebase_admin import credentials, storage
 
-
-
+cred = credentials.Certificate("./google-services.json")
+firebase_admin.initialize_app(cred, {"storageBucket": "skillswap-b3c76.appspot.com"}) #STORAGE BUCKET 
+bucket = storage.bucket() 
 api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
 CORS(api)
+
+@api.route('/image', methods=['POST'])
+def upload_file():
+    image = request.files.get('image', None)
+
+    if image ==  None:
+        return 'No image in the request', 400
+    
+    # Subir la imagen al Bucket / permite almacenar datos binarios como imagenes o archivos documentos 
+    blob = bucket.blob(image.filename)
+    blob.upload_from_file(image, content_type=image.content_type)
+    blob.make_public()
+
+    # Generar la URL permanente
+    url = blob.public_url
+    from urllib.parse import quote
+
+    # Generar la URL permanente manualmente
+    bucket_name = "skillswap-b3c76.appspot.com"
+
+    encoded_image_name = quote(image.filename)
+    url = f'https://storage.googleapis.com/{bucket_name}/{encoded_image_name}'   
+
+    # Retornar la URL permanente
+    return jsonify({"success": "Image loaded successfully", "url": url}), 201    
+
 
 #create a User 👤
 @api.route("/signup", methods=["POST"])

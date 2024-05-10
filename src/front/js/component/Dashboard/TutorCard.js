@@ -6,7 +6,7 @@ import { BsStarFill } from "react-icons/bs";
 import { MdDeleteOutline } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 
-export const TutorCard = ({ user_name, user_country, user_city, user_gender, getTutorProfile, deleteFavorite}) => {
+export const TutorCard = ({ user_name, user_country, user_city, user_gender, getTutorProfile, user_image, deleteFavorite}) => {
     const navigate = useNavigate()
    // Define goToTutorProfile as async function
    const goToTutorProfile = async () => {
@@ -32,7 +32,8 @@ export const TutorCard = ({ user_name, user_country, user_city, user_gender, get
                 
             </div>
             <div className="dashboard-card-inner">
-                <img src={user_gender == "Male" ? personLogo : femaleLogo} className="tutor-img" />
+            {/* src={store.profile.image ? store.profile.image : store.profile.gender == "Male" ? personLogo : femaleLogo} */}
+                <img src={user_image ? user_image : user_gender == "Male" ? personLogo : femaleLogo} className="tutor-img" />
                 <div className="tutor-text-container">
                     <p className="tutor-text"><strong>Country:</strong> {user_country}</p>
                     <p className="tutor-text"><strong>City:</strong> {user_city}</p>
