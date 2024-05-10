@@ -23,16 +23,17 @@ export const Register3 = (nextPage, prevPage) => {
 
     if (store.categories) {
         categoriesElements = store.categories.map(category => (
-          <MenuItem key={category.id} value={category.name}>{category.name}</MenuItem>
+          <option key={category.id} value={category.name}>{category.name}</option>
         ))
       }
 
-    // useEffect(() => {
-    //     actions.getCategories()
-    //     actions.getAssociations(level, role, category)
-    //   }, [])
+    useEffect(() => {
+        actions.getCategories()
+        actions.getAssociations(level, role, category)
+      }, [])
 
     return (
+
 
 
         <div className="text-center">
@@ -74,7 +75,8 @@ export const Register3 = (nextPage, prevPage) => {
                     <option>{categoriesElement}</option>
                 </select>
             </div>
-
+            
+            
             <button type="button" className="nextbutton" onClick={prevPage}>Previous</button>
             <button type="button" className="nextbutton" onClick={nextPage}>Next</button>
         </div>
