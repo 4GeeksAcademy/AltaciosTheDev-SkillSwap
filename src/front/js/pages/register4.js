@@ -1,4 +1,4 @@
-import React, { useContext, useState,useEffect} from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
@@ -14,44 +14,28 @@ import Select from '@mui/material/Select';
 
 
 
-export const Register3 = ({nextPage, prevPage}) => {
+export const Register4 = ({prevPage}) => {
 
     const { store, actions } = useContext(Context)
     const [category, setCategory] = useState('');
     const [level, setLevel] = useState('');
-    const [role, setRole] = useState('Tutor');
-    const [skill,setSkill]=useState('');
+    const [role, setRole] = useState('Student');
 
-        useEffect(() => {
-  actions.getSkills()
-   }, [])
-
-
+    if (store.categories) {
+        categoriesElements = store.categories.map(category => (
+          <option key={category.id} value={category.name}>{category.name}</option>
+        ))
+      }
        // Declare userSkillElements variable
-  let userSkill = null;
+  let userSkillElements = null;
 
   // Declare categoryElements variable
-  
+  let categoriesElements = null
 
- 
-
-    //  if (store.userSkillsAssociations) {
-    //     userSkillElements = store.userSkillsAssociations.map((association) => (
-    //       <SkillCard
-    //         key={association.user_skill_association_id}
-    //         user_name={association.user_name}
-    //         skill_name={association.skill_name}
-    //         role={association.role}
-    //         level={association.level}
-    //         user_gender={association.user_gender}
-    //         category_name={association.category_name}
-    //         getTutorProfile={() => actions.getTutorProfile(association.user_id)}
-    //       />
-    //     ));
-    //   }
-
-
-    
+    // useEffect(() => {
+    //     actions.getCategories()
+    //     actions.getAssociations(level, role, category)
+    //   }, [])
 
     return (
 
@@ -60,13 +44,13 @@ export const Register3 = ({nextPage, prevPage}) => {
         <div className="text-center">
             <div>
                 <h1>Skills</h1>
-                <p>Select the skills you have to teach </p>
+                <p>Select the skills you have to learn </p>
                 <p>First skill: </p>
                 <a>Role</a>
                 <input
                     className="loginput text-center"
                     type="text"
-                    placeholder="Tutor"
+                    placeholder="Student"
                     value={role}
                     disabled
                 />
@@ -102,7 +86,7 @@ export const Register3 = ({nextPage, prevPage}) => {
                 <input
                     className="loginput text-center"
                     type="text"
-                    placeholder="Tutor"
+                    placeholder="Student"
                     value={role}
                     disabled
                 />
@@ -120,19 +104,16 @@ export const Register3 = ({nextPage, prevPage}) => {
                     <option value="Advanced">Advanced</option>
                 </select>
 
-                <a>Skill: </a>
-                
+                <a>Category: </a>
                 <select
                     className="loginput"
-                    labelId="skill-select-label"
-                    id="skill-select"
-                    value={skill}
-                    label="Skill"
-                    onChange={(e)=>setSkill(e.target.value)}
+                    labelId="category-select-label"
+                    id="category-select"
+                    value={category}
+                    label="Category"
+                    onChange={(e) => setCategory(e.target.value)}
                 >
-                    {store.skills && store.skills.map(skill => (
-                        <option key={skill.id} value={skill.id}>{skill.name}</option>
-                    ))}
+                    {/* <option>{categoriesElement}</option> */}
                 </select>
             </div>
             <div>
@@ -141,7 +122,7 @@ export const Register3 = ({nextPage, prevPage}) => {
                 <input
                     className="loginput text-center"
                     type="text"
-                    placeholder="Tutor"
+                    placeholder="Student"
                     value={role}
                     disabled
                 />
@@ -177,7 +158,7 @@ export const Register3 = ({nextPage, prevPage}) => {
                 <input
                     className="loginput text-center"
                     type="text"
-                    placeholder="Tutor"
+                    placeholder="Student"
                     value={role}
                     disabled
                 />
@@ -213,7 +194,7 @@ export const Register3 = ({nextPage, prevPage}) => {
                 <input
                     className="loginput text-center"
                     type="text"
-                    placeholder="Tutor"
+                    placeholder="Student"
                     value={role}
                     disabled
                 />
@@ -245,7 +226,7 @@ export const Register3 = ({nextPage, prevPage}) => {
             </div>
             
             <button type="button" className="nextbutton" onClick={prevPage}>Previous</button>
-            <button type="button" className="nextbutton" onClick={nextPage}>Next</button>
+            
         </div>
 
     );

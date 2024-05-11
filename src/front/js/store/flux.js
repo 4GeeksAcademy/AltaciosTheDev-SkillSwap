@@ -195,8 +195,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const resp = await fetch(`${process.env.BACKEND_URL}/api/skills`, {
 						method: 'GET',
 						headers: {
-							"Content-Type": "application/json",
-							"Authorization": `Bearer ${store.token}`
+							"Content-Type": "application/json"
+							// "Authorization": `Bearer ${store.token}`
 
 						},
 					})
@@ -484,6 +484,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						showConfirmButton: false,
 						timer: 1500
 					});
+					localStorage.setItem("token", data.token);
+					setStore({ token: data.token })
 				}catch(error){
 					Swal.fire({
 						position: "center",

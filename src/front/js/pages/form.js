@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Register } from "./register";
 import { Register2 } from "./register2";
 import { Register3 } from "./register3";
+import { Register4 } from "./register4";
 import "../../styles/loginst.css";
 
 
@@ -84,8 +85,10 @@ export const Form = () => {
                     prevPage={prevPage}
                 />;
             case 2:
-                return <Register3 prevPage={prevPage}
+                return <Register3 nextPage={nextPage} prevPage={prevPage}
                 />;
+            case 3:
+                return <Register4 prevPage={prevPage}/>;
             default:
                 return null;
         }
@@ -98,7 +101,7 @@ export const Form = () => {
     return (
         <div className="backimage">
 
-            <div className="col-4">
+            <div className="col-5">
                 <div className="backcard">
                     <div className="cardregister">
                         <div>
