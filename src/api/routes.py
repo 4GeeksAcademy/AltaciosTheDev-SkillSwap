@@ -61,14 +61,34 @@ def signup():
    gender=request.json.get("gender",None)
    country=request.json.get("country",None)
    city=request.json.get("city",None)
-   bio=request.json.get("bio",None)
 
+   if email is None:
+       return jsonify({"msg": "missing email"}), 404
+       
+   if name is None:
+       return jsonify({"msg": "missing name"}), 404
+
+   if password is None:
+       return jsonify({"msg": "missing password"}), 404
+   
+   if number is None:
+       return jsonify({"msg": "missing number"}), 404
+       
+   if gender is None:
+       return jsonify({"msg": "missing gender"}), 404
+
+   if country is None:
+       return jsonify({"msg": "missing country"}), 404
+
+   if city is None:
+       return jsonify({"msg": "missing city"}), 404
+   
    user = User.query.filter_by(email=email).first()
    if user:
         return jsonify({"msg": "User are registered"}), 403
 
-   password_hash = current_app.bcrypt.generate_password_hash(password).decode("utf-8")
-   new_user = User(email=email, name=name,password=password_hash,number=number, gender=gender,country=country,city=city,bio=bio)
+#    password_hash = current_app.bcrypt.generate_password_hash(password).decode("utf-8")
+   new_user = User(email=email, name=name,password=password,number=number, gender=gender,country=country,city=city)
    db.session.add(new_user)
    db.session.commit()
    access_token=create_access_token(identity = new_user.email, expires_delta=timedelta(hours=3))

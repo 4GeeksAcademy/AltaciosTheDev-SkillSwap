@@ -26,8 +26,12 @@ export const Form = () => {
     const [gender, setGender] = useState('');
     const [country, setCountry] = useState('');
     const [city, setCity] = useState('');
-    const [bio, setBio] = useState('');
 
+
+    //register function that will send all values to the back end 
+    const registerUser = async () => {
+        return await actions.register(name, email,number, password, gender, country, city);
+    }
 
     // Function to handle moving to the next registration step
     const nextPage = () => {
@@ -83,6 +87,7 @@ export const Form = () => {
                     setCity={setCity}
                     nextPage={nextPage}
                     prevPage={prevPage}
+                    registerUser={registerUser}
                 />;
             case 2:
                 return <Register3 nextPage={nextPage} prevPage={prevPage}
