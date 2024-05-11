@@ -18,9 +18,23 @@ import UpcommingCard from "./UpcommingCard";
 function SwiperUpcomming() {
     const { store, actions } = useContext(Context)
     let upcommingSessionsElements = null
-    if (store.userSessions) {
+    if (store.userSessions && store.profile) {
+        let currentDate = new Date(); // Current date and time
         let upcommingSessions = store.userSessions.filter(session => {
-            return session.status == "Accepted"
+            // Filter sessions that are accepted and either in the future or at the same day but in the future time
+            let sessionDate = new Date(session.date + 'T' + session.time);
+            let currentDay = currentDate.getDate();
+            let currentMonth = currentDate.getMonth();
+            let currentYear = currentDate.getFullYear();
+            let currentHour = currentDate.getHours();
+            let currentMinute = currentDate.getMinutes();
+            return session.status === "Accepted" && 
+                (sessionDate > currentDate ||
+                (sessionDate.getDate() === currentDay &&
+                sessionDate.getMonth() === currentMonth &&
+                sessionDate.getFullYear() === currentYear &&
+                (sessionDate.getHours() > currentHour ||
+                (sessionDate.getHours() === currentHour && sessionDate.getMinutes() > currentMinute))))
         })
 
         upcommingSessions.sort((a, b) => {
@@ -49,6 +63,7 @@ function SwiperUpcomming() {
                         <UpcommingCard
                             key={session.id}
                             learner_name={session.learner_name}
+                            tutor_name={session.tutor_name}
                             skill_name={session.skill_name}
                             date={session.date}
                             time={session.time}

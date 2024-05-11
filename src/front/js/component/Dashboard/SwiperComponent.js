@@ -17,9 +17,9 @@ import PendingCard from "./PendingCard";
 function SwiperComponent() {
     const { store, actions } = useContext(Context)
     let pendingSessionsElements = null
-    if (store.userSessions) {
+    if (store.userSessions && store.profile) {
         let pendingSessions = store.userSessions.filter(session => {
-            return session.status == "Pending"
+            return session.status == "Pending" && session.tutor_id == store.profile.id
         })
 
         pendingSessions.sort((a, b) => {

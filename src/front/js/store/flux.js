@@ -27,9 +27,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			skills: null,
 			categories: null,
 			userSessions: null,
-			achievements: null
-
-
+			achievements: null,
+			statistics: null
 
 		},
 		actions: {
@@ -49,8 +48,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const resp = await fetch(process.env.BACKEND_URL + "/api/login", opts)
 					if (!resp.ok) {
-						alert("Bad Email or Password")
-						return false;
+						Swal.fire({
+							position: "center",
+							icon: "error",
+							title: data.msg,
+							background: "#263043",
+							color: "#FFFFFF",
+							showConfirmButton: false,
+							timer: 1500
+						});
+						return false
 					}
 
 					const data = await resp.json();
@@ -58,6 +65,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ token: data.access_token })
 					getActions().getProfile()
 					getActions().getAchievements()
+					getActions().getStatistics()
+
 					return true;
 
 				}
@@ -214,7 +223,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			editProfile: async (newUser, id) => {
+			editProfile: async (newUser) => {
 				const store = getStore()
 				try {
 					const res = await fetch(process.env.BACKEND_URL + `/api/profile`, {
@@ -382,8 +391,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						showConfirmButton: false,
 						timer: 1500
 					});
-					getActions().getUserSessions()
-					getActions().getAchievements()
+					// These functions are marked as async now
+					await getActions().getUserSessions();
+					await getActions().getAchievements();
+					await getActions().getStatistics();
 					return true
 
 				} catch (error) {
@@ -416,6 +427,152 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 			},
+			getStatistics: async () => {
+				const store = getStore()
+				try {
+					const res = await fetch(process.env.BACKEND_URL + "/api/statistics", {
+						method: 'GET',
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": `Bearer ${store.token}`
+						},
+					})
+					const data = await res.json(); 
+					if (!res.ok) {  
+						throw new Error(data.msg); 
+					}
+					console.log(data.details)
+					setStore({ statistics: data.details }) 
+
+				}
+				catch (error) {
+					console.error(error);
+				}
+
+			},
+			sendImage: async (file) => {
+				const store = getStore()
+				const formData = new FormData();
+				formData.append('image', file);
+				try {
+					const resp = await fetch(process.env.BACKEND_URL + "/api/image", {
+					  method: 'POST',
+					  body: formData,
+					});
+					const data = await resp.json()
+					console.log(data.url)
+					// setHotelData({ ...hotelData, imageURL: data.url })
+					// actions.editProfile({ ...store.profile, image: data.url })
+					// onChange={(e) => setNewUser({ ...newUser, number: e.target.value })} function para cambiar estado de variable input
+					console.log({ ...store.profile, image: data.url })
+					return data.url
+
+				  } catch (error) {
+					console.error(error)
+				  }
+
+			},
+
+			addFavorite: async (id) => {
+				const store = getStore()
+					const actions = getActions()
+					const currentFavorite = store.profile.favorites && store.profile.favorites.find(item => item.favorite_user_id == id)
+					if (currentFavorite) {
+
+						actions.deleteFavorite(currentFavorite.id)
+						actions.getProfile()
+
+						return null
+					}
+					const res = await fetch(process.env.BACKEND_URL + `/api/favorites`, {
+						method: 'POST',
+						body: JSON.stringify({
+							"favorite_user_id": parseInt(id),
+						}
+
+						),
+						headers: {
+							'Content-Type': 'application/json',
+							"Authorization": `Bearer ${store.token}`
+						},
+					})
+					const data = await res.json()
+					console.log(res.status)
+					if (res.status == 404 || res.status == 403) {
+						Swal.fire({
+							position: "center",
+							icon: "error",
+							title: data.msg,
+							background: "#263043",
+							color: "#FFFFFF",
+							showConfirmButton: false,
+							timer: 1500
+						});
+						return false
+					}
+					// if(res.status == 401) {
+					// 	getActions().logout()
+					// }
+
+					Swal.fire({
+						position: "center",
+						icon: "success",
+						title: data.msg,
+						background: "#263043",
+						color: "#FFFFFF",
+						showConfirmButton: false,
+						timer: 1500
+					});
+					// actions.getUserSessions()
+					actions.getProfile()
+					return true
+
+
+			},
+
+			deleteFavorite: async (id) => {
+				const store = getStore()
+				try {
+					const res = await fetch(process.env.BACKEND_URL + `/api/favorites/${id}`, {
+						method: 'DELETE',
+						headers: {
+							'Content-Type': 'application/json',
+							"Authorization": `Bearer ${store.token}`
+						},
+					})
+					const data = await res.json()
+					if (!res.ok) {
+						// if(res.status == 401) getActions().logout()
+						
+						throw new Error(data.msg);
+					}
+
+					Swal.fire({
+						position: "center",
+						icon: "success",
+						title: data.msg,
+						background: "#263043",
+						color: "#FFFFFF",
+						showConfirmButton: false,
+						timer: 1500
+					});
+					getActions().getProfile()
+					return true
+
+				} catch (error) {
+					console.error(error)
+					return false
+
+				}
+
+			},
+
+
+
+
+
+
+
 
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {

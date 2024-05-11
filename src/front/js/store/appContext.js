@@ -29,7 +29,7 @@ const injectContext = PassedComponent => {
 			 * store, instead use actions, like this:
 			 **/
 			
-			//  state.actions.getProfile(); // <---- calling this function from the flux.js actions1
+			//   state.actions.getProfile(); // Si algun dia jean vuelve a ver esto, lo comente porque en este momento cuando la app recien carga no tenes token y se genera el mensaje de error que ves siempre al cargar el programa. Estas pidiendo profile sin token, por eso no puede ir aca. Atte, enzo.
 		}, []);
 
 		// The initial value for the context is not null anymore, but the current state of this component,

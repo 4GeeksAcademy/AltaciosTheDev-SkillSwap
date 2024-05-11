@@ -20,8 +20,8 @@ function PendingCard({ learner_name, skill_name, date, time, status, id }) {
                 </div>
             </div>
             <div className="pending-card-inner">
-                <button type="button" className="btn btn-danger pending-btn" onClick={() => actions.editSession("Rejected", id)}>Reject</button>
-                <button type="button" className="btn btn-success pending-btn" onClick={() => actions.editSession("Accepted", id)}>Accept</button>
+                <button type="button" className="edit-btn pending-btn" onClick={() => actions.editSession("Rejected", id)}>Reject</button>
+                <button type="button" className="accept-btn pending-btn" onClick={() => actions.editSession("Accepted", id)}>Accept</button>
             </div>
         </div>
     )

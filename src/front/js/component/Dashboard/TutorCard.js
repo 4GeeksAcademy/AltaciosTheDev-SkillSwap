@@ -3,9 +3,10 @@ import personLogo from "../../../img/personLogo.png"
 import femaleLogo from "../../../img/femaleLogo.png"
 import { BsStar } from "react-icons/bs";
 import { BsStarFill } from "react-icons/bs";
+import { MdDeleteOutline } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 
-export const TutorCard = ({ user_name, user_country, user_city, user_gender, getTutorProfile}) => {
+export const TutorCard = ({ user_name, user_country, user_city, user_gender, getTutorProfile, user_image, deleteFavorite}) => {
     const navigate = useNavigate()
    // Define goToTutorProfile as async function
    const goToTutorProfile = async () => {
@@ -27,17 +28,19 @@ export const TutorCard = ({ user_name, user_country, user_city, user_gender, get
         <div className="dashboard-card">
             <div className="tutor-card-header">
                 <h5 className="tutor-card-title">{user_name}</h5>
-                <BsStarFill className="tutor-card-icon icon-favorite" />
+                <MdDeleteOutline onClick={deleteFavorite} className="tutor-card-icon delete-icon text-danger" />
+                
             </div>
             <div className="dashboard-card-inner">
-                <img src={user_gender == "Male" ? personLogo : femaleLogo} className="tutor-img" />
+            {/* src={store.profile.image ? store.profile.image : store.profile.gender == "Male" ? personLogo : femaleLogo} */}
+                <img src={user_image ? user_image : user_gender == "Male" ? personLogo : femaleLogo} className="tutor-img" />
                 <div className="tutor-text-container">
                     <p className="tutor-text"><strong>Country:</strong> {user_country}</p>
                     <p className="tutor-text"><strong>City:</strong> {user_city}</p>
                     <p className="tutor-text"><strong>Gender:</strong> {user_gender}</p>
                 </div>
             </div>
-            <button type="button" className="btn btn-primary tutor-btn" onClick={goToTutorProfile}>Contact</button>
+            <button type="button" className="learn-more-btn tutor-btn" onClick={goToTutorProfile}>Contact</button>
         </div>
     )
 }

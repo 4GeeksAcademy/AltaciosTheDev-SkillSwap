@@ -57,7 +57,7 @@ export default function DateTime({ tutorSkills }) {
                             label="Choose Date:"
                             renderInput={(params) => <TextField {...params} />}
                             value={selectedDate}
-                            minDate={minDate}
+                            // minDate={minDate}
                             name="date"
                             onChange={(date) => setSelectedDate(date)}
                         />

@@ -1,6 +1,59 @@
 /* Globals */
+.edit-btn{
+    background-color: transparent;
+    border: 2px solid #cf1259;
+    padding: 8px 10px;
+    border-radius: 10px;
+    transition: all .3s ease-in-out;
+    color: white;
+    font-size: 15px;
+    margin-bottom: 10px;
+    width: 120px;
+    
+}
+.edit-btn:hover {
+    background-color: #cf1259;
+    transition: all .3s ease-in;
+    color: white;
+}
 
+.learn-more-btn {
+    background-color: transparent;
+    border: 2px solid    #cf1259;/* Green color for positive actions */
+    padding: 8px 10px;
+    border-radius: 10px;
+    transition: all .3s ease-in-out;
+    color: #d3d3d3;
+    font-size: 15px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 40%;
+}
 
+.learn-more-btn:hover {
+    background-color:   #cf1259;
+    transition: all .3s ease-in;
+    color: #d3d3d3;
+}
+/* background-color: #4caf50; */
+
+.accept-btn {
+    background-color: transparent;
+    border: 2px solid #008248; /* Red color for negative actions */
+    padding: 8px 10px;
+    border-radius: 10px;
+    transition: all .3s ease-in-out;
+    color: white;
+    font-size: 15px;
+    margin-bottom: 10px;
+    width: 120px;
+}
+
+.accept-btn:hover {
+    background-color: #008248; /* Deep green color that complements dark blue */
+    transition: all .3s ease-in;
+    color: white;
+}
 
 .boton {
     background-color: transparent;
@@ -34,6 +87,8 @@
     color: white;
 }
 
+
+
 /* Colors */
 .gris {
     color: #9e93a4;
@@ -61,6 +116,13 @@
 }
 .bg-amarillo {
     background-color: #e4bc44;
+}
+.amarillo {
+    color: #e4bc44;
+}
+.fa-star {
+    color: #e4bc44;
+    
 }
 
 .bg-verde {
@@ -159,13 +221,14 @@
 
  /* Footer */
 .vertical-line {
-    border-left: 4px solid rgb(99, 99, 99);
+    border-left: 4px solid #1d2634;
     height: auto;
 }
 .horizontal-line {
     border-bottom: 4px solid rgb(99, 99, 99);
     width: 100%;
     height: 3px;
+    
 }
 
 
@@ -224,6 +287,19 @@
     transition: all .4s ease-out;
 }
 
+.borde-top {
+    border-block-start: 1.8px solid #1d2634; 
+}
 
 
 
+.pending-btn{
+    width: 48% !important;
+}
+
+.news-btn{
+    width: 100% !important;
+}
+.news-btn:hover{
+    color: #424242 !important;
+}

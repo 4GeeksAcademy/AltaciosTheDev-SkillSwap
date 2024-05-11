@@ -18,7 +18,9 @@ export function Header() {
             <BsFillBellFill className="icon"/>
             <BsFillEnvelopeFill className="icon"/>
             <div className="user-badge">
-              <img src={store.profile && store.profile.gender == "Male" ? personLogo : femaleLogo} className="user-badge-image"/>
+              {store.profile &&
+                <img src={store.profile.image ? store.profile.image : store.profile.gender == "Male" ? personLogo : femaleLogo} className="user-badge-image"/>
+              }
               <div className="user-details">
                 <h6>{store.profile && store.profile.name}</h6>
               </div>

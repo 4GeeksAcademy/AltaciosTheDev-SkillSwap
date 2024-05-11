@@ -7,7 +7,7 @@ function Main() {
   let favoriteUsersElement = null
 
   // Check if store.userSkillsAssociations is available
-  if (store.profile.favorites) {
+  if (store.profile && store.profile.favorites) {
     favoriteUsersElement = store.profile.favorites.map((favorite) => (
       <TutorCard
         key={favorite.id}
@@ -15,10 +15,17 @@ function Main() {
         user_country={favorite.favorite_user_country}
         user_city={favorite.favorite_user_city}
         user_gender={favorite.favorite_user_gender}
+        user_image = {favorite.favorite_user_image}
         getTutorProfile={() => actions.getTutorProfile(favorite.favorite_user_id)}
+        deleteFavorite={() => actions.deleteFavorite(favorite.id)}
+        
       />
     ));
   }
+
+  // useEffect(() => {
+  //   actions.getProfile()
+  // },[store.profile])
 
   return (
     <div className="learn-container">
@@ -32,7 +39,7 @@ function Main() {
         <input className="learn-search" placeholder='Search Status' />
       </div> */}
       <div className="learn-tutor-cards-container container">
-        {store.profile.favorites ? favoriteUsersElement : "Loading your favorite users..."}
+        {store.profile && store.profile.favorites ? favoriteUsersElement : "Loading your favorite users..."}
       </div>
     </div>
   )

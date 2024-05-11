@@ -14,47 +14,47 @@ export const Testimonials = () => {
         <div className="testimonial-grid">
           <div className="testimonial-col-1">
             <TestimonialCard
-              name={"Messi"}
+              name={"Enzo Altamirano"}
 
-              description={"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who  "} />
+              description={"SkillSwap has been an invaluable tool for my learning journey. I've accessed a wide range of high-quality courses and resources, and I've gained so much knowledge thanks to them."  } />
             <TestimonialCard
-              name={"Messi"}
+              name={"Jean Nounoun"}
 
-              description={"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who  "} />
+              description={"The courses on SkillSwap are excellent. They're well-structured, easy to follow, and packed with valuable information. I've learned a ton from them. "} />
             <TestimonialCard
-              name={"Messi"}
+              name={"Ana"}
 
-              description={"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who  "} />
+              description={"I love the flexibility of SkillSwap. I can learn at my own pace and on my own schedule, which is perfect for my busy lifestyle."} />
           </div>
 
           <div className="testimonial-col-2">
             <TestimonialCard
-              name={"Messi"}
+              name={"Miguel Reyes"}
 
-              description={"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who  "} />
+              description={"The learning community on SkillSwap is very active and supportive. I've met many other students with similar interests, and I've been able to learn a lot from them. "} />
             <TestimonialCard
-              name={"Messi"}
+              name={"Astrid Altamirano"}
 
-              description={"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who  "} />
+              description={"I had the opportunity to take a course with Jean Nounon and absolutely loved it. They're a highly experienced and passionate instructor, and they helped me learn so much about the subject.  "} />
             <TestimonialCard
-              name={"Messi"}
+              name={"LeAnn Turcios"}
 
-              description={"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who  "} />
+              description={"SkillSwap has made a positive impact on my life. I've been able to gain new skills and knowledge that have helped me advance in my career. "} />
           </div>
 
           <div className="testimonial-col-3">
             <TestimonialCard
-              name={"Messi"}
+              name={"Emma Cueva"}
 
-              description={"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who  "} />
+              description={"I highly recommend SkillSwap to anyone looking to learn something new. It's a fantastic platform with a lot to offer."} />
             <TestimonialCard
-              name={"Messi"}
+              name={"Jan Turcios"}
 
-              description={"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who  "} />
+              description={"Thanks to SkillSwap, I've been able to increase my knowledge of Programming . I'm incredibly happy with the results! "} />
             <TestimonialCard
-              name={"Messi"}
+              name={"David Smith"}
 
-              description={"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who  "} />
+              description={"I'm so excited about SkillSwap! It's opened up a world of new learning possibilities for me. "} />
           </div>
 
         </div>

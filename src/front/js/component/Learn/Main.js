@@ -39,7 +39,11 @@ function Main() {
         level={association.level}
         user_gender={association.user_gender}
         category_name={association.category_name}
+        category_image={association.category_image}
         getTutorProfile={() => actions.getTutorProfile(association.user_id)}
+        addFavorite={() => actions.addFavorite(association.user_id)}
+        id={association.user_id}
+
       />
     ));
   }

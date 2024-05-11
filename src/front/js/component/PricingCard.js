@@ -25,7 +25,9 @@ const pricingCard = () => {
            <i class="fa-regular fa-circle-xmark ">
             <span className='black'> Minimum 1 teaching in 1 month </span>
            </i>
-           <i class="fa-regular fa-circle-xmark"></i>
+           <i class="fa-regular fa-circle-xmark">
+            <span className='black'> Free Access</span>
+           </i>
            </div>
 
             <Link to="/login" className='d-flex justify-content-center price-btn-margin'>
