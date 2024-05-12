@@ -22,9 +22,9 @@
   margin-top: 40px;
   transform: scale(1);
   transition: transform .5s;
-  -webkit-box-shadow: 2px 6px 10px 2px rgba(110,110,110,1);
-  -moz-box-shadow: 2px 6px 10px 2px rgba(110,110,110,1);
-  box-shadow: 2px 6px 10px 2px rgba(110,110,110,1);
+  -webkit-box-shadow: 2px 6px 10px 2px rgba(60,60,60,.5);
+  -moz-box-shadow: 2px 6px 10px 2px rgba(60,60,60,.5);
+  box-shadow: 2px 6px 10px 2px rgba(60,60,60,.5);
   
 }
 .pricing-card-free:hover {
@@ -39,9 +39,9 @@
 .card-pro{
   height: 650px;
   scale: 1.02;
-  -webkit-box-shadow: 2px 6px 10px 2px rgba(110,110,110,1);
-  -moz-box-shadow: 2px 6px 10px 2px rgba(110,110,110,1);
-  box-shadow: 2px 6px 10px 2px rgba(110,110,110,1);
+  -webkit-box-shadow: 2px 6px 10px 2px rgba(60,60,60,1);
+  -moz-box-shadow: 2px 6px 10px 2px rgba(60,60,60,1);
+  box-shadow: 2px 6px 10px 2px rgba(60,60,60,1);
 }
 /*Header card*/
 .header-card-pro {

@@ -14,9 +14,9 @@ export const Footer = () => {
 	}
 
 	return (
-		<footer className="footer borde-top bg-azul-claro">
+		<footer className="footer footer-shadow borde-top bg-azul-claro">
 
-			<div className="p-5 d-flex justify-content-between">
+			<div className="p-5 d-flex justify-content-between flex-column flex-md-row justify-content-between">
 
 				<div className="text-light d-flex flex-column">
 					
