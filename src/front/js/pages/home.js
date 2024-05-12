@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import "../../styles/home.css";
+import skillswap from "../../img/brand/SKILLSWAP-DARK.png"
+
 import InfoCards from "../component/InfoCards";
 import TheCard from "../component/TheCard"; 
 import TestimonialCard from "../component/TestimonialCard";
@@ -19,7 +21,7 @@ import matematica from "../../img/matematica.jpg"
 import history from "../../img/history.jpg"
 import meditation from "../../img/meditation.webp"
 import psychology from "../../img/psychology.jpg"
-
+  
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -38,47 +40,43 @@ export const Home = () => {
           </div>
         </div>
     </div>
-
+    
 
     <div className=" justify-content-center bg-azul-oscuro mt-0 p-4 ">
 
-      <div className=" my-5">
+      <div className=" my-4">
         <div className='container'>
-        <Row xs={1} md={1} lg={3} xxl={3} className="d-flex justify-content-center">
-          <Col className="mb-3 ">
+          <h1 className="white text-home text-center mb-5">Why should Choose <img className="img-fluid" style={{width: "8rem"}} src={skillswap}></img> </h1>
+          
+        <Row xs={1} md={1} lg={2} xxl={3} className="d-flex justify-content-center">
+          <Col className="mb-3 d-flex justify-content-center">
             <InfoCards 
               img={imginfo}
               title={"Exclusive 1-on-1"} 
             
               description="While other platforms may charge for personalized learning experiences, SkillSwap offers something truly unique: direct 1-on-1 interactions between learners and mentors, entirely free of charge Sharing your own expertise in return. With SkillSwap, accessing tailored mentorship and guidance has never been easier and affordable." 
             
-              btn="Your only commitment?" 
-            
-              info="Sharing your own expertise in return. With SkillSwap, accessing tailored mentorship and guidance has never been easier and affordable." />
+              />
           </Col>
 
-          <Col className="mb-3">
+          <Col className="mb-3 d-flex justify-content-center">
             <InfoCards 
-            img={teachImg}
+              img={teachImg}
               title={"Empowerment Through Teaching"} 
             
               description="SkillSwap not only allows users to learn new skills but also empowers them to share their expertise and contribute to the learning community." 
             
-              btn="How is this a benefit?" 
-            
-              info="By serving as mentors and teachers, users can make a positive impact on others while reinforcing their own knowledge and skills. This empowerment through teaching fosters a sense of fulfillment and accomplishment among users." />
+            />
           </Col>
 
-          <Col className="mb-3">
+          <Col className="mb-3  d-flex justify-content-center">
             <InfoCards 
               img={connectImg} 
               title={"Personalized Experience "} 
             
               description="Unlike traditional learning platforms where users primarily consume content, SkillSwap empowers users to actively engage in skill-sharing sessions tailored to their individual needs and interests." 
             
-              btn="Why is this approach better?" 
-            
-              info="This personalized approach fosters deeper learning and meaningful connections between users." />
+               />
           </Col>
           
           {/* <Col>
@@ -96,24 +94,24 @@ export const Home = () => {
         
       </div> 
     </div>
-      <div className="d-flex justify-content-end bg-azul-oscuro pb-5 position-relative"></div>
+      <div className="d-flex  justify-content-end bg-azul-oscuro pb-5 position-relative"></div>
 
-      <div className="d-none d-md-block vh-100 bg-azul-claro position-relative  d-flex">
-        <div className="bg-verde caja-flotante position-absolute start-50 rounded-2 translate-middle d-flex gap-3 shadow">
-          <div className="gris">
-            <h4 className="mb-5">We can help you reach your potential, <br/> <span className="rosa">even if you...</span> </h4>
-            <p className="my-4 p-info">. feel <strong className="rosa">OVERWHELMED</strong> with learning something new. </p>
-            <p className="my-4 p-info">. think you don't have <strong className="rosa">ANYTHING</strong> to offer.</p>
-            <p className="my-4 p-info" >. You've <strong className="rosa">STRUGGLED</strong> with Self-learing before. </p>
-            <p className="my-4 p-info" >. <strong className="rosa">CAN'T AFFORD</strong> live and personalized learning anywhere else</p>
+      <div className="d-none d-flex flex-sm-column flex-lg-row d-md-block vh-100 bg-azul-claro position-relative  d-flex">
+        <div className="bg-azul-claro caja-flotante position-absolute start-50 rounded-2 translate-middle d-flex justify-content-around shadow">
+          <div className="white mt-5 ">
+            <h1 className="mb-5 white">We can help you reach your potential, <br/> <span className="rosa">even if you</span><span className="amarillo">...</span> </h1>
+            <p className="my-4 white p-info-sound"> <span className="amarillo">.</span> Feel <strong className="rosa">OVERWHELMED</strong> with learning something new. </p>
+            <p className="my-4 white p-info-sound"> <span className="amarillo">.</span> Think you don't have <strong className="rosa">ANYTHING</strong> to offer.</p>
+            <p className="my-4 white p-info-sound"> <span className="amarillo">.</span> You've <strong className="rosa">STRUGGLED</strong> with Self-learing before. </p>
+            <p className="my-4 white p-info-sound"> <span className="amarillo">.</span> <strong className="rosa">CAN'T AFFORD</strong> live and personalized learning anywhere else</p>
           </div>
           
 
-          <div className=" w-50 p-4 bg-azul-oscuro h-75 mt-5 rounded-3 shadow">
-            <h1 className="text-center"> Sound like you?</h1>
-            <p className="my-5 p-info ">"If so, <strong className="rosa">Skillswap</strong> provides the community you need and empowers 
-              you to make a difference within it."</p>
-              <div className="d-sm-none d-lg-block d-flex justify-content-end">
+          <div className=" caja-sound p-4 bg-azul-oscuro ms-lg-5  h-75 mt-5 rounded-3 shadow">
+            <h1 className="text-center pt-2"> Sound like you?</h1>
+            <p className="mt-4 mb-0 p-info-sound white  text-center"><span className="amarillo">" </span>If so, <strong className="rosa">Skillswap</strong> provides the community you need and empowers 
+              you to make a difference within it.<span className="amarillo">"</span></p>
+              <div className=" d-flex justify-content-center">
               <Link to="/login"><button className="boton mt-3">Trust us and JOIN!</button></Link>
               </div>
             
@@ -122,7 +120,7 @@ export const Home = () => {
         </div>
       </div>
       <div className="bg-azul-oscuro pb-5 ">
-        <h1 className="text-center p-4 mb-5">Learn some of the most demand skills</h1>
+        <h1 className="text-center white p-5 mb-4 text-home ">Learn some of the most demand skills</h1>
         <div className="container d-flex justify-content-center">
           <Row xs={1} md={2} lg={2} xl={4} >
           
@@ -181,9 +179,9 @@ export const Home = () => {
 
       <div className="bg-azul-claro ">
 
-        <div className="d-flex justify-content-between p-5">
-          <h1>Stories from real <span className="pink">people</span></h1>
-          <Link to="/testimonials">
+        <div className=" p-5">
+          <h1 className="text-center white text-home">Stories from real <span className="">people</span></h1>
+          <Link className="d-flex justify-content-end" to="/testimonials">
             <button className="boton rounded-2">View All</button>
           </Link>
           
