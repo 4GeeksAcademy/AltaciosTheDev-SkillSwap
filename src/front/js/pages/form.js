@@ -30,24 +30,24 @@ export const Form = () => {
 
     //register function that will send all values to the back end 
     const registerUser = async () => {
-        return await actions.register(name, email,number, password, gender, country, city);
+        return await actions.register(name, email, number, password, gender, country, city);
     }
 
     // Function to handle moving to the next registration step
     const nextPage = () => {
-          console.log({
-            "password":password,
-            "email":email,
-            "number":number,
-            "name":name,
-            "gender":gender,
-            "country":country,
-            "city":city
+        console.log({
+            "password": password,
+            "email": email,
+            "number": number,
+            "name": name,
+            "gender": gender,
+            "country": country,
+            "city": city
         });
-        
+
         setPage(page + 1);
 
-      
+
     };
 
     // Function to handle moving to the previous registration step
@@ -90,10 +90,14 @@ export const Form = () => {
                     registerUser={registerUser}
                 />;
             case 2:
-                return <Register3 nextPage={nextPage} prevPage={prevPage}
+                return <Register3
+                    nextPage={nextPage}
+                    prevPage={prevPage}
                 />;
             case 3:
-                return <Register4 prevPage={prevPage}/>;
+                return <Register4
+                    prevPage={prevPage}
+                />;
             default:
                 return null;
         }

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
@@ -12,221 +12,223 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 
+import { useNavigate } from "react-router-dom";
 
 
-export const Register4 = ({prevPage}) => {
+export const Register4 = ({ nextPage, prevPage }) => {
 
     const { store, actions } = useContext(Context)
-    const [category, setCategory] = useState('');
-    const [level, setLevel] = useState('');
-    const [role, setRole] = useState('Student');
+    const [skills, setSkills] = useState([]);
+    const [levels, setLevels] = useState([]);
+    const [role, setRole] = useState('Learner');
+    const navigate = useNavigate();
 
-    if (store.categories) {
-        categoriesElements = store.categories.map(category => (
-          <option key={category.id} value={category.name}>{category.name}</option>
-        ))
-      }
-       // Declare userSkillElements variable
-  let userSkillElements = null;
+    useEffect(() => {
+        actions.getSkills()
+    }, [])
 
-  // Declare categoryElements variable
-  let categoriesElements = null
+    // Update a specific skill or level
+    const updateSkill = (index, value) => {
+        const newSkills = [...skills];
+        newSkills[index] = parseInt(value);
+        setSkills(newSkills);
+        console.log(newSkills)
+        console.log(typeof newSkills[0])
+    };
 
-    // useEffect(() => {
-    //     actions.getCategories()
-    //     actions.getAssociations(level, role, category)
-    //   }, [])
+    const updateLevel = (index, value) => {
+        const newLevels = [...levels];
+        newLevels[index] = value;
+        setLevels(newLevels);
+        console.log(newLevels)
+    };
+
+    async function skillsLearningRegister() {
+        // Call your register action here
+        const areSkillsRegistered = await actions.createAssociation(skills, role, levels)
+        console.log('areSkillsRegistered:' ,areSkillsRegistered)
+        const isProfileLoaded = await actions.getProfile()
+        console.log('isProfileLoaded:' ,isProfileLoaded)
+        if (areSkillsRegistered && isProfileLoaded) {
+            navigate("/dashboard")
+        }
+    }
 
     return (
-
-
-
         <div className="text-center">
             <div>
-                <h1>Skills</h1>
-                <p>Select the skills you have to learn </p>
+                <h1>Skills to Learn</h1>
+                <p>Select skills and levels </p>
+            </div>
+            <div>
                 <p>First skill: </p>
-                <a>Role</a>
-                <input
-                    className="loginput text-center"
-                    type="text"
-                    placeholder="Student"
-                    value={role}
-                    disabled
-                />
-                
+
+                <a>Skill: </a>
+
+                <select
+                    className="loginput"
+                    labelId="skill-select-label"
+                    id="skill-select"
+                    value={skills[0]} // Use the correct index
+                    label="Skill"
+                    onChange={(e) => updateSkill(0, e.target.value)} // Use the correct index
+                    >
+                    {store.skills && store.skills.map(skill => (
+                        <option key={skill.id} value={skill.id}>{skill.name}</option>
+                    ))}
+                </select>
                 <a>Level</a>
                 <select
+                    className="loginput"
                     labelId="level-select-label"
                     id="level-select"
-                    value={level}
+                    value={levels[0]}
                     label="Level"
-                    onChange={(event) => setLevel(event.target.value)}
+                    onChange={(e) => updateLevel(0, e.target.value)} // Use the correct index
                 >
                     <option value="Beginner">Beginner</option>
                     <option value="Intermidiate">Intermidiate</option>
                     <option value="Advanced">Advanced</option>
                 </select>
 
-                <a>Category: </a>
+
+            </div>
+
+            <div>
+                <p>Second skill: </p>
+
+                <a>Skill: </a>
+
                 <select
                     className="loginput"
-                    labelId="category-select-label"
-                    id="category-select"
-                    value={category}
-                    label="Category"
-                    onChange={(e) => setCategory(e.target.value)}
-                >
-                    {/* <option>{categoriesElement}</option> */}
+                    labelId="skill-select-label"
+                    id="skill-select"
+                    value={skills[1]} // Use the correct index
+                    label="Skill"
+                    onChange={(e) => updateSkill(1, e.target.value)} // Use the correct index
+                    >
+                    {store.skills && store.skills.map(skill => (
+                        <option key={skill.id} value={skill.id}>{skill.name}</option>
+                    ))}
                 </select>
+                <a>Level</a>
+                <select
+                    className="loginput"
+                    labelId="level-select-label"
+                    id="level-select"
+                    value={levels[1]}
+                    label="Level"
+                    onChange={(e) => updateLevel(1, e.target.value)} // Use the correct index
+                >
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermidiate">Intermidiate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>
+
+
             </div>
             <div>
-            <p>Second skill: </p>
-            <a>Role</a>
-                <input
-                    className="loginput text-center"
-                    type="text"
-                    placeholder="Student"
-                    value={role}
-                    disabled
-                />
-                
+                <p>Third skill: </p>
+
+                <a>Skill: </a>
+
+                <select
+                    className="loginput"
+                    labelId="skill-select-label"
+                    id="skill-select"
+                    value={skills[2]} // Use the correct index
+                    label="Skill"
+                    onChange={(e) => updateSkill(2, e.target.value)} // Use the correct index
+                    >
+                    {store.skills && store.skills.map(skill => (
+                        <option key={skill.id} value={skill.id}>{skill.name}</option>
+                    ))}
+                </select>
                 <a>Level</a>
                 <select
+                    className="loginput"
                     labelId="level-select-label"
                     id="level-select"
-                    value={level}
+                    value={levels[2]}
                     label="Level"
-                    onChange={(event) => setLevel(event.target.value)}
+                    onChange={(e) => updateLevel(2, e.target.value)} // Use the correct index
                 >
                     <option value="Beginner">Beginner</option>
                     <option value="Intermidiate">Intermidiate</option>
                     <option value="Advanced">Advanced</option>
                 </select>
 
-                <a>Category: </a>
-                <select
-                    className="loginput"
-                    labelId="category-select-label"
-                    id="category-select"
-                    value={category}
-                    label="Category"
-                    onChange={(e) => setCategory(e.target.value)}
-                >
-                    {/* <option>{categoriesElement}</option> */}
-                </select>
+
             </div>
             <div>
-            <p>third skill: </p>
-            <a>Role</a>
-                <input
-                    className="loginput text-center"
-                    type="text"
-                    placeholder="Student"
-                    value={role}
-                    disabled
-                />
-                
+                <p>Fourth skill: </p>
+
+                <a>Skill: </a>
+
+                <select
+                    className="loginput"
+                    labelId="skill-select-label"
+                    id="skill-select"
+                    value={skills[3]} // Use the correct index
+                    label="Skill"
+                    onChange={(e) => updateSkill(3, e.target.value)} // Use the correct index
+                    >
+                    {store.skills && store.skills.map(skill => (
+                        <option key={skill.id} value={skill.id}>{skill.name}</option>
+                    ))}
+                </select>
                 <a>Level</a>
                 <select
+                    className="loginput"
                     labelId="level-select-label"
                     id="level-select"
-                    value={level}
+                    value={levels[3]}
                     label="Level"
-                    onChange={(event) => setLevel(event.target.value)}
+                    onChange={(e) => updateLevel(3, e.target.value)} // Use the correct index
                 >
                     <option value="Beginner">Beginner</option>
                     <option value="Intermidiate">Intermidiate</option>
                     <option value="Advanced">Advanced</option>
                 </select>
 
-                <a>Category: </a>
-                <select
-                    className="loginput"
-                    labelId="category-select-label"
-                    id="category-select"
-                    value={category}
-                    label="Category"
-                    onChange={(e) => setCategory(e.target.value)}
-                >
-                    {/* <option>{categoriesElement}</option> */}
-                </select>
+
             </div>
             <div>
-            <p>Fourth skill: </p>
-            <a>Role</a>
-                <input
-                    className="loginput text-center"
-                    type="text"
-                    placeholder="Student"
-                    value={role}
-                    disabled
-                />
-                
+                <p>Fifth skill: </p>
+
+                <a>Skill: </a>
+
+                <select
+                    className="loginput"
+                    labelId="skill-select-label"
+                    id="skill-select"
+                    value={skills[4]} // Use the correct index
+                    label="Skill"
+                    onChange={(e) => updateSkill(4, e.target.value)} // Use the correct index
+                    >
+                    {store.skills && store.skills.map(skill => (
+                        <option key={skill.id} value={skill.id}>{skill.name}</option>
+                    ))}
+                </select>
                 <a>Level</a>
                 <select
+                    className="loginput"
                     labelId="level-select-label"
                     id="level-select"
-                    value={level}
+                    value={levels[4]}
                     label="Level"
-                    onChange={(event) => setLevel(event.target.value)}
+                    onChange={(e) => updateLevel(4, e.target.value)} // Use the correct index
                 >
                     <option value="Beginner">Beginner</option>
                     <option value="Intermidiate">Intermidiate</option>
                     <option value="Advanced">Advanced</option>
                 </select>
 
-                <a>Category: </a>
-                <select
-                    className="loginput"
-                    labelId="category-select-label"
-                    id="category-select"
-                    value={category}
-                    label="Category"
-                    onChange={(e) => setCategory(e.target.value)}
-                >
-                    {/* <option>{categoriesElement}</option> */}
-                </select>
-            </div>
-            <div>
-            <p>fifth skill: </p>
-            <a>Role</a>
-                <input
-                    className="loginput text-center"
-                    type="text"
-                    placeholder="Student"
-                    value={role}
-                    disabled
-                />
-                
-                <a>Level</a>
-                <select
-                    labelId="level-select-label"
-                    id="level-select"
-                    value={level}
-                    label="Level"
-                    onChange={(event) => setLevel(event.target.value)}
-                >
-                    <option value="Beginner">Beginner</option>
-                    <option value="Intermidiate">Intermidiate</option>
-                    <option value="Advanced">Advanced</option>
-                </select>
 
-                <a>Category: </a>
-                <select
-                    className="loginput"
-                    labelId="category-select-label"
-                    id="category-select"
-                    value={category}
-                    label="Category"
-                    onChange={(e) => setCategory(e.target.value)}
-                >
-                    {/* <option>{categoriesElement}</option> */}
-                </select>
             </div>
-            
+
             <button type="button" className="nextbutton" onClick={prevPage}>Previous</button>
-            
+            <button type="button" className="nextbutton" onClick={skillsLearningRegister}>Next</button>
         </div>
 
     );

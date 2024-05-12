@@ -121,7 +121,7 @@ def private():
 
     user = User.query.filter_by(email=email).first()
     if user is None:
-        return jsonify({"msg": "user not Found 🙁"}), 404
+        return jsonify({"msg": "User not found"}), 404
     
     return jsonify(user.serialize())
 
@@ -253,6 +253,47 @@ def get_users_skills_associations():
 
     return jsonify([association.serialize() for association in associations]),200
 
+
+@api.route("/associations", methods=["POST"])
+@jwt_required()
+def create_association():
+    email = get_jwt_identity()
+
+    user = User.query.filter_by(email = email).first()
+
+    if user is None:
+        return jsonify({"msg": "User not found"}),404
+    
+    level = request.json.get("level", None)
+    role = request.json.get("role", None)
+    skill = request.json.get("skill", None)
+
+    if level is None:
+        return jsonify({"msg": "Missing level"}), 404
+
+    if role is None:
+        return jsonify({"msg": "Missing role"}), 404
+    
+    if skill is None:
+        return jsonify({"msg": "Missing skill"}), 404
+
+    if isinstance(skill, int) and isinstance(level, str) and isinstance(role, str):
+        new_association = User_Skill_Association(level = level, role = role, user_id = user.id, skill_id = skill)
+        db.session.add(new_association)
+        db.session.commit()
+        return jsonify({"msg": "Association created successfully", "details": new_association.serialize()})
+    
+    elif isinstance(skill, list) and isinstance(level, list) and isinstance(role, str):
+        associations = []
+        for i in range(len(skill)):
+            new_association = User_Skill_Association(level = level[i], role = role, user_id = user.id, skill_id = skill[i])
+            db.session.add(new_association)
+            db.session.commit()
+            associations.append(new_association.serialize())
+        return jsonify({"msg": "Initial associations for user created succesfully", "associations_created": associations})
+    
+    else:
+        return jsonify({"msg": "Invalid data type"}), 400
 
 
 

@@ -9,7 +9,7 @@ export const Register2 = ({ nextPage, prevPage, gender, setGender, country, setC
     async function confirmUserRegister() {
         // Call your register action here
         const isUserRegistered = await registerUser()
-        // Assuming isUserRegistered is properly defined and returned
+        console.log('isUserRegistered:' ,isUserRegistered)
         if (isUserRegistered) {
             nextPage(); // Call nextPage as a function
         }

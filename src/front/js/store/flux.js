@@ -90,11 +90,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 						method: 'GET',
 						headers: {
 							"Content-Type": "application/json",
-							"Authorization": "Bearer " + localStorage.getItem("token")
+							"Authorization": `Bearer ${store.token}`
 						},
 					})
 					if (!resp.ok) {
-						alert("there has been some error")
+						Swal.fire({
+							position: "center",
+							icon: "error",
+							title: data.msg,
+							background: "#263043",
+							color: "#FFFFFF",
+							showConfirmButton: false,
+							timer: 1500
+						});
 						return false;
 					}
 
@@ -102,6 +110,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					localStorage.setItem("profile", JSON.stringify(data));
 					console.log(data)
 					setStore({ profile: data })
+					return true
 
 				}
 				catch (error) {
@@ -253,6 +262,52 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					}
 				} catch (error) {
+					return false
+
+				}
+
+			},
+			createAssociation: async (skill, role, level) => {
+				const store = getStore()
+				try {
+					const res = await fetch(process.env.BACKEND_URL + `/api/associations`, {
+						method: 'POST',
+						body: JSON.stringify({
+							"skill": skill,
+							"role": role,
+							"level": level
+						}
+						),
+						headers: {
+							'Content-Type': 'application/json',
+							"Authorization": `Bearer ${store.token}`
+						},
+					})
+					const data = await res.json()
+					if (!res.ok) {
+						throw new Error(data.msg)
+
+					}
+					Swal.fire({
+						position: "center",
+						icon: "success",
+						title: data.msg,
+						background: "#263043",
+						color: "#FFFFFF",
+						showConfirmButton: false,
+						timer: 1500
+					});
+					return true 
+				} catch (error) {
+					Swal.fire({
+						position: "center",
+						icon: "error",
+						title: error,
+						background: "#263043",
+						color: "#FFFFFF",
+						showConfirmButton: false,
+						timer: 1500
+					});
 					return false
 
 				}
@@ -591,20 +646,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error loading message from backend", error)
 				}
 			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			},
 			openSidebarToggle: () => {
 				const store = getStore()
 				setStore({ openSidebar: !store.openSidebar })
@@ -643,6 +684,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					localStorage.setItem("token", data.token);
 					setStore({ token: data.token })
+					return true;
 				}catch(error){
 					Swal.fire({
 						position: "center",
