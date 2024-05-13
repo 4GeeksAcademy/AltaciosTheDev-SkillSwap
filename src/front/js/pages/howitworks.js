@@ -1,6 +1,12 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
+import connect from "../../img/connect.jpg";
+import signup from "../../img/signup.png";
+import browse from "../../img/browse.gif";
+import match from "../../img/match.jpeg";
+import learnAndTeach from "../../img/teachAndLearn.png";
+import feedback from "../../img/feedback.jpg";
+
 
 import "../../styles/howit.css";
 
@@ -13,7 +19,7 @@ export const Howitworks = () => {
 
                 <div className="hero">
                     
-                    <h1><i class="fa-solid fa-grip-lines"></i>This is Skillswap Way<i class="fa-solid fa-grip-lines"></i></h1>
+                    <h1><i className="fa-solid fa-grip-lines "></i>This is Skillswap Way<i className="fa-solid fa-grip-lines rosa"></i></h1>
                     <p>Discover the simple steps to joining our Community of leearners and mentors</p>
                 
                 </div>
@@ -21,12 +27,12 @@ export const Howitworks = () => {
                     <div className="row">
                         <div className="col-6">
                             <div>
-                                <img src={rigoImageUrl} className="marco" alt="..." />
+                                <img src={signup} className="marco " alt="..." />
                             </div>
                         </div>
                         <div className="col-6">
                             <div className="text">
-                                <h3>1) Sign Up <i class="fa-solid fa-right-to-bracket"></i></h3>
+                                <h3 className="amarillo">1 Sign Up <i className="fa-solid fa-right-to-bracket rosa "></i></h3>
                                 <a>Create your Skillswap account in just a few simple steps. Provide basic information ans set up your profile to showcase your skills an interests.</a>
                             </div>
                         </div>
@@ -34,13 +40,13 @@ export const Howitworks = () => {
                             <div className="row">
                                 <div className="col-6">
                                     <div className="text">
-                                        <h3>2) Browse Skills <i class="fa-solid fa-list"></i></h3>
+                                        <h3 className="amarillo">2 Browse Skills <i className="fa-solid fa-list rosa"></i></h3>
                                         <a>Explore a diverse range of skills offered by other users on SkillSwap. Use filters and search functionality to find skills that match your interests and learning goals.</a>
                                     </div>
                                 </div>
                                 <div className="col-6">
                                     <div>
-                                        <img src={rigoImageUrl} className="marco" alt="..." />
+                                        <img src={browse} className="marco" alt="..." />
                                     </div>
                                 </div>
                             </div>
@@ -50,12 +56,12 @@ export const Howitworks = () => {
                             <div className="row">
                                 <div className="col-6">
                                     <div>
-                                        <img src={rigoImageUrl} className="marco" alt="..." />
+                                        <img src={match} className="marco" alt="..." />
                                     </div>
                                 </div>
                                 <div className="col-6">
                                     <div className="text">
-                                        <h3>3) Find a Match <i class="fa-solid fa-magnifying-glass"></i></h3>
+                                        <h3 className="amarillo">3 Find a Match <i className="fa-solid fa-magnifying-glass rosa"></i></h3>
                                         <a>Our smart matching algorithm pairs you with compatible mentors or learners based on your preferences and expertise. Connect with your marched partner and shedule a skill-sharing session that works for both of you.</a>
                                     </div>
                                 </div>
@@ -65,7 +71,7 @@ export const Howitworks = () => {
                             <div className="row">
                                 <div className="col-6">
                                     <div className="text">
-                                        <h3>4) Learn and teach <i class="fa-solid fa-graduation-cap"></i></h3>
+                                        <h3 className="amarillo">4 Learn and teach <i className="fa-solid fa-graduation-cap rosa"></i></h3>
                                         <a>Engage in 1-on-1 learning sessions
                                             with your mentor or mentee
                                             via video conferencing.
@@ -76,7 +82,7 @@ export const Howitworks = () => {
                                 </div>
                                 <div className="col-6">
                                     <div>
-                                        <img src={rigoImageUrl} className="marco" alt="..." />
+                                        <img src={learnAndTeach} className="marco" alt="..." />
                                     </div>
                                 </div>
                             </div>
@@ -85,12 +91,12 @@ export const Howitworks = () => {
                             <div className="row">
                                 <div className="col-6">
                                     <div>
-                                        <img src={rigoImageUrl} className="marco" alt="..." />
+                                        <img src={feedback} className="marco" alt="..." />
                                     </div>
                                 </div>
                                 <div className="col-6">
                                     <div className="text">
-                                        <h3>5) Give and Receive Feedback <i class="fa-solid fa-comment"></i></h3>
+                                        <h3 className="amarillo">5 Give and Receive Feedback <i className="fa-solid fa-comment rosa"></i></h3>
                                         <a>After each session, leave feedback and
                                             ratings to help maintain the quality of interactions.
                                             Use feedback from others to improve
@@ -105,7 +111,7 @@ export const Howitworks = () => {
                             <div className="row">
                                  <div className="col-6">
                             <div className="text">
-                                <h3>6) Grow and Connect <i class="fa-solid fa-people-group"></i></h3>
+                                <h3 className="amarillo">6 Grow and Connect <i className="fa-solid fa-people-group rosa"></i></h3>
                                 <a>Continue to expand your skills and knowledge
                                     through ongoing exchanges with
                                     members of the SkillSwap community.
@@ -115,7 +121,7 @@ export const Howitworks = () => {
                         </div>
                         <div className="col-6">
                             <div>
-                                <img src={rigoImageUrl} className="marco" alt="..." />
+                                <img src={connect} className="marco" alt="..." />
                             </div>
                         </div>
                             </div>

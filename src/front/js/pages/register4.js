@@ -12,14 +12,16 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 
+import { useNavigate } from "react-router-dom";
 
 
-export const Register3 = ({ nextPage, prevPage }) => {
+export const Register4 = ({ nextPage, prevPage }) => {
 
     const { store, actions } = useContext(Context)
     const [skills, setSkills] = useState([]);
     const [levels, setLevels] = useState([]);
-    const [role, setRole] = useState('Tutor');
+    const [role, setRole] = useState('Learner');
+    const navigate = useNavigate();
 
     useEffect(() => {
         actions.getSkills()
@@ -41,19 +43,21 @@ export const Register3 = ({ nextPage, prevPage }) => {
         console.log(newLevels)
     };
 
-    async function skillsTutoringRegister() {
+    async function skillsLearningRegister() {
         // Call your register action here
         const areSkillsRegistered = await actions.createAssociation(skills, role, levels)
         console.log('areSkillsRegistered:' ,areSkillsRegistered)
-        if (areSkillsRegistered) {
-            nextPage(); // Call nextPage as a function
+        const isProfileLoaded = await actions.getProfile()
+        console.log('isProfileLoaded:' ,isProfileLoaded)
+        if (areSkillsRegistered && isProfileLoaded) {
+            navigate("/dashboard")
         }
     }
 
     return (
         <div className="text-center">
             <div>
-                <h1>Skills to Tutor</h1>
+                <h1>Skills to Learn</h1>
                 <p>Select skills and levels </p>
             </div>
             <div>
@@ -224,7 +228,7 @@ export const Register3 = ({ nextPage, prevPage }) => {
             </div>
 
             <button type="button" className="nextbutton" onClick={prevPage}>Previous</button>
-            <button type="button" className="nextbutton" onClick={skillsTutoringRegister}>Next</button>
+            <button type="button" className="nextbutton" onClick={skillsLearningRegister}>Next</button>
         </div>
 
     );

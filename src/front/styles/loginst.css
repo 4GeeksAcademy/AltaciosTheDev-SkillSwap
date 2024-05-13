@@ -22,7 +22,7 @@
     text-align: center;
    align-content: center ;
    border-radius: 10px;
-   height: 800px;
+   height: 900px;
    padding-top: 20%;
    padding-bottom: 20%;
 }
@@ -61,3 +61,12 @@
 .links{
     color: blue;
 }
+
+.letraregister{
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+}
+.backgroudnregister2{
+    height: 800px;
+    text-align: center;
+}   

@@ -3,16 +3,11 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Link , Navigate, useNavigate} from "react-router-dom";
 
-export const Register= ()=> {
+export const Register= ({nextPage,password,setPassword,email,setEmail,confirmpassword,setConfirmpassword,number,setNumber,errorMessage,setErrorMessage,name,setUsername})=> {
 
     const navigate=useNavigate();
     const{actions}=useContext(Context);
-    const[password,setPassword]=useState('');
-    const[email,setEmail]=useState('');
-    const[confirmpassword,setConfirmpassword]=useState('');
-    const[number,setNumber]=useState('');
-    const[errorMessage,setErrorMessage]=useState('');
-    const[name,setUsername]=useState('');
+   
 
 
     const handleInputChange=()=>{
@@ -32,6 +27,7 @@ export const Register= ()=> {
         try{
             const data= await actions.register(name,email,password,number);
             console.log("Usuario registrado con exito:",data);
+
             navigate("/dashboard");
         }catch(error){
             console.error('Error en la creacion de usuario', error.message);
@@ -57,7 +53,8 @@ export const Register= ()=> {
                         {errorMessage}
                     </div>
                 )}
-                <form onSubmit={handleSingUp}>
+                {/* onSubmit={handleSingUp} */}
+                <form> 
                 <p><input 
                 className="loginput" 
                 type="text" 
@@ -96,7 +93,7 @@ export const Register= ()=> {
                 value={number}
                 onChange={(e)=>{setNumber(e.target.value); handleInputChange();}}
                  /></p> 
-                 <button type="submit"  className="nextbutton">Next</button>
+                 <button type="button"  className="nextbutton" onClick={nextPage}>Next</button>
                 </form>
             </div>
         </div>

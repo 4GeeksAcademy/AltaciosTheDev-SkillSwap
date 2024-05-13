@@ -19,6 +19,9 @@ import {Favorites} from "./pages/Favorites";
 import {Profile} from "./pages/Profile";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { Register2 } from "./pages/register2";
+import { Register3 } from "./pages/register3";
+import { Register4 } from "./pages/register4";
 
 //create your first component
 const Layout = () => {
@@ -40,6 +43,9 @@ const Layout = () => {
                         <Route element={<Testimonials/>} path="/testimonials"/>
                         <Route element={<Login />} path="/login" />
                         <Route element={<Form />} path="/form" />
+                        <Route element={<Register2/>} path="/register2" />
+                        <Route element={<Register3/>} path="/register3" />
+                        <Route element={<Register4/>} path="/register4"/>
                         <Route element={<Dashboard />} path="/dashboard" />
                         <Route element={<History />} path="/history" />
                         <Route element={<Learn />} path="/learn" />

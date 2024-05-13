@@ -32,19 +32,21 @@ export const Login = () => {
                     <div className="cardlogin">
                         <div>
                             <h2>Welcome to SkillSwap</h2>
-                            <a>Don't have an account? </a>
-                            <a href="/form" className="link-underline-primary">Create an account</a>
+                            <a>Don't have an account?</a>
+                            <a href="/form" className="links">Create an account</a>
                         </div>
                         <div className="pt-3">
                             <p>
                             <input 
+                                className="loginput"
                                 type="email" placeholder="Your e-mail" 
                                 value={email} 
                                 onChange={(e) => setEmail(e.target.value)}/>
                             </p>
 
                             <p>
-                            <input 
+                            <input
+                                className="loginput"
                                 type="password" placeholder="Password" 
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}

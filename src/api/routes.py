@@ -54,24 +54,45 @@ def upload_file():
 #create a User 👤
 @api.route("/signup", methods=["POST"])
 def signup():
-    email = request.json.get("email", None)
-    name=request.json.get("name", None)
-    password = request.json.get("password", None)
-    number=request.json.get("number",None)
-    
+   email = request.json.get("email", None)
+   name=request.json.get("name", None)
+   password = request.json.get("password", None)
+   number=request.json.get("number",None)
+   gender=request.json.get("gender",None)
+   country=request.json.get("country",None)
+   city=request.json.get("city",None)
 
+   if email is None:
+       return jsonify({"msg": "missing email"}), 404
+       
+   if name is None:
+       return jsonify({"msg": "missing name"}), 404
 
-    user = User.query.filter_by(email=email).first()
-    if user:
+   if password is None:
+       return jsonify({"msg": "missing password"}), 404
+   
+   if number is None:
+       return jsonify({"msg": "missing number"}), 404
+       
+   if gender is None:
+       return jsonify({"msg": "missing gender"}), 404
+
+   if country is None:
+       return jsonify({"msg": "missing country"}), 404
+
+   if city is None:
+       return jsonify({"msg": "missing city"}), 404
+   
+   user = User.query.filter_by(email=email).first()
+   if user:
         return jsonify({"msg": "User are registered"}), 403
 
-    password_hash = current_app.bcrypt.generate_password_hash(password).decode("utf-8")
-
-    new_user = User(email=email, password=password_hash,number=number, is_active=True)
-    db.session.add(new_user)
-    db.session.commit()
-
-    return jsonify(msg="user created successful")
+#    password_hash = current_app.bcrypt.generate_password_hash(password).decode("utf-8")
+   new_user = User(email=email, name=name,password=password,number=number, gender=gender,country=country,city=city)
+   db.session.add(new_user)
+   db.session.commit()
+   access_token=create_access_token(identity = new_user.email, expires_delta=timedelta(hours=3))
+   return jsonify({"msg":"user created successful", "token": access_token})
 
 #login a user 🦍
 @api.route("/login", methods=["POST"])
@@ -100,7 +121,7 @@ def private():
 
     user = User.query.filter_by(email=email).first()
     if user is None:
-        return jsonify({"msg": "user not Found 🙁"}), 404
+        return jsonify({"msg": "User not found"}), 404
     
     return jsonify(user.serialize())
 
@@ -232,6 +253,47 @@ def get_users_skills_associations():
 
     return jsonify([association.serialize() for association in associations]),200
 
+
+@api.route("/associations", methods=["POST"])
+@jwt_required()
+def create_association():
+    email = get_jwt_identity()
+
+    user = User.query.filter_by(email = email).first()
+
+    if user is None:
+        return jsonify({"msg": "User not found"}),404
+    
+    level = request.json.get("level", None)
+    role = request.json.get("role", None)
+    skill = request.json.get("skill", None)
+
+    if level is None:
+        return jsonify({"msg": "Missing level"}), 404
+
+    if role is None:
+        return jsonify({"msg": "Missing role"}), 404
+    
+    if skill is None:
+        return jsonify({"msg": "Missing skill"}), 404
+
+    if isinstance(skill, int) and isinstance(level, str) and isinstance(role, str):
+        new_association = User_Skill_Association(level = level, role = role, user_id = user.id, skill_id = skill)
+        db.session.add(new_association)
+        db.session.commit()
+        return jsonify({"msg": "Association created successfully", "details": new_association.serialize()})
+    
+    elif isinstance(skill, list) and isinstance(level, list) and isinstance(role, str):
+        associations = []
+        for i in range(len(skill)):
+            new_association = User_Skill_Association(level = level[i], role = role, user_id = user.id, skill_id = skill[i])
+            db.session.add(new_association)
+            db.session.commit()
+            associations.append(new_association.serialize())
+        return jsonify({"msg": "Initial associations for user created succesfully", "associations_created": associations})
+    
+    else:
+        return jsonify({"msg": "Invalid data type"}), 400
 
 
 
