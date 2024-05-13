@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import "../../styles/home.css";
 import skillswap from "../../img/brand/SKILLSWAP-DARK.png"
 
+
 import InfoCards from "../component/InfoCards";
 import TheCard from "../component/TheCard"; 
 import TestimonialCard from "../component/TestimonialCard";
