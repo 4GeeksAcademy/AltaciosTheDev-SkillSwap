@@ -51,11 +51,11 @@ class Category(db.Model):
     name = db.Column(db.String(120),  unique=True, nullable=False)
     image = db.Column(db.String(500), nullable=True)
 
-    def __init__(self, name):
-        self.name = name
-
-    def __repr__(self):
-        return f'<Category {self.name}>'
+    def __init__(self, name):   
+        self.name = name        
+ 
+    def __repr__(self): 
+        return f'<Category {self.name}>' 
     
     def serialize(self):
         return {

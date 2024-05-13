@@ -492,16 +492,18 @@ def get_statistics():
     if user is None:
         return jsonify({"msg": "User not Found"}), 404
 
-    # Cuando ocupo cambiar columnas se puede hacer asi
+    # Query to get the count of sessions for each skill
     sessions_learned = db.session.query(
         Session.skill_id,
-        db.func.count(Session.skill_id).label('count')  # de esta manera puedo darle nombre y accesarla despues 
+        db.func.count(Session.skill_id).label('count')
     ).filter(
         Session.status == 'Accepted',
         Session.learner_id == user.id
     ).group_by(
         Session.skill_id
-    ).all()
+    ).order_by(
+        db.desc('count')  # Order by count in descending order
+    ).limit(5).all()  # Limit the results to top 5
 
     #When you execute a query using SQLAlchemy, each row in the result set is returned as an object
     # Serialize the results

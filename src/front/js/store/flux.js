@@ -1,7 +1,6 @@
 import { Register } from "../pages/register";
 import Swal from 'sweetalert2'
 
-
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
