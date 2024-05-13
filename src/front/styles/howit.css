@@ -19,3 +19,60 @@
    border: 0px solid #999999;
 
 }
+
+.step-card {
+
+   width: 22rem;
+   height: 26rem;
+   border-radius: 15px;
+  
+   
+}
+@media (min-width: 500px) {
+   .step-card {
+
+      width: 19rem;
+      height: 26rem;
+      border-radius: 15px;
+     
+      
+   }
+}
+
+@media (min-width: 760px) {
+   .step-card {
+      width: 20rem;
+      height: 30rem;
+      
+      
+   }
+}
+@media (min-width: 992px) {
+   .step-card {
+      width: 14rem;
+      height: 33rem;
+      
+      
+   }
+}
+@media (min-width: 1150px) {
+   .step-card {
+      width: 16rem;
+      height: 30rem;
+      
+   }
+}
+@media (min-width: 1400px) {
+   .step-card {
+      gap: 20px;
+      width: 19rem;
+      height: 26rem;
+      
+   }
+}
+
+.icon-howi {
+   height: 6rem;
+   width: 8rem;
+}
+

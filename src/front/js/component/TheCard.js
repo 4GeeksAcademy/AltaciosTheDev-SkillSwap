@@ -5,7 +5,7 @@ function TheCard( {skill, text, img} ) {
   return <>
   
     
-    <div className="card bg-card p-info  shadow" style={{maxWidth: "360px",}}>
+    <div className="card bg-card p-info p-1 card-hover  shadow" style={{maxWidth: "360px",}}>
       <div className="rounded-2 p-2">
       <img src={img} className="card-img-top rounded-2 img-fluid  border-2 "style={{minWidth: "240px", minHeight: "250px"}}  />
         <div className="card-body">

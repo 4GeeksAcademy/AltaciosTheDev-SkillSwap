@@ -246,6 +246,9 @@
 .card-info:hover{
     border: 2px solid #cf1259;
 }
+.card-hover:hover{
+    border: 2px solid #cf1259;
+}
 
 .info-card-img {
     
