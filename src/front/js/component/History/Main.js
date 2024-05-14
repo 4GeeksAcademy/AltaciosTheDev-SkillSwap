@@ -141,7 +141,8 @@ function Main() {
             paginationRowsPerPageOptions={paginationRowsPerPageOptions}
           />
           :
-          <h5>Loading sessions for this user...</h5>
+          <span class="loader" style={{margin:"auto"}}></span>
+
         }
 
       </div>

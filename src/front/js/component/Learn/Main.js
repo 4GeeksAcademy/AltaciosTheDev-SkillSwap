@@ -133,7 +133,12 @@ function Main() {
       <div className="learn-tutor-cards-container container">
         {userSkillElements}
       </div>:
-      <h5 className='mt-5'>Loading skills for you to discover...</h5>
+          
+          <div className="learn-tutor-cards-container container" style={{marginTop: "50px"}}>
+          <span class="loader"></span>
+          <span class="loader"></span>
+          <span class="loader"></span>
+          </div>
       }
     </div>
   )

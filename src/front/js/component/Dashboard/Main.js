@@ -86,7 +86,11 @@ export function Main() {
           <div className="tutor-cards">
             {store.userSkillsAssociations ?
               randomCardElements :
-              <h5>Loading skills recommended for you...</h5>
+              <>
+              <span class="loader"></span>
+              <span class="loader"></span>
+              <span class="loader"></span>
+              </>
             }
 
           </div>
@@ -184,7 +188,10 @@ export function Main() {
               </ResponsiveContainer>
 
             </div> :
-            <h5>Loading your statistics...</h5>
+            <div className="charts">
+              <span class="loader"></span>
+              <span class="loader"></span>
+            </div>
           }
 
         </div>
@@ -193,17 +200,17 @@ export function Main() {
           <div className="achievement-cards">
             <AchievementCard
               title="Sessions Tutored"
-              count={store.achievements ? store.achievements.sessions_taught : "Loading..."}
+              count={store.achievements ? store.achievements.sessions_taught : <span class="loadertwo"></span>}
               icon={<BsPersonWorkspace className="card_icon achievement-icon" />}
             />
             <AchievementCard
               title="Sessions Learned"
-              count={store.achievements ? store.achievements.sessions_learned : "Loading..."}
+              count={store.achievements ? store.achievements.sessions_learned :  <span class="loadertwo"></span>}
               icon={<BsMortarboardFill className="card_icon achievement-icon" />}
             />
             <AchievementCard
               title="Users Connected"
-              count={store.achievements ? store.achievements.users_connected : "Loading..."}
+              count={store.achievements ? store.achievements.users_connected :  <span class="loadertwo"></span>}
               icon={<BsFillPeopleFill className="card_icon achievement-icon" />}
             />
 

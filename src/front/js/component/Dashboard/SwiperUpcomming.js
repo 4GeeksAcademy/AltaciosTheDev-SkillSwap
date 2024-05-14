@@ -13,11 +13,20 @@ import 'swiper/css/effect-creative';
 
 import PendingCard from "./PendingCard";
 import UpcommingCard from "./UpcommingCard";
+import NoUpcommingCard from "./NoUpcommingCard"; // Import your new component
 
 
 function SwiperUpcomming() {
     const { store, actions } = useContext(Context)
+    const [isLoading, setIsLoading] = useState(true); // Add this line
     let upcommingSessionsElements = null
+
+    useEffect(() => {
+        if (store.userSessions) {
+            setIsLoading(false); // Set isLoading to false once the fetch has completed
+        }
+    }, [store.userSessions]);
+
     if (store.userSessions && store.profile) {
         let currentDate = new Date(); // Current date and time
         let upcommingSessions = store.userSessions.filter(session => {
@@ -100,11 +109,15 @@ function SwiperUpcomming() {
             }}
         >
 
-            {upcommingSessionsElements && upcommingSessionsElements.length > 0 ? (
+            {isLoading ? (      
+                <SwiperSlide>
+                    <span class="loader"></span>
+                </SwiperSlide>
+            ) : upcommingSessionsElements && upcommingSessionsElements.length > 0 ? (
                 upcommingSessionsElements
             ) : (
                 <SwiperSlide>
-                    <h5>Loading your upcomming sessions...</h5>
+                    <NoUpcommingCard /> {/* Render your new component when there are no upcoming sessions */}
                 </SwiperSlide>
             )}
         </Swiper>

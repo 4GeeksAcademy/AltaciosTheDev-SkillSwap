@@ -39,7 +39,15 @@ function Main() {
         <input className="learn-search" placeholder='Search Status' />
       </div> */}
       <div className="learn-tutor-cards-container container">
-        {store.profile && store.profile.favorites ? favoriteUsersElement : "Loading your favorite users..."}
+        {store.profile && store.profile.favorites ? favoriteUsersElement : 
+        
+        <>
+          <span class="loader"></span>
+          <span class="loader"></span>
+          <span class="loader"></span>
+        </>
+
+        }
       </div>
     </div>
   )

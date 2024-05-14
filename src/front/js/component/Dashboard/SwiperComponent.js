@@ -1,6 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { Context } from "../../store/appContext";
-
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
@@ -10,13 +9,21 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { EffectCreative, Pagination } from 'swiper/modules';
 import 'swiper/css/effect-creative';
-
 import PendingCard from "./PendingCard";
-
+import NoPendingCard from "./NoPendingCard"; // Import your new component
 
 function SwiperComponent() {
     const { store, actions } = useContext(Context)
+    const [isLoading, setIsLoading] = useState(true); // Add this line
     let pendingSessionsElements = null
+
+
+    useEffect(() => {
+        if (store.userSessions) {
+            setIsLoading(false); // Set isLoading to false once the fetch has completed
+        }
+    }, [store.userSessions]);
+
     if (store.userSessions && store.profile) {
         let pendingSessions = store.userSessions.filter(session => {
             return session.status == "Pending" && session.tutor_id == store.profile.id
@@ -84,11 +91,15 @@ function SwiperComponent() {
             }}
         >
 
-            {pendingSessionsElements && pendingSessionsElements.length > 0 ? (
+            {isLoading ? (
+                <SwiperSlide>
+                    <span class="loader"></span>
+                </SwiperSlide>
+            ) : pendingSessionsElements && pendingSessionsElements.length > 0 ? (
                 pendingSessionsElements
             ) : (
                 <SwiperSlide>
-                    <h5>Loading your pending sessions...</h5>
+                    <NoPendingCard /> {/* Render your new component when there are no pending sessions */}
                 </SwiperSlide>
             )}
         </Swiper>
