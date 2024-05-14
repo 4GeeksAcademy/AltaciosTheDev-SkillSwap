@@ -1,72 +1,128 @@
-.backimage{
 
-    background-image:url("https://upload.wikimedia.org/wikipedia/commons/5/51/Bow_Lake_beim_Icefields_Parkway.jpg");
-    background-size: cover;
-    
-
+.container-login {
+    display: flex;
+    background: url('https://images.unsplash.com/photo-1484807352052-23338990c6c6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed !important; 
+    background-size: cover !important; /* Change this line */
+    height: 100vh;
+    overflow: hidden;
 }
-.cardlogin{
-    font-family: "Poppins", sans-serif;
+
+.left-login {
+    background-color: rgba(38, 48, 67, 0.9); /* Add transparency to the background color */
+    color: #d3d3d3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    width: 40%; /* Set the width to 40% of its parent */
+    border-top-right-radius: 50px; /* Add rounded borders on the right side */
+    border-bottom-right-radius: 50px; /* Add rounded borders on the right side */
+}
+
+.logo-login {
+    width: 250px;
+}
+
+.title-login, .text-login {
+    text-align: left;
+}
+
+.signup-btn-container h5{
+    color: #cf1259;
     font-weight: bold;
-    text-align: center;
-   align-content: center ;
-   border-radius: 20px;
-   height: 800px;
-   padding-top: 20%;
-   padding-bottom: 20%;
+
 }
 
-.cardregister{
-    font-family: "Poppins", sans-serif;
+.signup-button{
+    margin-left: 5px;
+}
+
+.signup-button:hover{
+    color: #cf1259;
     font-weight: bold;
-    text-align: center;
-   align-content: center ;
-   border-radius: 10px;
-   height: 900px;
-   padding-top: 20%;
-   padding-bottom: 20%;
 }
 
-.backcard{
-    background-color: azure;
-    border-radius: 0  50px 50px 0;
-    opacity: .95;
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.loginput{
-    background: #29374C;
-    color: #E8E8E8;
-    border: 1px solid #9E93A4;
+input[type="email"], input[type="password"] {
+    margin-bottom: 10px;
     padding: 10px;
-    border-radius: 15px;
+    border: none;
+    border-radius: 10px;
 }
 
-.nextbutton{
-    background-color: green;
+button {
+    padding: 10px;
+    border-radius: 4px;
+    color: #424242;
+    cursor: pointer;
+    background-color: transparent;
+    border: 2px solid #cf1259;
+    padding: 10px 10px;
     border-radius: 5px;
-    border: 1px solid white;
-    color:white;
-    width: 7rem;
-    height: 3rem;
+    transition: all .3s ease-in-out;
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    /* margin-top: 16px; */
+
+    /* background-color: #1de9b6; */
+
+}
+button:hover{
+    background-color: #cf1259;
+    transition: all .3s ease-in;
+    color: white;
 }
 
-.previousbutton{
-    background-color: red;
-    border-radius: 5px;
-    border: 1px solid white;
-    color:white;
-    width: 7rem;
-    height: 3rem;
-}
-.links{
-    color: blue;
+.back-home{
+    align-self: start;
+    width: 60%;
 }
 
-.letraregister{
-    font-family: "Poppins", sans-serif;
+.signup-btn-container{
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+}
+
+.half-btn{
+    width: 48%;
+}
+
+.positive-btn{
+    background-color: #cf1259;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+
+}
+
+.positive-btn:hover{
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Increases shadow size and opacity when hovered */
+    transform: scale(1.1); /* Makes the button 10% larger when hovered */
+
+}
+
+.grid-btn{
+    width: 100%;
+}
+
+.teachandlearn{
+    color: #cf1259;
     font-weight: bold;
+    margin-left: 5px;
+
 }
-.backgroudnregister2{
-    height: 800px;
-    text-align: center;
-}   
+
+.step{
+    margin-left: auto;
+}

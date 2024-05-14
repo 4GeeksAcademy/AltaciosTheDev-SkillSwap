@@ -8,7 +8,7 @@ export const Navbar = () => {
 	const location = useLocation();
 	const params = useParams()
 	const { id } = params;
-    const excludePaths = ["/dashboard","/learn","/history","/profile",`/favorites`]; //insert in this array other paths where navbar is not wanted.
+    const excludePaths = ["/dashboard","/learn","/history","/profile",`/favorites`,"/login", "/form"]; //insert in this array other paths where navbar is not wanted.
     const shouldExcludeNavbar = excludePaths.includes(location.pathname);
 	const isSinglePage  = location.pathname.startsWith("/single/");
 	

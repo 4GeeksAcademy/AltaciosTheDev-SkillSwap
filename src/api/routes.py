@@ -85,14 +85,14 @@ def signup():
    
    user = User.query.filter_by(email=email).first()
    if user:
-        return jsonify({"msg": "User are registered"}), 403
+        return jsonify({"msg": "This email is already associated with an account"}), 403
 
 #    password_hash = current_app.bcrypt.generate_password_hash(password).decode("utf-8")
    new_user = User(email=email, name=name,password=password,number=number, gender=gender,country=country,city=city)
    db.session.add(new_user)
    db.session.commit()
    access_token=create_access_token(identity = new_user.email, expires_delta=timedelta(hours=3))
-   return jsonify({"msg":"user created successful", "token": access_token})
+   return jsonify({"msg":"User created successfully", "token": access_token})
 
 #login a user 🦍
 @api.route("/login", methods=["POST"])
@@ -252,6 +252,30 @@ def get_users_skills_associations():
 
 
     return jsonify([association.serialize() for association in associations]),200
+
+
+#Route for receiving ASSOCIATIONS
+@api.route("/tutor-associations", methods=["GET"])
+@jwt_required()
+def get_tutor_associations():
+    role = request.args.get("role")
+
+    email = get_jwt_identity()
+    user = User.query.filter_by(email = email).first()
+
+    if user is None:
+        return jsonify({"msg": "User not found"}),404
+
+    if role is None:
+        return jsonify({"msg": "Missing role"}), 404
+
+    associations = User_Skill_Association.query.filter_by(user_id = user.id, role=role).all()
+    if associations:
+        return jsonify({"msg": "Tutor associations created"}),200
+    
+    else:
+        return jsonify({"msg": "No tutor associations found"}),404
+
 
 
 @api.route("/associations", methods=["POST"])
