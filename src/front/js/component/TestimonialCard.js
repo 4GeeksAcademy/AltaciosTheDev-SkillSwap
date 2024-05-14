@@ -9,7 +9,7 @@ const TestimonialCard = ({name , description}) => {
         <div className="card bg-card  testimonial-card shadow" style={{ maxWidth: "45rem", height: "auto", borderRadius: "15px"}}>
             <div className="rounded-2 p-3">
 
-                <div className='d-flex gap-3 align-items-center'>
+                <div className='d-flex gap-4 align-items-center'>
                     <img src={personLogo} className="card-img-top rounded-circle w-25  border-2 " />
                     <h5 className=" white card-title">{name}</h5>
                 </div>
