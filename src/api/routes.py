@@ -17,7 +17,8 @@ import requests
 import firebase_admin
 from firebase_admin import credentials, storage
 
-cred = credentials.Certificate("./google-services.json")
+google_services = "./google-services.json" if os.getenv("FLASK_DEBUG") == "1" else "/etc/secrets/google-services.json"
+cred = credentials.Certificate(google_services)
 firebase_admin.initialize_app(cred, {"storageBucket": "skillswap-b3c76.appspot.com"}) #STORAGE BUCKET 
 bucket = storage.bucket() 
 api = Blueprint('api', __name__)
