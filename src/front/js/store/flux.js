@@ -46,11 +46,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 					const resp = await fetch(process.env.BACKEND_URL + "/api/login", opts)
+					const data = await resp.json();
 					if (!resp.ok) {
-						Swal.fire({
+						throw new Error(data.msg)
+					}
+					localStorage.setItem("token", data.access_token);
+					setStore({ token: data.access_token })
+					getActions().getProfile()
+					getActions().getAchievements()
+					getActions().getStatistics()
+					return true;
+
+				}
+				catch (error) {
+					Swal.fire({
 							position: "center",
 							icon: "error",
-							title: data.msg,
+							title: error,
 							background: "#263043",
 							color: "#FFFFFF",
 							showConfirmButton: false,
@@ -58,21 +70,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						});
 						return false
 					}
-
-					const data = await resp.json();
-					localStorage.setItem("token", data.access_token);
-					setStore({ token: data.access_token })
-					getActions().getProfile()
-					getActions().getAchievements()
-					getActions().getStatistics()
-
-					return true;
-
-				}
-				catch (error) {
-					console.error("there was a error");
-				}
-
 			},
 
 			logout: () => {
@@ -117,6 +114,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 
 			},
+			getTutorAssociations: async (role) => {
+				const store = getStore()
+
+				try {
+					// Construct URL with query parameters
+					const url = new URL(process.env.BACKEND_URL + "api/tutor-associations");
+					url.searchParams.append("role", role);
+
+
+					// Fetch the associations from the backend
+					const resp = await fetch(url, {
+						method: 'GET',
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": `Bearer ${store.token}`
+						}
+					});
+
+					const data = await resp.json();
+
+					if (!resp.ok) {
+						throw new Error(data.msg);
+					}
+					return true
+				} catch (error) {
+					return false
+				}
+			},			
 			getAssociations: async (level, role, category) => {
 				const store = getStore()
 

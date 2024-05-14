@@ -1,20 +1,35 @@
 import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
-import { Link } from "react-router-dom";
 import { Register } from "./register";
 import { Register2 } from "./register2";
 import { Register3 } from "./register3";
 import { Register4 } from "./register4";
 import "../../styles/loginst.css";
+import sergey from "../../img/sergey.jpg";
+import skillswapDark from "../../img/brand/SKILLSWAP-DARK.png";
+import skillswapLight from "../../img/brand/SKILLSWAP-LIGHT.png";
 
+import backs from "../../img/back2.png";
+import "../../styles/home.css";
+import "../../styles/loginst.css";
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 
 
 
 export const Form = () => {
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState(1);
     // const navigate = useNavigate();
     const { actions } = useContext(Context);
     const [password, setPassword] = useState('');
@@ -26,7 +41,57 @@ export const Form = () => {
     const [gender, setGender] = useState('');
     const [country, setCountry] = useState('');
     const [city, setCity] = useState('');
+    const steps = ['General information', 'Gender and Location', 'Skills to Tutor', 'Skills to Learn'];
 
+////////////////////////
+
+const [activeStep, setActiveStep] = React.useState(0);
+  const [skipped, setSkipped] = React.useState(new Set());
+
+  const isStepOptional = (step) => {
+    return step === 1;
+  };
+
+  const isStepSkipped = (step) => {
+    return skipped.has(step);
+  };
+
+  const handleNext = () => {
+    let newSkipped = skipped;
+    if (isStepSkipped(activeStep)) {
+      newSkipped = new Set(newSkipped.values());
+      newSkipped.delete(activeStep);
+    }
+
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped(newSkipped);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleSkip = () => {
+    if (!isStepOptional(activeStep)) {
+      // You probably want to guard against something like this,
+      // it should never occur unless someone's actively trying to break something.
+      throw new Error("You can't skip a step that isn't optional.");
+    }
+
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setSkipped((prevSkipped) => {
+      const newSkipped = new Set(prevSkipped.values());
+      newSkipped.add(activeStep);
+      return newSkipped;
+    });
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+  };
+
+
+///////////
 
     //register function that will send all values to the back end 
     const registerUser = async () => {
@@ -60,7 +125,7 @@ export const Form = () => {
     // Render the appropriate register component based on the current step
     const renderRegisterStep = () => {
         switch (page) {
-            case 0:
+            case 1:
                 return <Register
                     nextPage={nextPage}
                     password={password}
@@ -75,9 +140,10 @@ export const Form = () => {
                     setErrorMessage={setErrorMessage}
                     name={name}
                     setUsername={setUsername}
+                    setPage={setPage}
 
                 />;
-            case 1:
+            case 2:
                 return <Register2
                     gender={gender}
                     setGender={setGender}
@@ -88,13 +154,14 @@ export const Form = () => {
                     nextPage={nextPage}
                     prevPage={prevPage}
                     registerUser={registerUser}
+                    setPage={setPage}
                 />;
-            case 2:
+            case 3:
                 return <Register3
                     nextPage={nextPage}
                     prevPage={prevPage}
                 />;
-            case 3:
+            case 4:
                 return <Register4
                     prevPage={prevPage}
                 />;
@@ -108,24 +175,104 @@ export const Form = () => {
 
 
     return (
-        <div className="backimage">
+        <div class="container-login">
+        <div class="left-login">
+            <img src={skillswapDark} alt="Logo" class="logo-login"/>
 
-            <div className="col-5">
-                <div className="backcard">
-                    <div className="cardregister">
-                        <div>
-                            <h1>Register</h1>
-                        </div>
-                        <div>
-                            {renderRegisterStep()}
-                        </div>
-                    </div>
+
+       
+
+
+            <form class="login-form">
+                <div className="signup-btn-container">
+                    <h1 class="title-login">Sign up</h1> 
+                    <h5 className="title-login">Step: {page}/4</h5>
                 </div>
 
-            </div>
+                            {/* ------------------------------- */}
+{/* 
+                            <Box sx={{ width: '100%', color: 'white'}}>
+      <Stepper activeStep={activeStep}>
+        {steps.map((label, index) => {
+          const stepProps = {};
+          const labelProps = {};
+          if (isStepOptional(index)) {
+            labelProps.optional = (
+              <Typography variant="caption">Optional</Typography>
+            );
+          }
+          if (isStepSkipped(index)) {
+            stepProps.completed = false;
+          }
+          return (
+            <Step key={label} {...stepProps}>
+              <StepLabel {...labelProps}>{label}</StepLabel>
+            </Step>
+          );
+        })}
+      </Stepper>
+      {activeStep === steps.length ? (
+        <React.Fragment>
+          <Typography sx={{ mt: 2, mb: 1 }}>
+            All steps completed - you&apos;re finished
+          </Typography>
+          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+            <Box sx={{ flex: '1 1 auto' }} />
+            <Button onClick={handleReset}>Reset</Button>
+          </Box>
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
+          <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+            <Button
+              color="inherit"
+              disabled={activeStep === 0}
+              onClick={handleBack}
+              sx={{ mr: 1 }}
+            >
+              Back
+            </Button>
+            <Box sx={{ flex: '1 1 auto' }} />
+            {isStepOptional(activeStep) && (
+              <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
+                Skip
+              </Button>
+            )}
 
+            <Button onClick={handleNext}>
+              {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+            </Button>
+          </Box>
+        </React.Fragment>
+      )}
+    </Box> */}
+
+            {/* ------------------------------- */}
+
+                {renderRegisterStep()}
+            </form>
         </div>
-
-
+    </div>
     );
+    //     <div className="backimage">
+
+    //         <div className="col-5">
+    //             <div className="backcard">
+    //                 <div className="cardregister">
+    //                     <div>
+    //                         <h1>Register</h1>
+    //                     </div>
+    //                     <div>
+    //                         {renderRegisterStep()}
+    //                     </div>
+    //                 </div>
+    //             </div>
+
+    //         </div>
+
+    //     </div>
+
+
+    // );
 };
