@@ -305,7 +305,8 @@ def create_association():
         new_association = User_Skill_Association(level = level, role = role, user_id = user.id, skill_id = skill)
         db.session.add(new_association)
         db.session.commit()
-        return jsonify({"msg": "Association created successfully", "details": new_association.serialize()})
+        msg = "Tutor association created successfully" if role == "Tutor" else "Learner association created successfully"
+        return jsonify({"msg": msg, "details": new_association.serialize()})
     
     elif isinstance(skill, list) and isinstance(level, list) and isinstance(role, str):
         associations = []
@@ -314,7 +315,8 @@ def create_association():
             db.session.add(new_association)
             db.session.commit()
             associations.append(new_association.serialize())
-        return jsonify({"msg": "Initial associations for user created succesfully", "associations_created": associations})
+        msg = "Initial Tutor associations created successfully" if role == "Tutor" else "Initial Learner associations created successfully"
+        return jsonify({"msg": msg, "associations_created": associations})
     
     else:
         return jsonify({"msg": "Invalid data type"}), 400

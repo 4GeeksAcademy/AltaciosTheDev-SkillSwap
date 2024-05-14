@@ -58,7 +58,7 @@ input[type="email"], input[type="password"] {
     border-radius: 10px;
 }
 
-button {
+.container-login button {
     padding: 10px;
     border-radius: 4px;
     color: #424242;
@@ -76,7 +76,7 @@ button {
     /* background-color: #1de9b6; */
 
 }
-button:hover{
+.container-login button:hover{
     background-color: #cf1259;
     transition: all .3s ease-in;
     color: white;

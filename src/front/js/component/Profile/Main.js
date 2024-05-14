@@ -117,7 +117,7 @@ function Main() {
             backdrop="static"
             keyboard={false}
           >
-            <Modal.Header className='modal-profile' closeButton>
+            <Modal.Header className='modal-profile'>
               <Modal.Title className='rosa' >Edit Your Profile</Modal.Title>
             </Modal.Header>
             <Modal.Body className='modal-profile '>
@@ -162,8 +162,8 @@ function Main() {
               </Box>
             </Modal.Body>
             <Modal.Footer className='modal-profile'>
-              <Button variant="secondary" onClick={handleClose}> Close</Button>
-              <Button onClick={() => updateProfile()} variant="primary">Upload Photo</Button>
+              <button onClick={handleClose} className="edit-btn"> Close</button>
+              <button onClick={() => updateProfile()} className="positivePending-btn">Save Changes</button>
             </Modal.Footer>
           </Modal>
           {/* final Modal de edit skill */}
@@ -174,7 +174,7 @@ function Main() {
             backdrop="static"
             keyboard={false}
           >
-            <Modal.Header className='modal-profile' closeButton>
+            <Modal.Header className='modal-profile'>
               <Modal.Title className='rosa' >Edit Your Skill</Modal.Title>
             </Modal.Header>
             <Modal.Body className='modal-profile '>
@@ -245,8 +245,8 @@ function Main() {
               </Box>
             </Modal.Body>
             <Modal.Footer className='modal-profile'>
-              <Button variant="secondary" onClick={handleSkillClose}>Close</Button>
-              <Button onClick={() => handleUpdateSkill()} variant="primary">Save Edit</Button>
+              <button className="edit-btn" onClick={handleSkillClose}>Close</button>
+              <button className="positivePending-btn" onClick={() => handleUpdateSkill()} variant="primary">Save Changes</button>
             </Modal.Footer>
           </Modal>
 
@@ -258,22 +258,20 @@ function Main() {
             backdrop="static"
             keyboard={false}
           >
-            <Modal.Header className='modal-profile' closeButton>
+            <Modal.Header className='modal-profile' >
               <Modal.Title className='rosa' >Edit Your Profile Photo</Modal.Title>
             </Modal.Header>
-            <Modal.Body className='modal-profile '>
+            <Modal.Body className='modal-profile 'style={{ textAlign: 'center' }}>
 
               <input type="file" onChange={e => setFile(e.target.files[0])} />
 
               {file &&
-                <img src={URL.createObjectURL(file)} alt="img-preview" style={{ maxWidth: '30rem' }} />
+                <img src={URL.createObjectURL(file)} alt="img-preview" style={{ maxWidth: '27rem' }} />
               }
             </Modal.Body>
             <Modal.Footer className='modal-profile'>
-              <Button variant="secondary" onClick={handleImageClose}>
-                Close
-              </Button>
-              <Button onClick={() => handleUpdateImage(file)} variant="primary">Save Edit</Button>
+              <button onClick={handleImageClose} className="edit-btn"> Close</button>
+              <button onClick={() => handleUpdateImage(file)} className="positivePending-btn">Upload image</button>
             </Modal.Footer>
           </Modal>
 
@@ -287,6 +285,7 @@ function Main() {
               <p className="tutor-text "><strong className='me-2 gris'>Name:</strong>{store.profile && store.profile.name}</p>
               <p className="tutor-text"><strong className='me-2 gris'>Email:</strong>{store.profile && store.profile.email}</p>
             </div>
+            
             <Button className='edit-btn ms-auto' variant="" onClick={handleImageShow}>Edit Photo</Button>
 
           </div>
@@ -296,7 +295,7 @@ function Main() {
         <div className='container-border-profile'>
           <div className='d-flex justify-content-between'>
             <h4 className='rosa '>About me</h4>
-            <Button className=' edit-btn ' variant="" onClick={handleShow}>Edit Profile</Button>
+            <Button className=' edit-btn btn-mgn' variant="" onClick={handleShow}>Edit Profile</Button>
           </div>
           <hr />
 
@@ -344,7 +343,7 @@ function Main() {
         <div className='container-border-profile'>
           <div className='d-flex justify-content-between'>
             <h4 className='rosa '>Status</h4>
-            <Button className='edit-btn' variant="" onClick={handleSkillShow}>Edit Skill</Button>
+            <Button className='edit-btn btn-mgn' variant="" onClick={handleSkillShow}>Edit Skill</Button>
           </div>
           <div className="learning-levels">
             <hr />
@@ -357,15 +356,15 @@ function Main() {
               <div className='status-contenedor'>
                 <div className='tutoring-cont'>
                   <div>
-                    <h6 className='text-danger'>Role</h6>
+                    <h6 className='gris'>Role</h6>
                     {store.profile.skills && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) => <p key={tutor.id}>{tutor.role.charAt(0).toUpperCase() + tutor.role.slice(1)}</p>)}
                   </div>
                   <div>
-                    <h6 className='text-danger'>Skill</h6>
+                    <h6 className='gris'>Skill</h6>
                     {store.profile.skills && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) => <p key={tutor.id}>{tutor.skill.charAt(0).toUpperCase() + tutor.skill.slice(1)}</p>)}
                   </div>
                   <div>
-                    <h6 className='text-danger '>Level</h6>
+                    <h6 className='gris'>Level</h6>
                     {store.profile.skills && store.profile.skills.filter(role => role.role == "Tutor").map((tutor) => <p key={tutor.id}>{tutor.level.charAt(0).toUpperCase() + tutor.level.slice(1)}</p>)}
 
                     {/* {learnerSkills && learnerSkills.length > 0 && learnerSkills.map((learner) => {
@@ -400,18 +399,18 @@ function Main() {
                 </div>
                 <div className='learning-cont'>
                   <div>
-                    <h6 className='text-danger'>Role</h6>
+                    <h6 className='gris'>Role</h6>
                     {store.profile.skills && store.profile.skills.filter(role => role.role == "Learner").map((tutor) => <p key={tutor.id}>{tutor.role.charAt(0).toUpperCase() + tutor.role.slice(1)}</p>)}
 
                     {/* {learnerSkills && learnerSkills.length > 0 && learnerSkills.map((learner) => <p key={learner.id}>{learner.role.charAt(0).toUpperCase() + learner.role.slice(1)}</p>)}
                    */}
                   </div>
                   <div>
-                    <h6 className='text-danger'>Skill</h6>
+                    <h6 className='gris'>Skill</h6>
                     {store.profile.skills && store.profile.skills.filter(role => role.role == "Learner").map((tutor) => <p key={tutor.id}>{tutor.skill.charAt(0).toUpperCase() + tutor.skill.slice(1)}</p>)}
                   </div>
                   <div>
-                    <h6 className='text-danger '>Level</h6>
+                    <h6 className='gris'>Level</h6>
                     {store.profile.skills && store.profile.skills.filter(role => role.role == "Learner").map((tutor) => <p key={tutor.id}>{tutor.level.charAt(0).toUpperCase() + tutor.level.slice(1)}</p>)}
                     {/* {learnerSkills && learnerSkills.length > 0 && learnerSkills.map((learner) => {
                     return (
@@ -419,7 +418,7 @@ function Main() {
 
                         <span >{learner.level.charAt(0).toUpperCase() + learner.level.slice(1)}</span>
                         <span className='ms-2 text-danger'></span>
-
+ 
                       </p>
                     )
                   })} */}
@@ -429,7 +428,7 @@ function Main() {
                   <div className='d-flex flex-column gap-2'>
 
                     <FormControl>
-                      <FormLabel id="demo-radio-buttons-group-label">Select Skill</FormLabel>
+                      <FormLabel id="demo-radio-buttons-group-label" className='gris'>Select Skill</FormLabel>
 
                       <RadioGroup
                         aria-labelledby="demo-radio-buttons-group-label"

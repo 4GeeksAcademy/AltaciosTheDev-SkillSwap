@@ -40,11 +40,13 @@
 }
 
 .single-data-image{
-    max-width: 100% !important; /* Ensure the image fits within the left column */
-    max-height: 500px !important; /* Ensure the image fills the entire height of its container */
+    width: 500px !important; /* Ensure the image fits within the left column */
+    height: 500px !important; /* Ensure the image fills the entire height of its container */
     object-fit: cover !important; /* Ensure the entire image fits within the container without distortion */
-    border-radius: 15px;
+    border-radius: 50% !important; /* Make the image circular */
     object-position: 0% 0%;
+    justify-self: center;
+    align-self: center;
 }
 
 .nav-link-single{

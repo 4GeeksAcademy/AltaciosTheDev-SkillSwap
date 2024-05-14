@@ -229,6 +229,8 @@
     border-radius: 10px;
     background-color: #263043;
     color: #9e93a4; 
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    /* border: 1px solid white;    */
     /* max-width: 470px; */
 }
 
@@ -290,6 +292,8 @@
 
 .tutor-card-title{
     text-align: start;
+    /* font-weight: bold; */
+    color: white;
 }
 
 .tutor-text-container{
@@ -361,6 +365,8 @@
     border-radius: 10px;
     color: #9e93a4;
     max-height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 }
 
 .swiper-3d .swiper-slide-shadow {
@@ -383,7 +389,7 @@
 }
 
 .pending-btn{
-    width: 45%;
+    width: 47%;
 }
 
 .pending p {

@@ -44,13 +44,13 @@ export const SkillCard = ({ user_name, skill_name, role, level, user_gender,cate
             <div className="dashboard-card-inner">
                 <img src={category_image} className="skill-img" />
                 <div className="tutor-text-container">
-                    <p className="tutor-text"><strong>Category:</strong> {category_name}</p>
-                    <p className="tutor-text"><strong>Level:</strong> {level}</p>
-                    <p className="tutor-text"><strong>Role:</strong> {role}</p>
-                    <p className="tutor-text"><strong>User:</strong> {user_name} </p>
+                    <p className="tutor-text"><strong className="gris">Category:</strong> {category_name}</p>
+                    <p className="tutor-text"><strong className="gris">Level:</strong> {level}</p>
+                    <p className="tutor-text"><strong className="gris">Role:</strong> {role}</p>
+                    <p className="tutor-text"><strong className="gris">User:</strong> {user_name} </p>
                 </div>
             </div>
-            <button type="button" className="tutor-btn learn-more-btn" onClick={goToTutorProfile}>Contact</button>
+            <button type="button" className="tutor-btn learn-more-btn" onClick={goToTutorProfile}>Connect</button>
         </div>
     )
 }

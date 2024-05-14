@@ -22,7 +22,7 @@ function Main() {
       <h4 className="single-title">Skill Swapper Information</h4>
       <div className="container single-data-container">
         <div className='left-column'>
-          <img className="single-data-image" src={store.tutorProfile.gender == "Male"? personLogo : femaleLogo} />
+          <img className="single-data-image" src={store.tutorProfile.image ? store.tutorProfile.image : store.tutorProfile.gender == "Male"? personLogo : femaleLogo} />
         </div>
         <div className="right-column">
           <h3>{store.tutorProfile && store.tutorProfile.name}</h3>

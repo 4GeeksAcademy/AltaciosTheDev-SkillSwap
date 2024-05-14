@@ -22,7 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: localStorage.getItem("token") || null,
 			profile: JSON.parse(localStorage.getItem("profile")) || null,
 			userSkillsAssociations: null,
-			tutorProfile: null,
+			tutorProfile: JSON.parse(localStorage.getItem("tutorProfile")) || null,
 			skills: null,
 			categories: null,
 			userSessions: null,
@@ -193,6 +193,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						throw new Error(data.msg)
 					}
 					console.log(data)
+					localStorage.setItem("tutorProfile", JSON.stringify(data));
 					setStore({ tutorProfile: data })
 					return id
 				}

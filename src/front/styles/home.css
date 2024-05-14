@@ -3,6 +3,25 @@
     font-size: 45px
 }
 
+.positivePending-btn{
+    background-color: #cf1259;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
+    padding: 8px 10px;
+    border: 2px solid #cf1259;
+    border-radius: 10px;
+    color: white;  
+    margin-left: 10px;
+    border: none;
+}
+
+.positivePending-btn:hover{
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Increases shadow size and opacity when hovered */
+    transform: scale(1.1); /* Makes the button 10% larger when hovered */
+
+}
+
 .edit-btn{
     background-color: transparent;
     border: 2px solid #cf1259;
@@ -11,7 +30,6 @@
     transition: all .3s ease-in-out;
     color: white;
     font-size: 15px;
-    margin-bottom: 10px;
     width: 120px;
     
 }
