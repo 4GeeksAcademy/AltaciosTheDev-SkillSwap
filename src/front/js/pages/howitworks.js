@@ -78,7 +78,7 @@ export const Howitworks = () => {
                         <div className='bg-azul-oscuro p-3 text-center step-card shadow'>
 
                             <FaConnectdevelop className="white icon-howi"/>
-                            <h2 className='rosa my-3'>Grow and Connect</h2>
+                            <h2 className='rosa my-3'>Connect</h2>
                             <p className='p-info white'>Continue to expand your skills and knowledge through ongoing exchanges with members of the SkillSwap community.Build meaningful connections and contribute to a supportive learning network.</p>
                         </div>
                     </div>
