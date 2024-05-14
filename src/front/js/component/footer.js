@@ -16,7 +16,7 @@ export const Footer = () => {
 	return <>
 		<footer className="d-none d-md-block footer footer-shadow borde-top bg-azul-claro">
 
-			<div className=" p-5 d-flex justify-content-between flex-column flex-md-row justify-content-between">
+			<div className=" p-5 d-flex justify-content-between flex-column flex-md-row justify-content-around">
 
 				<div className="text-light d-flex flex-column">
 					
@@ -49,11 +49,13 @@ export const Footer = () => {
 				</div>
 				<div className="vertical-line ms-4"></div>
 
-				<div className="text-light d-flex flex-column">
-					<h6>Find Us!</h6>
-					<span><i className="fa-brands fa-instagram"></i> SkillSwap</span>
-					<span><i className="fa-brands fa-facebook"></i> SkillSwap</span>
-					<span><i className="fa-brands fa-x-twitter"></i> SkillSwap</span>
+				<div className="text-light d-flex justify-content-center align-items-center flex-column">
+					<h4>Find Us!</h4>
+					<div className="d-flex gap-3">
+						<span><i className="fa-brands fa-instagram social-icons"></i> </span>
+						<span><i className="fa-brands fa-facebook social-icons"></i> </span>
+						<span><i className="fa-brands fa-x-twitter social-icons"></i> </span>				
+					</div>
 				</div>
 			</div>
 		</footer>
@@ -78,7 +80,7 @@ export const Footer = () => {
 							<button className="bg-azul-claro text-light border-0">Testimonials</button>
 						</Link>
 					</div>
-					<div className="vertical-line ms-4"></div>
+					
 
 					<div className="my-auto d-flex flex-column">
 						<Link to="/login	">
