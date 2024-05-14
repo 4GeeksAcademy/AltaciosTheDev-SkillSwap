@@ -47,7 +47,7 @@ export const Home = () => {
 
       <div className=" my-4">
         <div className=''>
-          <h1 className="white text-home text-center mb-5">Why should Choose <img className="img-fluid" style={{width: "8rem"}} src={skillswap}></img> </h1>
+          <h1 className="white text-home text-center mb-5">Why Choose <img className="img-fluid" style={{width: "8rem"}} src={skillswap}></img> </h1>
           
         <Row xs={1} md={1} lg={2} xxl={3} className="d-flex justify-content-center">
           <Col className="mb-3 d-flex justify-content-center">
