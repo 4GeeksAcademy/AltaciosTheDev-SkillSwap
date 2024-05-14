@@ -95,7 +95,7 @@ export const Home = () => {
         
       </div> 
     </div>
-      <div className="d-flex  justify-content-end bg-azul-oscuro pb-5 position-relative"></div>
+      <div className="d-flex  justify-content-end bg-azul-oscuro pb-md-5 position-relative"></div>
 
       <div className="d-none d-flex flex-sm-column flex-lg-row d-md-block vh-100 bg-azul-claro position-relative  d-flex">
         <div className="bg-azul-claro caja-flotante position-absolute start-50 rounded-2 translate-middle d-flex justify-content-around shadow">
@@ -108,7 +108,7 @@ export const Home = () => {
           </div>
           
 
-          <div className=" caja-sound p-4 bg-azul-oscuro ms-lg-5  h-75 mt-5 rounded-3 shadow">
+          <div className=" caja-sound p-0 p-md-4 bg-azul-oscuro ms-lg-5  h-75 mt-5 rounded-3 shadow">
             <h1 className="text-center pt-2"> Sound like you?</h1>
             <p className="mt-4 mb-0 p-info-sound white  text-center"><span className="amarillo">" </span>If so, <strong className="rosa">Skillswap</strong> provides the community you need and empowers 
               you to make a difference within it.<span className="amarillo">"</span></p>
