@@ -38,7 +38,7 @@ function Main() {
         <input className="learn-search" placeholder='Search Time' />
         <input className="learn-search" placeholder='Search Status' />
       </div> */}
-      <div className="learn-tutor-cards-container container">
+      <div className="learn-tutor-cards-container d-flex flex-wrap justify-content-center container">
         {store.profile && store.profile.favorites ? favoriteUsersElement : 
         
         <>

@@ -278,17 +278,30 @@ function Main() {
 
         </div>
 
-        <div className=' container-border-profile'>
-          <div className="profile-card-container ">
-            <img src={store.profile.image ? store.profile.image : store.profile.gender == "Male" ? personLogo : femaleLogo} className="tutor-img" />
-            <div className="tutor-text-container ">
-              <p className="tutor-text "><strong className='me-2 gris'>Name:</strong>{store.profile && store.profile.name}</p>
-              <p className="tutor-text"><strong className='me-2 gris'>Email:</strong>{store.profile && store.profile.email}</p>
+        <div className=' container-border-profile d-flex flex-column flex-md-row justify-content-between  align-items-md-center'>
+            <div className='d-flex d-md-none justify-content-center '>
+              <img src={store.profile.image ? store.profile.image : store.profile.gender == "Male" ? personLogo : femaleLogo} className="tutor-img " />
             </div>
-            
-            <Button className='edit-btn ms-auto' variant="" onClick={handleImageShow}>Edit Photo</Button>
+          
+          <div className='d-md-flex justify-content-md-between'>
 
+            <div className="profile-card-container ">
+            <div className='d-none d-md-block d-md-flex justify-content-center '>
+              <img src={store.profile.image ? store.profile.image : store.profile.gender == "Male" ? personLogo : femaleLogo} className="tutor-img " />
+            </div>
+              <div className="tutor-text-container ">
+                <p className="tutor-text "><strong className='me-2 gris'>Name:</strong>{store.profile && store.profile.name}</p>
+                <p className="tutor-text"><strong className='me-2 gris'>Email:</strong>{store.profile && store.profile.email}</p>
+              </div>
+
+            </div>
+
+            
           </div>
+            <div className='px-2 mt-3 mt-md-0'>
+              <Button className='px-3 edit-btn ms-auto w-100' variant="" onClick={handleImageShow}>Edit Photo</Button>
+            </div>
+
         </div>
 
         {/*<-----About------> */}
@@ -300,32 +313,32 @@ function Main() {
           <hr />
 
           <div className='row ms-xs-3'>
-            <div className='col-xs-6 col-md-2 mt-sm-3 ms-md-3 d-flex flex-column'>
+            <div className=' col-md-3  ms-md-3 d-flex flex-column'>
               <span className='gris'>Country</span>
               <p className='white'>{store.profile && store.profile.country}</p>
             </div>
 
-            <div className='col-xs-6 col-md-2 mt-sm-3 d-flex flex-column'>
+            <div className=' col-md-3  d-flex flex-column'>
               <span className='gris'>City</span>
               <p className='white'>{store.profile && store.profile.city}</p>
             </div>
 
-            <div className='col-xs-6 mt-sm-3 col-md-2 d-flex flex-column'>
+            <div className='  col-md-4 me-2 col-lg-2 d-flex flex-column'>
               <span className='gris'>Phone</span>
               <p className='white'>{store.profile && store.profile.number}</p>
             </div>
 
-            <div className='col-xs-6 mt-sm-3 col-md-2 me-5 d-flex flex-column'>
+            <div className='  col-md-3  ms-md-3 ms-lg-0 me-5 d-flex flex-column'>
               <span className='gris'>Email</span>
               <p className='white'>{store.profile && store.profile.email}</p>
             </div>
 
-            <div className='col-xs-6 mt-sm-3 col-md-2 col-ms-5 d-flex flex-column'>
+            <div className='  col-md-2 ms-md-3 col-ms-5 d-flex flex-column'>
               <span className='gris'>Gender</span>
               <p className='white'>{store.profile && store.profile.gender}</p>
             </div>
 
-            <div className='col-12 mt-sm-3 ms-md-3 d-flex flex-column'>
+            <div className='col-12  ms-md-3 d-flex flex-column'>
               <span className='gris'>Biography</span>
               <p className='white'>{store.profile && store.profile.bio}</p>
             </div>

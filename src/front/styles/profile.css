@@ -137,3 +137,10 @@ input[type="file"]::file-selector-button {
 .btn-mgn{
     margin-bottom: 10px;
 }
+
+
+@media (max-width: 350px) {
+    p {
+        font-size: 14px;
+    }
+}
